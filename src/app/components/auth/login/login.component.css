@@ -1,0 +1,75 @@
+/* Glowing Orbs Animations - Very Noticeable */
+@keyframes pulse-slow {
+    0%, 100% { 
+      opacity: 0.2; 
+      transform: scale(1) rotate(0deg); 
+    }
+    25% { 
+      opacity: 0.6; 
+      transform: scale(1.3) rotate(90deg); 
+    }
+    50% { 
+      opacity: 0.8; 
+      transform: scale(1.5) rotate(180deg); 
+    }
+    75% { 
+      opacity: 0.4; 
+      transform: scale(1.2) rotate(270deg); 
+    }
+  }
+  
+  @keyframes pulse-slow-delayed {
+    0%, 100% { 
+      opacity: 0.15; 
+      transform: scale(1) rotate(0deg); 
+    }
+    33% { 
+      opacity: 0.7; 
+      transform: scale(1.4) rotate(120deg); 
+    }
+    66% { 
+      opacity: 0.5; 
+      transform: scale(1.1) rotate(240deg); 
+    }
+  }
+  
+  @keyframes float-gentle {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) scale(1) rotate(0deg); 
+    }
+    25% { 
+      transform: translateY(-40px) translateX(20px) scale(1.3) rotate(90deg); 
+    }
+    50% { 
+      transform: translateY(-60px) translateX(-10px) scale(1.5) rotate(180deg); 
+    }
+    75% { 
+      transform: translateY(-20px) translateX(-30px) scale(1.1) rotate(270deg); 
+    }
+  }
+  
+  @keyframes float-gentle-delayed {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) scale(1) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-50px) translateX(25px) scale(1.4) rotate(180deg); 
+    }
+  }
+  
+  /* Animation classes - Much faster and more dramatic */
+  .animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow-delayed {
+    animation: pulse-slow-delayed 2.5s ease-in-out infinite 0.5s;
+  }
+  
+  .animate-float-gentle {
+    animation: float-gentle 1.8s ease-in-out infinite;
+  }
+  
+  .animate-float-gentle-delayed {
+    animation: float-gentle-delayed 2.2s ease-in-out infinite 0.3s;
+  }
