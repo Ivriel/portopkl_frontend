@@ -8,7 +8,8 @@ export const routes: Routes = [
     {
         path:'',
         pathMatch:'full',
-        component:DisplayVisitorComponent
+        component:DisplayVisitorComponent,
+        title:'Porto PKL - Projects'
     },
     {
         path:'admin',
@@ -20,15 +21,18 @@ export const routes: Routes = [
             },
             {
                 path:'login',
-                component:LoginComponent
+                component:LoginComponent,
+                title:'Porto PKL - Login'
             },
             {
                 path:'register',
-                component:RegisterComponent
+                component:RegisterComponent,
+                title:'Porto PKL - Register'
             },
             {
                 path:'dashboard',
-                component:DashboardComponent
+                component:DashboardComponent,
+                title:'Porto PKL - Dashboard'
             }
         ]
     }
