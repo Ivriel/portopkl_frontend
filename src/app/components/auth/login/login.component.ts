@@ -5,6 +5,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabel } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class LoginComponent {
 
-  constructor(private authService:AuthService){}
+  constructor(private authService:AuthService, private router:Router){}
 
   loginObj = {
     email:"",
@@ -22,15 +24,44 @@ export class LoginComponent {
   }
 
   onLogin(){
+    Swal.fire({
+      title:'Loading...',
+      allowOutsideClick:false,
+      didOpen:()=> {
+        Swal.showLoading()
+      }
+    })
+
     this.authService.login(this.loginObj).subscribe({
       next:(response:any)=>{
-        alert("Berhasil login")
+        Swal.close()
+        this.router.navigateByUrl("/admin/dashboard")
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Berhasil login"
+        });
         console.log(response)
         localStorage.setItem('token',response.token)
       },
-      error:(err:any)=> {
-        alert("gagal login")
-        console.error(err)
+      error:(error:any)=> {
+        Swal.close()
+        Swal.fire({
+          title:'Error',
+          text:error?.error || 'Terjadi kesalahan saat login',
+          icon:'error'
+        })
+        console.error(error)
       }
     })
   }
