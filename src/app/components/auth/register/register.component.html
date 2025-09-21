@@ -1,0 +1,31 @@
+
+
+<!-- Form Register -->
+<h3>Register</h3>
+<form (ngSubmit)="onRegister()">
+  <div>
+    <label>Nama</label><br>
+    <input type="text"
+           [(ngModel)]="registerObj.nama"
+           name="registerNama"
+           required />
+  </div>
+
+  <div>
+    <label>Email</label><br>
+    <input type="email"
+           [(ngModel)]="registerObj.email"
+           name="registerEmail"
+           required />
+  </div>
+
+  <div>
+    <label>Password</label><br>
+    <input type="password"
+           [(ngModel)]="registerObj.password"
+           name="registerPassword"
+           required />
+  </div>
+
+  <button type="submit">Register</button>
+</form>
