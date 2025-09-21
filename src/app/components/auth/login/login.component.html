@@ -1,19 +1,73 @@
-<form (ngSubmit)="onLogin()">
-  <div>
-    <label class="text-red-500">Email</label><br>
-    <input type="email"
-           [(ngModel)]="loginObj.email"
-           name="email"
-           required />
-  </div>
+<!-- Login Form Container -->
+<div class="min-h-screen bg-[#09090B] flex items-center justify-center p-4">
+  <!-- Form Card -->
+  <div class="bg-[#18181B] border border-[#6EE7B7] rounded-xl shadow-lg w-full max-w-md p-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-semibold text-white mb-2">Welcome Back</h2>
+      <p class="text-gray-400 text-sm">Please sign in to your account</p>
+    </div>
 
-  <div>
-    <label>Password</label><br>
-    <input type="password"
-           [(ngModel)]="loginObj.password"
-           name="password"
-           required />
-  </div>
+    <!-- Form -->
+    <form (ngSubmit)="onLogin()" class="space-y-5">
+      <!-- Email Field -->
+      <div class="space-y-2">
+        <p-floatlabel class="block">
+          <input 
+            pInputText 
+            id="email_field" 
+            name="email" 
+            class="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+                   rounded-md focus:border-[#475569] focus:ring-1 focus:ring-[#475569] 
+                   text-white placeholder-gray-500 text-sm transition-colors duration-200" 
+            [(ngModel)]="loginObj.email" 
+            autocomplete="email"
+            required
+          />
+          <label for="email_field" class="text-gray-400 text-sm">Email Address</label>
+        </p-floatlabel>
+      </div>
 
-  <button type="submit">Login</button>
-</form>
+      <!-- Password Field -->
+      <div class="space-y-2">
+        <p-floatlabel class="block">
+          <p-password
+            id="password_field"
+            name="password"
+            [(ngModel)]="loginObj.password"
+            [feedback]="false" 
+            toggleMask="true"
+            autocomplete="current-password"
+            styleClass="w-full" 
+            inputStyleClass="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+                            rounded-md focus:border-[#475569] focus:ring-1 
+                            focus:ring-[#475569] text-white placeholder-gray-500 text-sm 
+                            transition-colors duration-200"
+          ></p-password>
+          <label for="password_field" class="text-gray-400 text-sm">Password</label>
+        </p-floatlabel>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-2">
+        <p-button 
+          label="Sign In" 
+          type="submit"
+          styleClass="w-full h-10 bg-[#334155] hover:bg-[#475569] border-none 
+                      text-white font-medium rounded-md transition-colors duration-200 
+                      flex items-center justify-center text-sm"
+        />
+      </div>
+    </form>
+
+    <!-- Sign Up Link -->
+    <div class="mt-6 text-center">
+      <p class="text-gray-400 text-sm">
+        Don't have an account? 
+        <a href="#" class="text-gray-300 hover:text-white font-medium transition-colors duration-200 hover:underline">
+          Sign up here
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
