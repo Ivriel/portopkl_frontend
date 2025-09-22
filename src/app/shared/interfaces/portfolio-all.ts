@@ -5,3 +5,7 @@ export interface PortfolioAll {
     status:string;
     thumbnail:string;
 }
+
+export interface ApiResponseAll<T> {
+    data:T;
+}

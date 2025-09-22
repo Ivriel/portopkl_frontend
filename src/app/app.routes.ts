@@ -20,10 +20,6 @@ export const routes: Routes = [
         component:PortfolioDetailComponent
     },
     {
-        path:"**",
-        component:NotfoundComponent
-    },
-    {
         path:'admin',
         children: [
             {
@@ -49,5 +45,9 @@ export const routes: Routes = [
                 title:'Porto PKL - Dashboard'
             }
         ]
+    },
+    {
+        path:'**',
+        component:NotfoundComponent
     }
 ];

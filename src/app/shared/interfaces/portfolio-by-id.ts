@@ -16,3 +16,7 @@ export interface Technologies {
     color:string;
     _id:string;
 }
+
+export interface ApiResponseById<T> {
+    data:T;
+}

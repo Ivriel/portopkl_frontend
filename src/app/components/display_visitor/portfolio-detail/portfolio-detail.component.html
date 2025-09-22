@@ -1,1 +1,29 @@
-<p>portfolio-detail works!</p>
+<p-button label="Back" icon="pi pi-angle-left" styleClass="border-[#334155]" (onClick)="backToListPortfolio()"></p-button>
+<div *ngIf="portfolioDetail">
+  <h1>{{ portfolioDetail.title }}</h1>
+  <p><strong>Category:</strong> {{ portfolioDetail.category }}</p>
+  <p><strong>Status:</strong> {{ portfolioDetail.status }}</p>
+  <p><strong>Description:</strong> {{ portfolioDetail.description }}</p>
+  <p><strong>GitHub URL:</strong> <a [href]="portfolioDetail.githubUrl" target="_blank">{{ portfolioDetail.githubUrl }}</a></p>
+  <p><strong>Type Project:</strong> {{ portfolioDetail.typeProject }}</p>
+  
+  <div *ngIf="portfolioDetail.thumbnail">
+    <h3>Thumbnail:</h3>
+    <img [src]="portfolioDetail.thumbnail" [alt]="portfolioDetail.title" style="max-width: 300px;">
+  </div>
+  
+  <div *ngIf="portfolioDetail.images && portfolioDetail.images.length > 0">
+    <h3>Images:</h3>
+    <div *ngFor="let image of portfolioDetail.images">
+      <img [src]="image" [alt]="portfolioDetail.title" style="max-width: 200px; margin: 5px;">
+    </div>
+  </div>
+  
+  <div *ngIf="portfolioDetail.technologies && portfolioDetail.technologies.length > 0">
+    <h3>Technologies:</h3>
+    <div *ngFor="let tech of portfolioDetail.technologies">
+      <span [style.color]="tech.color" style="margin-right: 10px;">{{ tech.name }}</span>
+    </div>
+  </div>
+</div>
+

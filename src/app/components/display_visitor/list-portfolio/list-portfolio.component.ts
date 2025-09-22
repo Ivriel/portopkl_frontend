@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
-import { PortfolioAll } from '../../../shared/interfaces/portfolio-all';
+import { PortfolioAll, ApiResponseAll } from '../../../shared/interfaces/portfolio-all';
 import Swal from 'sweetalert2';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-portfolio',
-  imports: [],
+  imports: [CardModule, ButtonModule, TagModule, TooltipModule, CommonModule,RouterLink],
   templateUrl: './list-portfolio.component.html',
   styleUrl: './list-portfolio.component.css'
 })
-export class ListPortfolioComponent implements OnInit{
-  listPortfolio:PortfolioAll[] = []
+export class ListPortfolioComponent implements OnInit {
+  listPortfolio: PortfolioAll[] = []
 
-  constructor(private getPortfolioService:GetPortfolioService){}
+  constructor(private getPortfolioService: GetPortfolioService) {}
 
   ngOnInit(): void {
     this.getAllPortfolio()
@@ -28,19 +34,19 @@ export class ListPortfolioComponent implements OnInit{
     });
 
     this.getPortfolioService.getAllPortfolio().subscribe({
-      next:(res:PortfolioAll[]) => {
+      next: (res: ApiResponseAll<PortfolioAll[]>) => {
         Swal.close()
-        this.listPortfolio = res
+        this.listPortfolio = res.data
         console.log(this.listPortfolio)
       },
-      error:(error:any)=> {
+      error: (error: any) => {
         Swal.close()
         Swal.fire({
-          title:'Error',
-          text:error?.error || 'Terjadi kesalahan saat memuat data portfolio',
-          icon:'error'
+          title: 'Error',
+          text: error?.error || 'Terjadi kesalahan saat memuat data portfolio',
+          icon: 'error'
         })
-        console.error("Error loading data list portfolio: ",error)
+        console.error("Error loading data list portfolio: ", error)
       }
     })
   }
