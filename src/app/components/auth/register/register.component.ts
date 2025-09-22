@@ -3,12 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { FloatLabel } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,FloatLabel,PasswordModule],
+  imports: [FormsModule, FloatLabel, PasswordModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
