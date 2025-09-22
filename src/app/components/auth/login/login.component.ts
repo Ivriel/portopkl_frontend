@@ -8,7 +8,6 @@ import { ButtonModule } from 'primeng/button';
 import Swal from 'sweetalert2';
 import { Router,RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   imports: [FormsModule, InputTextModule, FloatLabel, PasswordModule, ButtonModule, RouterLink],
@@ -41,7 +40,7 @@ export class LoginComponent {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 1000,
+          timer: 3000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;

@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { FloatLabel } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -21,15 +22,43 @@ export class RegisterComponent {
  }
 
  onRegister(){
+  Swal.fire({
+    title:'Loading...',
+    allowOutsideClick:false,
+    didOpen:()=> {
+      Swal.showLoading()
+    }
+  })
+
+
   this.authService.register(this.registerObj).subscribe({
-    next:(res:any)=> {
+    next:()=> {
+      Swal.close()
       this.router.navigateByUrl("/admin/login")
-      alert("Berhasil register")
-      console.log(res)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Berhasil register"
+      });
     },
-    error:(err:any)=> {
-      alert("Gagal register"),
-      console.log(err)
+    error:(error:any)=> {
+      Swal.close()
+      Swal.fire({
+        title:'Error',
+        text:error?.error || 'Terjadi kesalahan saat login',
+        icon:'error'
+      }),
+      console.error(error)
     }
   })
  }
