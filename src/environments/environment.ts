@@ -7,6 +7,7 @@ export const environment = {
         login:'auth/login',
         register:'auth/register',
         getAllPortfolio:'portfolio/GetAllPortfolio',
-        getPortfolioById:'portfolio/GetPortfolioById/'
+        getPortfolioById:'portfolio/GetPortfolioById/',
+        getProfile:'UserToken/getSelfUser'
     }
 };

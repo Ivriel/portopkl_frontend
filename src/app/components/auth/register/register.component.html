@@ -1,8 +1,13 @@
 
+<div class="min-h-screen bg-[#09090B] flex items-center justify-center p-4 relative overflow-hidden"> 
+  <div class="bg-[#18181B] border border-[#6EE7B7] rounded-xl shadow-lg w-full max-w-md p-8 relative z-10">
 
-<!-- Form Register -->
-<h3>Register</h3>
-<form (ngSubmit)="onRegister()">
+<div class="text-center mb-8">
+  <h2 class="text-2xl font-semibold text-white mb-2">Welcome</h2>
+  <p class="text-gray-400 text-sm">Please register your account first</p>
+</div>
+
+<form (ngSubmit)="onRegister()" class="space-y-5">
   <div>
     <label>Nama</label><br>
     <input type="text"
@@ -11,21 +16,45 @@
            required />
   </div>
 
-  <div>
-    <label>Email</label><br>
-    <input type="email"
-           [(ngModel)]="registerObj.email"
-           name="registerEmail"
-           required />
+  <div class="space-y-2">
+    <p-floatlabel class="block" variant="in">
+      <input 
+        pInputText 
+        id="email_field" 
+        name="email" 
+        class="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+               rounded-md focus:border-[#475569] focus:ring-1 focus:ring-[#475569] 
+               text-white placeholder-gray-500 text-sm transition-colors duration-200" 
+        [(ngModel)]="registerObj.email" 
+        autocomplete="email"
+        required
+      />
+      <label for="email_field" class="text-gray-400 text-sm">Email Address</label>
+    </p-floatlabel>
   </div>
 
-  <div>
-    <label>Password</label><br>
-    <input type="password"
-           [(ngModel)]="registerObj.password"
-           name="registerPassword"
-           required />
+  <div class="space-y-2">
+    <p-floatlabel class="block" variant="in">
+      <p-password
+        id="password_field"
+        name="password"
+        [(ngModel)]="registerObj.password"
+        [feedback]="false" 
+        toggleMask="true"
+        autocomplete="current-password"
+        styleClass="w-full" 
+        inputStyleClass="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+                        rounded-md focus:border-[#475569] focus:ring-1 
+                        focus:ring-[#475569] text-white placeholder-gray-500 text-sm 
+                        transition-colors duration-200"
+      ></p-password>
+      <label for="password_field" class="text-gray-400 text-sm">Password</label>
+    </p-floatlabel>
   </div>
 
   <button type="submit">Register</button>
 </form>
+
+
+  </div>
+</div>

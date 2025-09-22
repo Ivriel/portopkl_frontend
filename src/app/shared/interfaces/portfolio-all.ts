@@ -3,6 +3,7 @@ export interface PortfolioAll {
     title:string;
     category:string;
     status:string;
+    typeProject:string;
     thumbnail:string;
 }
 

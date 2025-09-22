@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { DashboardComponent } from './components/admin_dashboard/dashboard/dashboard.component';
-import { ListPortfolioComponent } from './components/display_visitor/list-portfolio/list-portfolio.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ListPortfolioComponent } from './components/visitor/list-portfolio/list-portfolio.component';
 import { loginGuard } from './guards/login.guard';
 import { protectedRouteGuard } from './guards/protected-route.guard';
-import { PortfolioDetailComponent } from './components/display_visitor/portfolio-detail/portfolio-detail.component';
+import { PortfolioDetailComponent } from './components/visitor/portfolio-detail/portfolio-detail.component';
 import { NotfoundComponent } from './components/fallback/notfound/notfound.component';
+import { ProfileComponent } from './components/admin/profile/profile.component';
+import { ProfileFormComponent } from './components/admin/profile-form/profile-form.component';
 
 export const routes: Routes = [
     {
@@ -43,6 +45,16 @@ export const routes: Routes = [
                 component:DashboardComponent,
                 canActivate:[protectedRouteGuard],
                 title:'Porto PKL - Dashboard'
+            },
+            {
+                path:'profile',
+                component:ProfileComponent,
+                canActivate:[protectedRouteGuard]
+            },
+            {
+                path:'profile-form',
+                component:ProfileFormComponent,
+                canActivate:[protectedRouteGuard]
             }
         ]
     },
