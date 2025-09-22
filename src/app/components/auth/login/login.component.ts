@@ -23,7 +23,7 @@ export class LoginComponent {
     password:""
   }
 
-  onLogin(){
+  onLogin(): void{
     Swal.fire({
       title:'Loading...',
       allowOutsideClick:false,

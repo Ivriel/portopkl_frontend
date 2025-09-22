@@ -12,12 +12,12 @@ export class GetPortfolioService {
 
   constructor(private http:HttpClient) { }
 
-  getAllPortfolio():Observable<PortfolioAll>{
-    return this.http.get<PortfolioAll>(environment.apiUrl + "GetAllPortfolio")
+  getAllPortfolio():Observable<PortfolioAll[]>{
+    return this.http.get<PortfolioAll[]>(environment.apiUrl + environment.apiBranchUrl.getAllPortfolio)
   }
 
   getPortfolioById(id:string):Observable<PortfolioById> {
-    return this.http.get<PortfolioById>(environment.apiUrl + "GetPortfolioById/" + id)
+    return this.http.get<PortfolioById>(environment.apiUrl + environment.apiBranchUrl.getPortfolioById + id)
   }
   
 }

@@ -11,7 +11,8 @@ import { AuthService } from '../../auth/auth.service';
 export class DashboardComponent {
   constructor(private authService:AuthService){}
 
-  onLogout(){
+  onLogout(): void {
     this.authService.logout()
   }
+
 }

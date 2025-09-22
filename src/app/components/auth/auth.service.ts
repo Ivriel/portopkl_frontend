@@ -12,11 +12,11 @@ export class AuthService {
   constructor(private http:HttpClient,private router:Router) { }
 
   login(obj:any):Observable<any>{
-    return this.http.post<any>(environment.apiUrl + 'auth/login',obj)
+    return this.http.post<any>(environment.apiUrl + environment.apiBranchUrl.login ,obj)
   }
 
   register(obj:any):Observable<any> {
-    return this.http.post<any>(environment.apiUrl + 'auth/register',obj)
+    return this.http.post<any>(environment.apiUrl + environment.apiBranchUrl.register,obj)
   } 
 
   isAuthenticated():boolean {
