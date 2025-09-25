@@ -7,6 +7,12 @@ export const environment = {
         getAllPortfolio:'portfolio/GetAllPortfolio',
         getPortfolioById:'portfolio/GetPortfolioById/',
         getDashboardSummary:'portfolio/getDashboardSummary',
-        getProfile:'UserToken/getSelfUser'
+        addPortfolio:'portfolio/addPortfolio',
+        deletePortfolio:'portfolio/deletePortfolio/',
+        updatePortfolio:'portfolio/updatePortfolio/',
+        getProfile:'UserToken/getSelfUser',
+        updateProfile:'UserToken/updateUser',
+        deleteUser:'UserToken/deleteUser',
+        changePassword:'UserToken/change-password'
     }
 };
