@@ -9,6 +9,7 @@ import { PortfolioDetailComponent } from './components/visitor/portfolio-detail/
 import { NotfoundComponent } from './components/fallback/notfound/notfound.component';
 import { ProfileComponent } from './components/admin/profile/profile.component';
 import { ProfileFormComponent } from './components/admin/profile-form/profile-form.component';
+import { ProjectFormComponent } from './components/admin/project-form/project-form.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +55,16 @@ export const routes: Routes = [
             {
                 path:'profile-form',
                 component:ProfileFormComponent,
+                canActivate:[protectedRouteGuard]
+            },
+            {
+                path:'project-form',
+                component:ProjectFormComponent,
+                canActivate:[protectedRouteGuard]
+            },
+            {
+                path:'project-form/:id',
+                component:ProjectFormComponent,
                 canActivate:[protectedRouteGuard]
             }
         ]
