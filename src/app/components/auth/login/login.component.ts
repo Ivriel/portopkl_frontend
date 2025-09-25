@@ -34,7 +34,6 @@ export class LoginComponent {
 
     this.authService.login(this.loginObj).subscribe({
       next:(response:any)=>{
-        Swal.close()
         this.router.navigateByUrl("/admin/dashboard")
         const Toast = Swal.mixin({
           toast: true,
@@ -55,13 +54,15 @@ export class LoginComponent {
         localStorage.setItem('token',response.token)
       },
       error:(error:any)=> {
-        Swal.close()
         Swal.fire({
           title:'Error',
           text:error?.error || 'Terjadi kesalahan saat login',
           icon:'error'
         })
         console.error(error)
+      },
+      complete:()=> {
+        Swal.close()
       }
     })
   }

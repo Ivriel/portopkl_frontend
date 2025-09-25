@@ -34,7 +34,6 @@ export class RegisterComponent {
 
   this.authService.register(this.registerObj).subscribe({
     next:()=> {
-      Swal.close()
       this.router.navigateByUrl("/admin/login")
       const Toast = Swal.mixin({
         toast: true,
@@ -53,13 +52,15 @@ export class RegisterComponent {
       });
     },
     error:(error:any)=> {
-      Swal.close()
       Swal.fire({
         title:'Error',
         text:error?.error || 'Terjadi kesalahan saat login',
         icon:'error'
       }),
       console.error(error)
+    },
+    complete: ()=> {
+      Swal.close()
     }
   })
  }

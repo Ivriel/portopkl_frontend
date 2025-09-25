@@ -35,18 +35,19 @@ export class ListPortfolioComponent implements OnInit {
 
     this.getPortfolioService.getAllPortfolio().subscribe({
       next: (res: ApiResponseAll<PortfolioAll[]>) => {
-        Swal.close()
         this.listPortfolio = res.data
         console.log(this.listPortfolio)
       },
       error: (error: any) => {
-        Swal.close()
         Swal.fire({
           title: 'Error',
           text: error?.error || 'Terjadi kesalahan saat memuat data portfolio',
           icon: 'error'
         })
         console.error("Error loading data list portfolio: ", error)
+      },
+      complete:()=> {
+        Swal.close()
       }
     })
   }
