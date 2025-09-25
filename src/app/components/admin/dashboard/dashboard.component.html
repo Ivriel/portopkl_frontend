@@ -1,2 +1,16 @@
 <h1 class="text-3xl font-bold">ADMIN DASHBOARD</h1>
+
+<div>
+    <div class="grid grid-cols-3 gap-4">
+        <div class="col-span-1" *ngIf="dashboardSummary">
+            <p>Total Portfolio: {{dashboardSummary.totalPortfolio}}</p>
+            <p>Total On Progress Project: {{dashboardSummary.totalOnProgressProject}}</p>
+            <p>Total Finished Project: {{dashboardSummary.totalFinishedProject}}</p>
+            <p>Total Industry Project: {{dashboardSummary.totalIndustryProject}}</p>
+            <p>Total Personal Project: {{dashboardSummary.totalPersonalProject}}</p>
+            <p>Total Web Project: {{dashboardSummary.totalWebProject}}</p>
+            <p>Total Mobile Project: {{dashboardSummary.totalMobileProject}}</p>
+        </div>
+    </div>
+</div>
 <p-button icon="pi pi-sign-out" label="Logout" severity="danger" (onClick)="onLogout()"></p-button>

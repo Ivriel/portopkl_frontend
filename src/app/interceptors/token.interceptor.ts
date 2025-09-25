@@ -8,7 +8,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   // Only access localStorage if we're in the browser
   const token = isPlatformBrowser(platformId) ? localStorage.getItem("token") : null;
 
-  if(req.url.includes("/auth/login") || req.url.includes("/auth/register") || req.url.includes("/portfolio/getAllPortfolio") || req.url.includes("/portfolio/getPortfolioById")) {
+  if(req.url.includes("/auth/login") || req.url.includes("/auth/register") || req.url.includes("/portfolio/getAllPortfolio") || req.url.includes("/portfolio/getPortfolioById") || req.url.includes("/portfolio/getDashboardSummary")) {
     return next(req);
   }
 
