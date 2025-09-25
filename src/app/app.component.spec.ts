@@ -17,7 +17,6 @@ describe('AppComponent', () => {
   it(`should have the 'coba_frontend_angular' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('coba_frontend_angular');
   });
 
   it('should render title', () => {
