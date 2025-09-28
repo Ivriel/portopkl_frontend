@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { ListPortfolioComponent } from './components/visitor/list-portfolio/list-portfolio.component';
 import { loginGuard } from './guards/login.guard';
 import { protectedRouteGuard } from './guards/protected-route.guard';
 import { PortfolioDetailComponent } from './components/visitor/portfolio-detail/portfolio-detail.component';
@@ -10,13 +9,14 @@ import { NotfoundComponent } from './components/fallback/notfound/notfound.compo
 import { ProfileComponent } from './components/admin/profile/profile.component';
 import { ProfileFormComponent } from './components/admin/profile-form/profile-form.component';
 import { ProjectFormComponent } from './components/admin/project-form/project-form.component';
+import { VisitorParentComponent } from './components/visitor/visitor-parent/visitor-parent.component';
 
 export const routes: Routes = [
     {
         path:'',
         pathMatch:'full',
-        component:ListPortfolioComponent,
-        title:'Porto PKL - Projects'
+        component:VisitorParentComponent,
+        title:'Porto PKL - Ivriel'
     },
     {
         path:'portfolio/:id',

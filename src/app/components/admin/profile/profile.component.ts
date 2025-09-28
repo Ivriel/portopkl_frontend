@@ -3,10 +3,11 @@ import { ApiResponseProfile, Profile } from '../../../shared/interfaces/profile'
 import { Title } from '@angular/platform-browser';
 import { AdminService } from '../admin.service';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

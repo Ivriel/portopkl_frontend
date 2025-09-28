@@ -1,7 +1,25 @@
-<h1>{{profile.nama}}</h1>
+<h1 *ngIf="profile.nama">{{profile.nama || ''}}</h1>
 <p>{{profile._id}}</p>
 <p>{{profile.bio}}</p>
 <p>{{profile.email}}</p>
 <p>{{profile.phone}}</p>
 <p>{{profile.role}}</p>
+<p>{{profile.location.city}}</p>
+<p>{{profile.location.postal_code}}</p>
+<p>{{profile.location.country}}</p>
+<p>{{profile.location.street}}</p>
+<a>{{profile.social.facebook}}</a>
+<br>
+<a [href]="profile.social.github"></a>
+<br>
+<a [href]="profile.social.instagram"></a> <br>
+<a [href]="profile.social.linkedin"></a>
+<a [href]="profile.social.website"></a>
+<div>
+    <ul *ngFor="let skill of profile.skills">
+        <li>{{skill._id}}</li>
+        <li>{{skill.name}}</li>
+        <li>{{skill.category}}</li>
+    </ul>
+</div>
 <img [src]="profile.avatar" [alt]="profile.nama">
