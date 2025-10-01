@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ApiResponseProfile, Profile } from '../../shared/interfaces/profile';
 import { ApiResponseDashboardSummary, DashboardSummary } from '../../shared/interfaces/dashboard-summary';
+import { ApiResponsePortfolioById, PortfolioById } from '../../shared/interfaces/portfolioById';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class AdminService {
 
   getProfile():Observable<ApiResponseProfile<Profile>>{
     return this.http.get<ApiResponseProfile<Profile>>(environment.apiUrl + environment.apiBranchUrl.getProfile)
+  }
+
+  getPortfolioById(id:string):Observable<ApiResponsePortfolioById<PortfolioById>> {
+    return this.http.get<ApiResponsePortfolioById<PortfolioById>>(environment.apiUrl + environment.apiBranchUrl.getPortfolioById + id)
   }
   
 }
