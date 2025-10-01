@@ -1,7 +1,7 @@
 <div class="min-h-screen p-6" style="background-color: #121212;">
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
-      <h1 class="text-3xl font-bold text-white">ADMIN DASHBOARD</h1>
+      <h1 class="text-3xl font-bold dashboard-title">ADMIN DASHBOARD</h1>
       <p-button 
         icon="pi pi-sign-out" 
         label="Logout" 
@@ -13,13 +13,13 @@
     <!-- admin info dan action button -->
     <div class="bg-zinc-900 rounded-xl p-4 sm:p-5 border border-zinc-800 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div class="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
+        <div (click)="onProfileClick()" class="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
           <i class="pi pi-user text-white text-lg sm:text-xl"></i>
         </div>
         <div class="min-w-0 flex-1">
           <p class="text-xs sm:text-sm text-gray-400">Logged in as</p>
-          <p class="text-base sm:text-lg font-semibold text-white truncate">{{adminEmail || ''}}</p>
-          <p>{{currentTime | date:'EEEE, dd MMMM yyyy - HH:mm:ss'}}</p>
+          <p class="text-base sm:text-lg truncate"> <span class="font-semibold text-white">{{adminName || ''}}</span>  - <span class="text-gray-400"> {{adminEmail || ''}} </span></p>
+          <p>{{currentTime | date:'EEEE, dd MMMM yyyy - HH:mm:ss'}} WIB</p>
         </div>
       </div>
       <div class="flex items-center gap-3 w-full sm:w-auto">
@@ -98,7 +98,7 @@
               <span class="w-1 h-6 rounded-full" style="background-color: #34D399;"></span>
               Project Summary
             </h2>
-            <div class="h-96">
+            <div class="h-[280px]">
               <canvas #chartCanvas></canvas>
             </div>
           </div>

@@ -22,7 +22,8 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
-  adminEmail!:string
+  adminEmail!:string;
+  adminName!:string;
   dashboardSummary!: DashboardSummary;
   private chart: Chart | undefined;
   currentTime:Date = new Date();
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const user = this.authService.getLoginUser();
     if(user) {
       this.adminEmail = user.email || ''
+      this.adminName = user.nama || ''
     }
   }
 
@@ -54,6 +56,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   onAddProject():void {
     this.router.navigateByUrl('/admin/project-form/new')
+  }
+
+  onProfileClick():void {
+    this.router.navigateByUrl("/admin/profile")
   }
 
   getDashboardSummary(): void {

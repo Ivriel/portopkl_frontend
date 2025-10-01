@@ -9,3 +9,27 @@
     background-color: #10B981 !important;  
   }
   
+  .dashboard-title {
+    background: linear-gradient(135deg, #34D399 0%, #10B981 50%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(52, 211, 153, 0.4);
+    position: relative;
+    display: inline-block;
+  }
+  
+
+  .dashboard-title::before {
+    content: 'ADMIN DASHBOARD';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #34D399 0%, #10B981 50%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(20px);
+    opacity: 0.6;
+  }
