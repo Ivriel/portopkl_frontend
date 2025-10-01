@@ -23,13 +23,13 @@
         </div>
       </div>
       <div class="flex items-center gap-3 w-full sm:w-auto">
-        <p-button 
-          icon="pi pi-plus" 
-          label="Add New Project" 
-          [style]="{'background-color': '#34D399', 'border-color': '#34D399'}"
-          styleClass="w-full sm:w-auto text-sm sm:text-base"
-          (onClick)="onAddProject()">
-        </p-button>
+        <button mat-flat-button
+        (click)="onAddProject()"
+        class="add-project-btn">
+        <mat-icon class="text-lg">add</mat-icon>
+        Add New Project
+        </button>
+
       </div>
     </div>
   

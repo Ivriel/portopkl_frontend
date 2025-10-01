@@ -9,12 +9,14 @@ import { CardModule } from 'primeng/card';
 import Swal from 'sweetalert2';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ButtonModule, CommonModule, CardModule],
+  imports: [ButtonModule, CommonModule, CardModule,MatIconModule,MatButtonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
