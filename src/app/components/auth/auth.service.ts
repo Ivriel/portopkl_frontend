@@ -28,9 +28,13 @@ export class AuthService {
     }
   }
 
+  setloginUser(user:any) {
+    localStorage.setItem('userData',JSON.stringify(user))
+  }
 
   logout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('userData')
     this.router.navigateByUrl("/admin/login")
   }
 

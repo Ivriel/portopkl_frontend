@@ -9,6 +9,27 @@
         (onClick)="onLogout()">
       </p-button>
     </div>
+
+    <!-- admin info dan action button -->
+    <div class="bg-zinc-900 rounded-xl p-5 border border-zinc-800 mb-8 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
+          <i class="pi pi-user text-white text-xl"></i>
+        </div>
+        <div>
+          <p class="text-sm text-gray-400">Logged in as</p>
+          <p class="text-lg font-semibold text-white">{{adminEmail || ''}}</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <p-button 
+          icon="pi pi-plus" 
+          label="Add New Project" 
+          [style]="{'background-color': '#34D399', 'border-color': '#34D399'}"
+          (onClick)="onAddProject()">
+        </p-button>
+      </div>
+    </div>
   
     <div *ngIf="dashboardSummary">
       <!-- Stats Cards -->
@@ -66,7 +87,7 @@
         </div>
       </div>
   
-      <!-- Chart and Additional Stats -->
+      <!-- Chart sama Additional Stats -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Chart Section -->
         <div class="lg:col-span-2">
@@ -125,8 +146,4 @@
       </div>
     </div>
   
-    <!-- Loading State -->
-    <div *ngIf="!dashboardSummary" class="flex items-center justify-center h-64">
-      <i class="pi pi-spin pi-spinner text-4xl" style="color: #34D399;"></i>
-    </div>
   </div>

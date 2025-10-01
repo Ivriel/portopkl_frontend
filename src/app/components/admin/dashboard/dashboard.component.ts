@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import Swal from 'sweetalert2';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
+import { Router } from '@angular/router';
 
 Chart.register(...registerables);
 
@@ -19,18 +20,31 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
-  
+  adminEmail!:string
   dashboardSummary!: DashboardSummary;
   private chart: Chart | undefined;
 
-  constructor(private authService: AuthService, private adminService: AdminService) {}
+  constructor(private authService: AuthService, private adminService: AdminService, private router:Router) {}
 
   ngOnInit(): void {
+    this.loadAdminEmail();
     this.getDashboardSummary();
   }
 
   ngAfterViewInit(): void {
     // Chart akan dibuat setelah data summary tersedia
+  }
+
+  loadAdminEmail():void {
+    const user = localStorage.getItem('userData');
+    if(user) {
+      const userData = JSON.parse(user);
+      this.adminEmail = userData.email || ''
+    }
+  }
+
+  onAddProject():void {
+    this.router.navigateByUrl('/admin/project-form')
   }
 
   getDashboardSummary(): void {
@@ -216,7 +230,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   onLogout(): void {
-    this.authService.logout();
+    Swal.fire({
+      title: "Logout?",
+      text: "Yakin ingin logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.logout();
+      }
+    });
   }
 
   ngOnDestroy(): void {
