@@ -23,12 +23,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   adminEmail!:string
   dashboardSummary!: DashboardSummary;
   private chart: Chart | undefined;
+  currentTime:Date = new Date();
 
   constructor(private authService: AuthService, private adminService: AdminService, private router:Router) {}
 
   ngOnInit(): void {
     this.loadAdminEmail();
     this.getDashboardSummary();
+    this.updateTime();
   }
 
   ngAfterViewInit(): void {
@@ -41,6 +43,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       const userData = JSON.parse(user);
       this.adminEmail = userData.email || ''
     }
+  }
+
+  updateTime():void {
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
   }
 
   onAddProject():void {

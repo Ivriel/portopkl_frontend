@@ -11,21 +11,23 @@
     </div>
 
     <!-- admin info dan action button -->
-    <div class="bg-zinc-900 rounded-xl p-5 border border-zinc-800 mb-8 flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
-          <i class="pi pi-user text-white text-xl"></i>
+    <div class="bg-zinc-900 rounded-xl p-4 sm:p-5 border border-zinc-800 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
+          <i class="pi pi-user text-white text-lg sm:text-xl"></i>
         </div>
-        <div>
-          <p class="text-sm text-gray-400">Logged in as</p>
-          <p class="text-lg font-semibold text-white">{{adminEmail || ''}}</p>
+        <div class="min-w-0 flex-1">
+          <p class="text-xs sm:text-sm text-gray-400">Logged in as</p>
+          <p class="text-base sm:text-lg font-semibold text-white truncate">{{adminEmail || ''}}</p>
+          <p>{{currentTime | date:'EEEE, dd MMMM yyyy - HH:mm:ss'}}</p>
         </div>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 w-full sm:w-auto">
         <p-button 
           icon="pi pi-plus" 
           label="Add New Project" 
           [style]="{'background-color': '#34D399', 'border-color': '#34D399'}"
+          styleClass="w-full sm:w-auto text-sm sm:text-base"
           (onClick)="onAddProject()">
         </p-button>
       </div>
