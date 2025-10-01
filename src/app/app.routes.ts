@@ -58,11 +58,6 @@ export const routes: Routes = [
                 canActivate:[protectedRouteGuard]
             },
             {
-                path:'project-form',
-                component:ProjectFormComponent,
-                canActivate:[protectedRouteGuard]
-            },
-            {
                 path:'project-form/:id',
                 component:ProjectFormComponent,
                 canActivate:[protectedRouteGuard]

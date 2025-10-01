@@ -38,10 +38,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   loadAdminEmail():void {
-    const user = localStorage.getItem('userData');
+    const user = this.authService.getLoginUser();
     if(user) {
-      const userData = JSON.parse(user);
-      this.adminEmail = userData.email || ''
+      this.adminEmail = user.email || ''
     }
   }
 
@@ -52,7 +51,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   onAddProject():void {
-    this.router.navigateByUrl('/admin/project-form')
+    this.router.navigateByUrl('/admin/project-form/new')
   }
 
   getDashboardSummary(): void {
