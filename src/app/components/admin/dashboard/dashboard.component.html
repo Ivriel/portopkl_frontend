@@ -1,17 +1,132 @@
-<h1 class="text-3xl font-bold">ADMIN DASHBOARD</h1>
-
-<div>
-    <div class="grid grid-cols-3 gap-4">
-        <div class="col-span-1" *ngIf="dashboardSummary">
-            <p>Total Portfolio: {{dashboardSummary.totalPortfolio}}</p>
-            <p>Total On Progress Project: {{dashboardSummary.totalOnProgressProject}}</p>
-            <p>Total Finished Project: {{dashboardSummary.totalFinishedProject}}</p>
-            <p>Total Industry Project: {{dashboardSummary.totalIndustryProject}}</p>
-            <p>Total Personal Project: {{dashboardSummary.totalPersonalProject}}</p>
-            <p>Total Web Project: {{dashboardSummary.totalWebProject}}</p>
-            <p>Total Mobile Project: {{dashboardSummary.totalMobileProject}}</p>
-        </div>
+<div class="min-h-screen p-6" style="background-color: #121212;">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-white">ADMIN DASHBOARD</h1>
+      <p-button 
+        icon="pi pi-sign-out" 
+        label="Logout" 
+        severity="danger" 
+        (onClick)="onLogout()">
+      </p-button>
     </div>
-</div>
-<i class="fa fa-camera"></i>
-<p-button icon="pi pi-sign-out" label="Logout" severity="danger" (onClick)="onLogout()"></p-button>
+  
+    <div *ngIf="dashboardSummary">
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        <!-- Total Portfolio Card -->
+        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-[#34D399]/50 transition-all duration-300 shadow-lg hover:shadow-[#34D399]/20">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-400 mb-2">Total Portfolio</p>
+              <p class="text-3xl font-bold text-white">{{dashboardSummary.totalPortfolio}}</p>
+            </div>
+            <div class="w-14 h-14 rounded-lg flex items-center justify-center" style="background-color: rgba(52, 211, 153, 0.1);">
+              <i class="pi pi-briefcase text-2xl" style="color: #34D399;"></i>
+            </div>
+          </div>
+        </div>
+  
+        <!-- On Progress Card -->
+        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg hover:shadow-blue-500/10">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-400 mb-2">On Progress</p>
+              <p class="text-3xl font-bold text-white">{{dashboardSummary.totalOnProgressProject}}</p>
+            </div>
+            <div class="w-14 h-14 bg-blue-500/10 rounded-lg flex items-center justify-center">
+              <i class="pi pi-spinner text-2xl text-blue-400"></i>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Finished Card -->
+        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-green-500/50 transition-all duration-300 shadow-lg hover:shadow-green-500/10">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-400 mb-2">Finished</p>
+              <p class="text-3xl font-bold text-white">{{dashboardSummary.totalFinishedProject}}</p>
+            </div>
+            <div class="w-14 h-14 bg-green-500/10 rounded-lg flex items-center justify-center">
+              <i class="pi pi-check-circle text-2xl text-green-400"></i>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Industry Projects Card -->
+        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-purple-500/50 transition-all duration-300 shadow-lg hover:shadow-purple-500/10">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-400 mb-2">Industry Projects</p>
+              <p class="text-3xl font-bold text-white">{{dashboardSummary.totalIndustryProject}}</p>
+            </div>
+            <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center">
+              <i class="pi pi-building text-2xl text-purple-400"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Chart and Additional Stats -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Chart Section -->
+        <div class="lg:col-span-2">
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 shadow-lg">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+              <span class="w-1 h-6 rounded-full" style="background-color: #34D399;"></span>
+              Project Summary
+            </h2>
+            <div class="h-96">
+              <canvas #chartCanvas></canvas>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Side Stats -->
+        <div class="space-y-5">
+          <!-- Personal Projects -->
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-orange-500/50 transition-all duration-300 shadow-lg hover:shadow-orange-500/10">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm text-gray-400 mb-2">Personal Projects</p>
+                <p class="text-3xl font-bold text-white">{{dashboardSummary.totalPersonalProject}}</p>
+              </div>
+              <div class="w-14 h-14 bg-orange-500/10 rounded-lg flex items-center justify-center">
+                <i class="pi pi-user text-2xl text-orange-400"></i>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Web Projects -->
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-cyan-500/50 transition-all duration-300 shadow-lg hover:shadow-cyan-500/10">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm text-gray-400 mb-2">Web Projects</p>
+                <p class="text-3xl font-bold text-white">{{dashboardSummary.totalWebProject}}</p>
+              </div>
+              <div class="w-14 h-14 bg-cyan-500/10 rounded-lg flex items-center justify-center">
+                <i class="pi pi-globe text-2xl text-cyan-400"></i>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Mobile Projects -->
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-pink-500/50 transition-all duration-300 shadow-lg hover:shadow-pink-500/10">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm text-gray-400 mb-2">Mobile Projects</p>
+                <p class="text-3xl font-bold text-white">{{dashboardSummary.totalMobileProject}}</p>
+              </div>
+              <div class="w-14 h-14 bg-pink-500/10 rounded-lg flex items-center justify-center">
+                <i class="pi pi-mobile text-2xl text-pink-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Loading State -->
+    <div *ngIf="!dashboardSummary" class="flex items-center justify-center h-64">
+      <i class="pi pi-spin pi-spinner text-4xl" style="color: #34D399;"></i>
+    </div>
+  </div>
