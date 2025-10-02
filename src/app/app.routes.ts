@@ -66,7 +66,8 @@ export const routes: Routes = [
             },
             {
                 path:'project-display',
-                component:ProjectDisplayComponent
+                component:ProjectDisplayComponent,
+                title:'Admin - Project Display'
             },
             {
                 path:'project-detail/:id',
@@ -76,6 +77,7 @@ export const routes: Routes = [
     },
     {
         path:'**',
-        component:NotfoundComponent
+        component:NotfoundComponent,
+        title:'404 - Not Found'
     }
 ];
