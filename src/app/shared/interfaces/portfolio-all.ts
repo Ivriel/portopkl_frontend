@@ -7,6 +7,6 @@ export interface PortfolioAll {
     thumbnail:string;
 }
 
-export interface ApiResponseAll<T> {
+export interface ApiResponsePortfolioAll<T> {
     data:T;
 }

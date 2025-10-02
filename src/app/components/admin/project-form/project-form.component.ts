@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, UntypedFormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AdminService } from '../admin.service';
-import { ApiResponsePortfolioById, PortfolioById } from '../../../shared/interfaces/portfolioById';
+import { ApiResponsePortfolioById,PortfolioById } from '../../../shared/interfaces/portfolio-by-id';
 import { Title } from '@angular/platform-browser';
+import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
 
 @Component({
   selector: 'app-project-form',
@@ -18,7 +18,7 @@ export class ProjectFormComponent implements OnInit{
   formBuilder = inject(FormBuilder)
   temporaryDataContainer!:PortfolioById;
 
-  constructor(private route:ActivatedRoute, private adminService: AdminService, private title:Title){
+  constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title){
     this.id = this.route.snapshot.paramMap.get('id') || ''
     if(this.id === 'new') {
       this.isEditMode = false
@@ -54,7 +54,7 @@ export class ProjectFormComponent implements OnInit{
   }
 
   GetPortfolioById():void {
-    this.adminService.getPortfolioById(this.id).subscribe({
+    this.getPortfolioService.getPortfolioById(this.id).subscribe({
       next:(res:ApiResponsePortfolioById<PortfolioById>) => {
         this.temporaryDataContainer = res.data
         console.log(this.temporaryDataContainer)

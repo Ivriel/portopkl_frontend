@@ -17,6 +17,6 @@ export interface Technologies {
     _id:string;
 }
 
-export interface ApiResponseById<T> {
+export interface ApiResponsePortfolioById<T> {
     data:T;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ApiResponseById, PortfolioById } from '../../../shared/interfaces/portfolio-by-id';
+import { ApiResponsePortfolioById, PortfolioById } from '../../../shared/interfaces/portfolio-by-id';
 import Swal from 'sweetalert2';
 import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
 import { Title } from '@angular/platform-browser';
@@ -14,9 +14,13 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './portfolio-detail.component.css'
 })
 export class PortfolioDetailComponent implements OnInit{
+  portfolioId:string | null = "";
   portfolioDetail!:PortfolioById;
 
-  constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title, private router:Router){}
+  constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title, private router:Router){
+    this.portfolioId = this.route.snapshot.paramMap.get('id')
+    if(!this.portfolioId) return;
+  }
 
   ngOnInit(): void {
     this.getDetailPortfolio()
@@ -31,11 +35,10 @@ export class PortfolioDetailComponent implements OnInit{
       },
     });
 
-    const portfolioId = this.route.snapshot.paramMap.get('id')
-    if(!portfolioId) return;
+   
 
-    this.getPortfolioService.getPortfolioById(portfolioId).subscribe({
-      next:(res:ApiResponseById<PortfolioById>) => {
+    this.getPortfolioService.getPortfolioById(this.portfolioId!).subscribe({
+      next:(res:ApiResponsePortfolioById<PortfolioById>) => {
         this.portfolioDetail = res.data
         this.title.setTitle(`Portfolio Detail - ${res.data.title}`)
         console.log('Portfolio Detail assigned:', this.portfolioDetail)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
-import { PortfolioAll, ApiResponseAll } from '../../../shared/interfaces/portfolio-all';
+import { PortfolioAll, ApiResponsePortfolioAll } from '../../../shared/interfaces/portfolio-all';
 import Swal from 'sweetalert2';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -34,7 +34,7 @@ export class ListPortfolioComponent implements OnInit {
     });
 
     this.getPortfolioService.getAllPortfolio().subscribe({
-      next: (res: ApiResponseAll<PortfolioAll[]>) => {
+      next: (res: ApiResponsePortfolioAll<PortfolioAll[]>) => {
         this.listPortfolio = res.data
         console.log(this.listPortfolio)
       },

@@ -10,6 +10,8 @@ import { ProfileComponent } from './components/admin/profile/profile.component';
 import { ProfileFormComponent } from './components/admin/profile-form/profile-form.component';
 import { ProjectFormComponent } from './components/admin/project-form/project-form.component';
 import { VisitorParentComponent } from './components/visitor/visitor-parent/visitor-parent.component';
+import { ProjectDisplayComponent } from './components/admin/project-display/project-display.component';
+import { ProjectDetailComponent } from './components/admin/project-detail/project-detail.component';
 
 export const routes: Routes = [
     {
@@ -61,6 +63,14 @@ export const routes: Routes = [
                 path:'project-form/:id',
                 component:ProjectFormComponent,
                 canActivate:[protectedRouteGuard]
+            },
+            {
+                path:'project-display',
+                component:ProjectDisplayComponent
+            },
+            {
+                path:'project-detail/:id',
+                component:ProjectDetailComponent
             }
         ]
     },
