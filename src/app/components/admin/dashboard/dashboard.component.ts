@@ -22,8 +22,9 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
-  adminEmail!:string;
-  adminName!:string;
+  adminEmail:string = "";
+  adminName:string = "";
+  adminAvatar:string = "";
   dashboardSummary!: DashboardSummary;
   private chart: Chart | undefined;
   currentTime:Date = new Date();
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if(user) {
       this.adminEmail = user.email || ''
       this.adminName = user.nama || ''
+      this.adminAvatar = user.avatar || ''
     }
   }
 
@@ -247,10 +249,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   onLogout(): void {
     Swal.fire({
       title: "Logout?",
-      text: "Yakin ingin logout?",
+      text: "Anda harus login kembali",
+      color:"#ffffff",
       icon: "warning",
+      background:"#121212",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#23BF8B",
       cancelButtonColor: "#d33",
       confirmButtonText: "Ya"
     }).then((result) => {
