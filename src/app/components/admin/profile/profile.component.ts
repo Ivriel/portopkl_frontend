@@ -4,6 +4,8 @@ import { Title } from '@angular/platform-browser';
 import { AdminService } from '../admin.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import {  Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class ProfileComponent implements OnInit {
 
   profile!: Profile;
-  constructor(private adminService: AdminService, private title: Title) { }
+  constructor(private adminService: AdminService, private title: Title,private router:Router, private cookieService:CookieService) { }
 
   ngOnInit(): void {
     this.getProfile()
@@ -48,18 +50,59 @@ export class ProfileComponent implements OnInit {
   }
   
   onEditProfile(): void {
-    // Implement navigation ke edit profile page
     console.log('Edit profile clicked');
-    // this.router.navigate(['/admin/profile/edit']);
+    this.router.navigate(['/admin/profile-form']);
   }
   
   onChangePassword(): void {
-    // Implement navigation ke change password page atau buka dialog
+
     console.log('Change password clicked');
-    // this.router.navigate(['/admin/profile/change-password']);
+    this.router.navigate(['/admin/change-password']);
+  }
+
+  onDeleteProfile(){
+    Swal.fire({
+      title: 'Delete Profile?',
+      text: "This action cannot be undone. All your data will be permanently deleted.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4444',
+      cancelButtonColor: '#6B7280',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      background: '#18181B',
+      color: '#ffffff',
+      customClass: {
+        popup: 'border border-zinc-800'
+      }
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Menghapus profile...',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+
+        this.adminService.deleteProfile().subscribe({
+          next:()=> {
+            Swal.close()
+            this.cookieService.delete('token','/')
+            this.cookieService.delete('userData','/')
+            this.router.navigateByUrl("/")
+          },
+          error:(error:any)=> {
+            Swal.close()
+            console.error("Error deleting profile: ",error)
+          }
+        })
+      }
+    });
   }
   
-  // Helper untuk group skills by category
+  // group skills by category
   getSkillCategories(): string[] {
     if (!this.profile.skills || this.profile.skills.length === 0) {
       return [];
@@ -75,7 +118,7 @@ export class ProfileComponent implements OnInit {
     return this.profile.skills.filter(skill => skill.category === category);
   }
   
-  // Helper untuk check social media
+
   hasSocialMedia(): boolean {
     if (!this.profile.social) {
       return false;
@@ -88,8 +131,7 @@ export class ProfileComponent implements OnInit {
       this.profile.social.website
     );
   }
-  
-  // Helper untuk count social links
+
   getSocialCount(): number {
     if (!this.profile.social) {
       return 0;

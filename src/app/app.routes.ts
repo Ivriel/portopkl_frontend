@@ -12,6 +12,7 @@ import { ProjectFormComponent } from './components/admin/project-form/project-fo
 import { VisitorParentComponent } from './components/visitor/visitor-parent/visitor-parent.component';
 import { ProjectDisplayComponent } from './components/admin/project-display/project-display.component';
 import { ProjectDetailComponent } from './components/admin/project-detail/project-detail.component';
+import { ChangePasswordComponent } from './components/admin/change-password/change-password.component';
 
 export const routes: Routes = [
     {
@@ -72,6 +73,11 @@ export const routes: Routes = [
             {
                 path:'project-detail/:id',
                 component:ProjectDetailComponent
+            },
+            {
+                path:'change-password',
+                component:ChangePasswordComponent,
+                title:'Change Password'
             }
         ]
     },

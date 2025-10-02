@@ -21,5 +21,9 @@ export class AdminService {
   getProfile():Observable<ApiResponseProfile<Profile>>{
     return this.http.get<ApiResponseProfile<Profile>>(environment.apiUrl + environment.apiBranchUrl.getProfile)
   }
+
+  deleteProfile():Observable<any> {
+    return this.http.delete<any>(environment.apiUrl + environment.apiBranchUrl.deleteUser)
+  }
   
 }
