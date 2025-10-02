@@ -252,7 +252,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       text: "Anda harus login kembali",
       color:"#ffffff",
       icon: "warning",
-      background:"#121212",
+      background:"#212121",
       showCancelButton: true,
       confirmButtonColor: "#23BF8B",
       cancelButtonColor: "#d33",

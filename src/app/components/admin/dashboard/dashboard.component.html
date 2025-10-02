@@ -13,7 +13,7 @@
     <!-- admin info dan action button -->
     <div class="bg-zinc-900 rounded-xl p-4 sm:p-5 border border-zinc-800 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div class="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
-        <div (click)="onProfileClick()" class="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
+        <div (click)="onProfileClick()" [title]="adminName" class="w-10 h-10 sm:w-12 sm:h-12 cursor-pointer rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #34D399 0%, #059669 100%);">
           <img *ngIf="adminAvatar; else iconFallback"  [src]="adminAvatar" [alt]="adminName"  class="w-full h-full object-cover rounded-full"/>
           <ng-template #iconFallback>
             <i class="pi pi-user text-white text-xl"></i>
