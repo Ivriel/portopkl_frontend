@@ -56,8 +56,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }, 1000);
   }
 
-  onAddProject():void {
-    this.router.navigateByUrl('/admin/project-form/new')
+  onViewProject():void {
+    this.router.navigateByUrl('/admin/project-display')
   }
 
   onProfileClick():void {

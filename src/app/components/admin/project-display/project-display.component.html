@@ -1,12 +1,197 @@
-<p>project-display works!</p>
-<div *ngFor="let project of projectList" class="list-disc">
-
-        <h1>{{project.title}}</h1>
-        <h3>{{project._id}}</h3>
-        <img [src]="project.thumbnail" [alt]="project.title" width="100">
-        <p>{{project.category}}</p>
-        <p>{{project.status}}</p>
-        <p>{{project.typeProject}}</p>
-        <button mat-flat-button [routerLink]="['/admin/project-detail/',project._id]">Go to detail</button>
+<div class="min-h-screen p-4 sm:p-6" style="background-color: #121212;">
   
-</div>
+    <!-- Header -->
+    <div class="max-w-7xl mx-auto mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-3xl font-bold text-white mb-2">Projects</h1>
+          <p class="text-gray-400">Manage and view all your projects</p>
+        </div>
+        <button (click)="onAddProject()"
+                class="px-5 py-3 rounded-xl text-sm cursor-pointer font-semibold text-white flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg shadow-[#34D399]/30 add-project-btn">
+          <i class="pi pi-plus"></i>
+          Add Project
+        </button>
+      </div>
+  
+      <!-- Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+
+        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
+          <div class="text-2xl font-bold text-white mb-1">{{projectList?.length || 0}}</div>
+          <div class="text-sm text-gray-400">Total Projects</div>
+        </div>
+        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
+          <div class="text-2xl font-bold text-[#34D399] mb-1">{{getStatusCount('finished')}}</div>
+          <div class="text-sm text-gray-400">Finished</div>
+        </div>
+        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
+          <div class="text-2xl font-bold text-blue-400 mb-1">{{getStatusCount('on progress')}}</div>
+          <div class="text-sm text-gray-400">On Progress</div>
+        </div>
+        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
+          <div class="text-2xl font-bold text-purple-400 mb-1">{{getTypeCount('industry')}}</div>
+          <div class="text-sm text-gray-400">Industry</div>
+        </div>
+      </div>
+  
+      <!-- Filter/Search Bar -->
+      <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800 mb-6">
+        <div class="flex flex-col md:flex-row gap-4">
+          <!-- Search -->
+          <div class="flex-1 relative">
+            <i class="pi pi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <input type="text" 
+                   placeholder="Search projects..."
+                   [(ngModel)]="searchTerm"
+                   (input)="onSearch()"
+                   class="w-full pl-10 pr-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
+          </div>
+          
+          <!-- Filter by Status -->
+          <select [(ngModel)]="filterStatus" 
+                  (change)="onFilterChange()"
+                  class="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
+            <option value="">All Status</option>
+            <option value="finished">Finished</option>
+            <option value="on progress">On Progress</option>
+          </select>
+  
+          <!-- Filter by Type -->
+          <select [(ngModel)]="filterType" 
+                  (change)="onFilterChange()"
+                  class="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
+            <option value="">All Types</option>
+            <option value="web">Web</option>
+            <option value="mobile">Mobile</option>
+          </select>
+  
+          <!-- Filter by Category -->
+          <select [(ngModel)]="filterCategory" 
+                  (change)="onFilterChange()"
+                  class="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
+            <option value="">All Categories</option>
+            <option value="industry">Industry</option>
+            <option value="personal">Personal</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Projects List -->
+    <div class="max-w-7xl mx-auto">
+      <!-- Skeleton Loading State -->
+      <div *ngIf="isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let item of qtyDisplaySkeletonCardProject" 
+             class="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
+          
+          <!-- Thumbnail Skeleton -->
+          <div class="h-48 bg-zinc-800">
+            <p-skeleton width="100%" height="100%"></p-skeleton>
+          </div>
+  
+          <!-- Content Skeleton -->
+          <div class="p-5">
+            <!-- Title Skeleton -->
+            <p-skeleton width="80%" height="1.5rem" styleClass="mb-3"></p-skeleton>
+  
+            <!-- Info Skeleton -->
+            <div class="flex gap-2 mb-4">
+              <p-skeleton width="5rem" height="1.75rem" borderRadius="6px"></p-skeleton>
+              <p-skeleton width="4rem" height="1.75rem" borderRadius="6px"></p-skeleton>
+            </div>
+  
+            <!-- Action Buttons Skeleton -->
+            <div class="flex gap-2">
+              <p-skeleton width="100%" height="2.5rem" borderRadius="8px"></p-skeleton>
+              <p-skeleton width="3rem" height="2.5rem" borderRadius="8px"></p-skeleton>
+              <p-skeleton width="3rem" height="2.5rem" borderRadius="8px"></p-skeleton>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- List Project real -->
+      <div *ngIf="!isLoading && projectList && projectList.length > 0" 
+           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let project of projectList" 
+             class="project-card group cursor-pointer">
+          
+          <!-- Thumbnail -->
+          <div class="relative overflow-hidden rounded-t-xl h-48 bg-zinc-800">
+            <img [src]="project.thumbnail" 
+                 [alt]="project.title"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+  
+            <!-- Status Badge -->
+            <div class="absolute top-3 right-3">
+              <span [ngClass]="{
+                'bg-[#34D399]/90 text-white': project.status === 'finished',
+                'bg-blue-500/90 text-white': project.status === 'on progress'
+              }" class="px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
+                {{project.status | titlecase}}
+              </span>
+            </div>
+          </div>
+  
+          <!-- Content -->
+          <div class="p-5">
+            <!-- Title -->
+            <h3 class="text-lg font-bold text-white mb-2 line-clamp-1 group-hover:text-[#34D399] transition-colors">
+              {{project.title}}
+            </h3>
+  
+            <!--  Info -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <!-- Category -->
+              <span class="px-2.5 py-1 bg-zinc-800 text-gray-300 rounded-md text-xs font-medium flex items-center gap-1">
+                <i class="pi pi-tag text-[10px]"></i>
+                {{project.category | titlecase}}
+              </span>
+              
+              <!-- Type -->
+              <span class="px-2.5 py-1 bg-zinc-800 text-gray-300 rounded-md text-xs font-medium flex items-center gap-1">
+                <i [ngClass]="{
+                  'pi-desktop': project.typeProject === 'web',
+                  'pi-mobile': project.typeProject === 'mobile'
+                }" class="pi text-[10px]"></i>
+                {{project.typeProject | titlecase}}
+              </span>
+            </div>
+  
+            <!-- Action Buttons -->
+            <div class="flex gap-2">
+              <button [routerLink]="['/admin/project-detail/',project._id]"
+                      class="flex-1 px-4 py-2 bg-[#34D399]/10 hover:bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/30 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="pi pi-arrow-right text-xs"></i>
+                Details
+              </button>
+              <button (click)="onEditProject(project._id)"
+                      class="px-4 py-2 bg-zinc-800 cursor-pointer hover:bg-zinc-700 text-white rounded-lg text-sm transition-all duration-300">
+                <i class="pi pi-pencil"></i>
+              </button>
+              <button (click)="onDeleteProject(project._id)"
+                      class="px-4 py-2 bg-red-500/10 cursor-pointer hover:bg-red-500/20 text-red-500 border border-red-500/30 rounded-lg text-sm transition-all duration-300">
+                <i class="pi pi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Empty State -->
+      <div *ngIf="!isLoading && (!projectList || projectList.length === 0)" 
+           class="text-center py-20">
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-zinc-900 border border-zinc-800 mb-6">
+          <i class="pi pi-inbox text-5xl text-gray-600"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-2">No Projects Yet</h3>
+        <p class="text-gray-400 mb-6">Get started by creating your first project</p>
+        <button (click)="onAddProject()"
+                class="px-6 py-3 rounded-xl text-sm cursor-pointer font-semibold text-white inline-flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg shadow-[#34D399]/30 add-project-btn">
+          <i class="pi pi-plus"></i>
+          Create Project
+        </button>
+      </div>
+    </div>
+  </div>

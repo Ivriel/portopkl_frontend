@@ -68,15 +68,18 @@ export const routes: Routes = [
             {
                 path:'project-display',
                 component:ProjectDisplayComponent,
+                canActivate:[protectedRouteGuard],
                 title:'Admin - Project Display'
             },
             {
                 path:'project-detail/:id',
+                canActivate:[protectedRouteGuard],
                 component:ProjectDetailComponent
             },
             {
                 path:'change-password',
                 component:ChangePasswordComponent,
+                canActivate:[protectedRouteGuard],
                 title:'Change Password'
             }
         ]

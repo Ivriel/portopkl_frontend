@@ -6,16 +6,18 @@ import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [CommonModule,ButtonModule],
+  imports: [CommonModule,ButtonModule,Skeleton],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.css'
 })
 export class ProjectDetailComponent implements OnInit{
   portfolioDetail!:PortfolioById;
   portfolioId:string | null = "";
+  isLoading:boolean = true;
   constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title, private router:Router){
     this.portfolioId = this.route.snapshot.paramMap.get('id')
     if(!this.portfolioId) return;
@@ -26,23 +28,15 @@ export class ProjectDetailComponent implements OnInit{
     }
 
     getDetailPortfolio(): void {
-      Swal.fire({
-        title: 'Loading detail portfolio...',
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
-        },
-      });
-
       this.getPortfolioService.getPortfolioById(this.portfolioId!).subscribe({
         next:(res:ApiResponsePortfolioById<PortfolioById>) => {
-          Swal.close();
           this.portfolioDetail = res.data;
           this.title.setTitle(`Portfolio Detail - ${res.data.title}`)
           console.log('Portfolio Detail DataL ',this.portfolioDetail)
+          this.isLoading = false
         },
-        error(error:any) {
-            Swal.close();
+        error:(error:any) => {
+          this.isLoading = false;
             Swal.fire({
               title:'Error',
               text:error?.error || 'Terjadi kesalahan saat memuat data detail portfolio',
