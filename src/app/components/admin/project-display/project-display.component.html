@@ -1,1 +1,12 @@
 <p>project-display works!</p>
+<div *ngFor="let project of projectList" class="list-disc">
+
+        <h1>{{project.title}}</h1>
+        <h3>{{project._id}}</h3>
+        <img [src]="project.thumbnail" [alt]="project.title" width="100">
+        <p>{{project.category}}</p>
+        <p>{{project.status}}</p>
+        <p>{{project.typeProject}}</p>
+        <button mat-flat-button [routerLink]="['/admin/project-detail/',project._id]">Go to detail</button>
+  
+</div>

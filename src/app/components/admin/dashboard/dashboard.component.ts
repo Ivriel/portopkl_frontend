@@ -110,7 +110,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       type: 'bar',
       data: {
         labels: [
-          'Total Portfolio',
           'On Progress',
           'Finished',
           'Industry',
@@ -121,7 +120,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: 'Project Summary',
           data: [
-            this.dashboardSummary.totalPortfolio,
             this.dashboardSummary.totalOnProgressProject,
             this.dashboardSummary.totalFinishedProject,
             this.dashboardSummary.totalIndustryProject,

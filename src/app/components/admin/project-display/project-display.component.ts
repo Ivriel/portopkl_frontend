@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
 import { ApiResponsePortfolioAll, PortfolioAll } from '../../../shared/interfaces/portfolio-all';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-project-display',
-  imports: [],
+  imports: [CommonModule,MatButtonModule,RouterLink],
   templateUrl: './project-display.component.html',
   styleUrl: './project-display.component.css'
 })
@@ -44,4 +47,5 @@ export class ProjectDisplayComponent implements OnInit{
       }
     })
   }
+
 }

@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
 import { ApiResponsePortfolioById, PortfolioById } from '../../../shared/interfaces/portfolio-by-id';
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [],
+  imports: [CommonModule,ButtonModule],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.css'
 })
 export class ProjectDetailComponent implements OnInit{
   portfolioDetail!:PortfolioById;
   portfolioId:string | null = "";
-  constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title){
+  constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title, private router:Router){
     this.portfolioId = this.route.snapshot.paramMap.get('id')
     if(!this.portfolioId) return;
   }
@@ -50,4 +52,7 @@ export class ProjectDetailComponent implements OnInit{
       })
     }
 
+    backToProjectDisplay():void {
+      this.router.navigateByUrl("/admin/project-display")
+    }
 }
