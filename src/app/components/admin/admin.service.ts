@@ -32,8 +32,12 @@ export class AdminService {
     return this.http.delete<any>(environment.apiUrl + environment.apiBranchUrl.deletePortfolio + id)
   }
 
-  addPortfolio(data:AddPortfolio):Observable<apiResponseAddPortfolio<PortfolioById>> {
+  addPortfolio(data:FormData):Observable<apiResponseAddPortfolio<PortfolioById>> {
     return this.http.post<apiResponseAddPortfolio<PortfolioById>>(environment.apiUrl + environment.apiBranchUrl.addPortfolio,data)
+  }
+
+  editPortfolio(id:string, data:FormData):Observable<any> {
+    return this.http.put<any>(environment.apiUrl + environment.apiBranchUrl.updatePortfolio + id, data)
   }
 
   changePassword(data:ChangePassword):Observable<string> {
