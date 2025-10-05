@@ -22,6 +22,7 @@ export class ProjectFormComponent implements OnInit{
     this.id = this.route.snapshot.paramMap.get('id') || ''
     if(this.id === 'new') {
       this.isEditMode = false
+      this.title.setTitle('Admin - Add Project')
     } else {
       this.isEditMode = true
     }

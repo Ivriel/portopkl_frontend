@@ -13,28 +13,7 @@
           Add Project
         </button>
       </div>
-  
-      <!-- Stats Bar -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
 
-        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
-          <div class="text-2xl font-bold text-white mb-1">{{projectList.length || 0}}</div>
-          <div class="text-sm text-gray-400">Total Projects</div>
-        </div>
-        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
-          <div class="text-2xl font-bold text-[#34D399] mb-1">{{getStatusCount('finished')}}</div>
-          <div class="text-sm text-gray-400">Finished</div>
-        </div>
-        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
-          <div class="text-2xl font-bold text-blue-400 mb-1">{{getStatusCount('on progress')}}</div>
-          <div class="text-sm text-gray-400">On Progress</div>
-        </div>
-        <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
-          <div class="text-2xl font-bold text-purple-400 mb-1">{{getTypeCount('industry')}}</div>
-          <div class="text-sm text-gray-400">Industry</div>
-        </div>
-      </div>
-  
       <!-- Filter/Search Bar -->
       <div class="bg-zinc-900 rounded-xl p-4 border border-zinc-800 mb-6">
         <div class="flex flex-col md:flex-row gap-4">
@@ -61,19 +40,25 @@
           <select [(ngModel)]="filterType" 
                   (change)="onFilterChange()"
                   class="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
-            <option value="">All Types</option>
-            <option value="web">Web</option>
-            <option value="mobile">Mobile</option>
+            <option value="">All Categories</option>
+            <option value="industry">Industry</option>
+            <option value="personal">Personal</option>
           </select>
   
           <!-- Filter by Category -->
           <select [(ngModel)]="filterCategory" 
                   (change)="onFilterChange()"
                   class="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
-            <option value="">All Categories</option>
-            <option value="industry">Industry</option>
-            <option value="personal">Personal</option>
+            <option value="">All Types</option>
+            <option value="web">Web</option>
+            <option value="mobile">Mobile</option>
           </select>
+
+          <button (click)="onReset()" mat-flat-button
+          class="reset-button">
+    <i class="pi pi-refresh text-sm"></i>
+    Reset
+  </button>
         </div>
       </div>
     </div>
@@ -112,9 +97,9 @@
       </div>
   
       <!-- List Project real -->
-      <div *ngIf="!isLoading && projectList && projectList.length > 0" 
+      <div *ngIf="!isLoading && filteredProjectList && filteredProjectList.length > 0" 
            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div *ngFor="let project of projectList" 
+        <div *ngFor="let project of filteredProjectList" 
              class="project-card group cursor-pointer">
           
           <!-- Thumbnail -->
@@ -180,7 +165,7 @@
       </div>
   
       <!-- Empty State -->
-      <div *ngIf="!isLoading && (!projectList || projectList.length === 0)" 
+      <div *ngIf="!isLoading && (!filteredProjectList || filteredProjectList.length === 0)" 
            class="text-center py-20">
         <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-zinc-900 border border-zinc-800 mb-6">
           <i class="pi pi-inbox text-5xl text-gray-600"></i>

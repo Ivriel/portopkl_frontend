@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { Skeleton } from 'primeng/skeleton';
-
 @Component({
   selector: 'app-project-display',
   imports: [CommonModule,MatButtonModule,FormsModule,RouterLink,Skeleton],
@@ -17,6 +16,7 @@ import { Skeleton } from 'primeng/skeleton';
 })
 export class ProjectDisplayComponent implements OnInit{
   projectList:PortfolioAll[] = [];
+  filteredProjectList:PortfolioAll[] = []
   searchTerm: string = '';
   filterStatus: string = '';
   filterType: string = '';
@@ -34,7 +34,8 @@ export class ProjectDisplayComponent implements OnInit{
   getAllProject(){
     this.getPortfolioService.getAllPortfolio().subscribe({
       next:(res:ApiResponsePortfolioAll<PortfolioAll[]>) => {
-        this.projectList = res.data
+        this.projectList = res.data 
+        this.filteredProjectList = [...this.projectList]
         console.log(this.projectList)
         this.isLoading = false
       },
@@ -50,6 +51,28 @@ export class ProjectDisplayComponent implements OnInit{
     })
   }
 
+  applyFilters():void {
+    this.filteredProjectList = this.projectList.filter(project => {
+      // search filter (yang text box)
+
+      const matchesSearch = !this.searchTerm ||
+      project.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+
+      const matchesStatus = !this.filterStatus ||
+      project.status.toLowerCase() === this.filterStatus.toLowerCase();
+
+      const matchesType = !this.filterType || 
+      project.typeProject.toLowerCase() === this.filterType.toLowerCase();
+
+      const matchesCategory = !this.filterCategory || 
+      project.category.toLowerCase() === this.filterCategory.toLowerCase();
+
+      return matchesSearch && matchesStatus && matchesType && matchesCategory;
+    })
+  }
+
+  
+
   onAddProject(): void {
     this.router.navigate(['/admin/project-form/new']);
   }
@@ -60,6 +83,14 @@ export class ProjectDisplayComponent implements OnInit{
   
   onEditProject(projectId: string): void {
     this.router.navigate(['/admin/project-form/', projectId]);
+  }
+
+  onReset(){
+    this.searchTerm = '';
+    this.filterStatus = '';
+    this.filterType = '';
+    this.filterCategory = '';
+    this.filteredProjectList = [...this.projectList];
   }
   
   onDeleteProject(projectId: string): void {
@@ -120,20 +151,12 @@ export class ProjectDisplayComponent implements OnInit{
     });
   }
   
-  getStatusCount(status: string): number {
-    return this.projectList?.filter(p => p.status.toLowerCase() === status.toLowerCase()).length || 0;
-  }
-  
-  getTypeCount(type: string): number {
-    return this.projectList?.filter(p => p.typeProject.toLowerCase() === type.toLowerCase()).length || 0;
-  }
-  
   onSearch(): void {
-    // Implement search logic
+    this.applyFilters()
   }
   
   onFilterChange(): void {
-    // Implement filter logic
+    this.applyFilters()
   }
 
 }
