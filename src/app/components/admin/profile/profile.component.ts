@@ -51,7 +51,10 @@ export class ProfileComponent implements OnInit {
           icon: 'error',
           confirmButtonColor: '#EF4444',
           background: '#18181B',
-          color: '#ffffff'
+          color: '#ffffff',
+          customClass: {
+            popup: 'border border-zinc-800'
+          }
         });
       },
       complete: () => {
@@ -73,41 +76,57 @@ export class ProfileComponent implements OnInit {
   }
 
   onDeleteProfile(): void {
-    // Step 1: Confirm dengan native browser dialog
-    const confirmDelete = confirm(
-      'Delete Profile?\n\n' +
-      'This action cannot be undone. All your data will be permanently deleted.\n\n' +
-      'Are you sure you want to continue?'
-    );
-    
-    if (!confirmDelete) {
-      return;
-    }
-    
-    // Step 2: Minta password
-    this.promptPasswordVerification();
+    Swal.fire({
+      title: 'Delete Profile?',
+      text: "This action cannot be undone. All your data will be permanently deleted.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4444',
+      cancelButtonColor: '#6B7280',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      background: '#18181B',
+      color: '#ffffff',
+      customClass: {
+        popup: 'border border-zinc-800'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.promptPasswordVerification();
+      }
+    });
   }
 
   promptPasswordVerification(): void {
-    const password = prompt('Enter your password to confirm deletion:');
-    
-    // User klik Cancel
-    if (password === null) {
-      return;
-    }
-    
-    // Password kosong
-    if (!password.trim()) {
-      alert('Password is required');
-      // Use setTimeout to prevent immediate recursive call that might cause duplicate requests
-      setTimeout(() => {
-        this.promptPasswordVerification();
-      }, 100);
-      return;
-    }
-    
-    // Verify password
-    this.verifyAndDelete(password);
+    Swal.fire({
+      title: 'Verify Your Password',
+      text: 'Please enter your password to confirm deletion',
+      input: 'password',
+      inputPlaceholder: 'Enter your password',
+      inputAttributes: {
+        autocomplete: 'current-password'
+      },
+      showCancelButton: true,
+      confirmButtonColor: '#EF4444',
+      cancelButtonColor: '#6B7280',
+      confirmButtonText: 'Verify & Delete',
+      cancelButtonText: 'Cancel',
+      background: '#18181B',
+      color: '#ffffff',
+      customClass: {
+        popup: 'border border-zinc-800'
+      },
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Password is required';
+        }
+        return null;
+      }
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        this.verifyAndDelete(result.value);
+      }
+    });
   }
   
   verifyAndDelete(password: string): void {
@@ -121,19 +140,15 @@ export class ProfileComponent implements OnInit {
   
     this.adminService.verifyPassword(password).pipe(take(1)).subscribe({
       next: () => {
-        // Password verified, proceed to delete
         Swal.update({
           title: 'Deleting profile...',
         });
         
-        this.adminService.deleteProfile().subscribe({
+        this.adminService.deleteProfile().pipe(take(1)).subscribe({
           next: () => {
             Swal.close();
-            
-            // Logout user
             this.authService.logout();
             
-            // Show success toast
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",
@@ -173,7 +188,6 @@ export class ProfileComponent implements OnInit {
         Swal.close();
         
         if (error.status === 401 || error.status === 400) {
-          // Password salah, tanya lagi
           Swal.fire({
             title: 'Incorrect Password',
             text: 'The password you entered is incorrect. Try again?',
@@ -190,9 +204,7 @@ export class ProfileComponent implements OnInit {
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              setTimeout(() => {
-                this.promptPasswordVerification(); // Retry
-              }, 100);
+              this.promptPasswordVerification();
             }
           });
         } else {

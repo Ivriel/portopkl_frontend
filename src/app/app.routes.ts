@@ -84,6 +84,10 @@ export const routes: Routes = [
                 title:'Admin - Project Display'
             },
             {
+                path:'project-detail/:id',
+                component:ProjectDetailComponent,
+            },
+            {
                 path:'change-password',
                 component:ChangePasswordComponent,
                 title:'Admin - Change Password'
