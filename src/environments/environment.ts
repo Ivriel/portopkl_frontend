@@ -13,6 +13,7 @@ export const environment = {
         getProfile:'UserToken/getSelfUser',
         updateProfile:'UserToken/updateUser',
         deleteUser:'UserToken/deleteUser',
-        changePassword:'UserToken/change-password'
+        changePassword:'UserToken/change-password',
+        verifyPassword:'UserToken/verify-password'
     }
 };

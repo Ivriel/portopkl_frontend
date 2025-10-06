@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { ApiResponseProfile, Profile } from '../../shared/interfaces/profile';
 import { ApiResponseDashboardSummary, DashboardSummary } from '../../shared/interfaces/dashboard-summary';
 import { PortfolioById,ApiResponsePortfolioById } from '../../shared/interfaces/portfolio-by-id';
@@ -25,7 +25,7 @@ export class AdminService {
   }
 
   deleteProfile():Observable<any> {
-    return this.http.delete<any>(environment.apiUrl + environment.apiBranchUrl.deleteUser)
+    return this.http.delete(environment.apiUrl + environment.apiBranchUrl.deleteUser, { responseType: 'text' as 'json' }) as unknown as Observable<any>;
   }
 
   deletePortfolio(id:string):Observable<any> {
@@ -46,6 +46,10 @@ export class AdminService {
       data,
       { responseType: 'text' as 'json' }
     ) as unknown as Observable<string>;
+  }
+
+  verifyPassword(password:string):Observable<any> {
+    return this.http.post(environment.apiUrl + environment.apiBranchUrl.verifyPassword, {password:password}, { responseType: 'text' as 'json' }) as unknown as Observable<any>;
   }
   
 }

@@ -1,0 +1,95 @@
+<nav class="bg-[#26262b] border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo & Brand -->
+        <div class="flex items-center">
+          <a routerLink="/admin/dashboard" class="flex items-center space-x-3">
+            <span class="text-2xl font-bold text-emerald-400">ADMIN</span>
+            <span class="text-2xl font-bold text-white">PORTO PKL</span>
+          </a>
+        </div>
+  
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a routerLink="/admin/dashboard" 
+             routerLinkActive="bg-gray-800 text-emerald-400"
+             [routerLinkActiveOptions]="{exact: true}"
+             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+            Dashboard
+          </a>
+          <a routerLink="/admin/profile" 
+             routerLinkActive="bg-gray-800 text-emerald-400"
+             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+            Profile
+          </a>
+          <a routerLink="/admin/project-display" 
+             routerLinkActive="bg-gray-800 text-emerald-400"
+             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+            Projects
+          </a>
+          <a routerLink="/admin/change-password" 
+             routerLinkActive="bg-gray-800 text-emerald-400"
+             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+            Change Password
+          </a>
+        </div>
+  
+        <!-- Logout Button Desktop -->
+        <div class="hidden md:block">
+          <button (click)="logout()" 
+                  class="flex items-center cursor-pointer space-x-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span>Logout</span>
+          </button>
+        </div>
+  
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button (click)="toggleMenu()" 
+                  class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path *ngIf="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path *ngIf="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Navigation -->
+    <div *ngIf="isMenuOpen" class="md:hidden border-t border-gray-800">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a routerLink="/admin/dashboard" 
+           routerLinkActive="bg-gray-800 text-emerald-400"
+           [routerLinkActiveOptions]="{exact: true}"
+           (click)="toggleMenu()"
+           class="block px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+          Dashboard
+        </a>
+        <a routerLink="/admin/profile" 
+           routerLinkActive="bg-gray-800 text-emerald-400"
+           (click)="toggleMenu()"
+           class="block px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+          Profile
+        </a>
+        <a routerLink="/admin/project-display" 
+           routerLinkActive="bg-gray-800 text-emerald-400"
+           (click)="toggleMenu()"
+           class="block px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+          Projects
+        </a>
+        <a routerLink="/admin/change-password" 
+           routerLinkActive="bg-gray-800 text-emerald-400"
+           (click)="toggleMenu()"
+           class="block px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+          Change Password
+        </a>
+        <button (click)="logout()" 
+                class="w-full text-left px-3 py-2 text-red-400 hover:bg-gray-800 rounded-lg transition-colors duration-200">
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>

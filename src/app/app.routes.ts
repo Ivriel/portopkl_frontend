@@ -13,9 +13,11 @@ import { VisitorParentComponent } from './components/visitor/visitor-parent/visi
 import { ProjectDisplayComponent } from './components/admin/project-display/project-display.component';
 import { ProjectDetailComponent } from './components/admin/project-detail/project-detail.component';
 import { ChangePasswordComponent } from './components/admin/change-password/change-password.component';
+import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
-    {
+    { // route buat pengunjung (public)
         path:'',
         pathMatch:'full',
         component:VisitorParentComponent,
@@ -25,65 +27,70 @@ export const routes: Routes = [
         path:'portfolio/:id',
         component:PortfolioDetailComponent
     },
-    {
+
+    // admin route tanpa navbar buat auth aja
+   {
+    path:'admin',
+    component:AuthLayoutComponent,
+    children:[
+        {
+            path:'',
+            redirectTo:'login',
+            pathMatch:'full'
+        },
+        {
+            path:'login',
+            component:LoginComponent,
+            canActivate:[loginGuard],
+            title:'Porto PKL - Login'
+        },
+        {
+            path:'register',
+            component:RegisterComponent,
+            title:'Porto PKL - Register'
+        }
+    ]
+   },
+
+   // admin protected route + navbar
+   {
         path:'admin',
-        children: [
-            {
-                path:'',
-                redirectTo:'login',
-                pathMatch:'full'
-            },
-            {
-                path:'login',
-                component:LoginComponent,
-                canActivate:[loginGuard],
-                title:'Porto PKL - Login'
-            },
-            {
-                path:'register',
-                component:RegisterComponent,
-                title:'Porto PKL - Register'
-            },
+        component:AdminLayoutComponent,
+        canActivate:[protectedRouteGuard],
+        children:[
             {
                 path:'dashboard',
                 component:DashboardComponent,
-                canActivate:[protectedRouteGuard],
-                title:'Porto PKL - Dashboard'
+                title:'Admin - Dashboard'
             },
             {
                 path:'profile',
                 component:ProfileComponent,
-                canActivate:[protectedRouteGuard]
+                title:'Admin - Profile'
             },
             {
                 path:'profile-form',
                 component:ProfileFormComponent,
-                canActivate:[protectedRouteGuard]
+                title:'Admin - Edit Profile'
             },
             {
                 path:'project-form/:id',
                 component:ProjectFormComponent,
-                canActivate:[protectedRouteGuard]
+                title:'Admin - Project Form'
             },
             {
                 path:'project-display',
                 component:ProjectDisplayComponent,
-                canActivate:[protectedRouteGuard],
                 title:'Admin - Project Display'
-            },
-            {
-                path:'project-detail/:id',
-                canActivate:[protectedRouteGuard],
-                component:ProjectDetailComponent
             },
             {
                 path:'change-password',
                 component:ChangePasswordComponent,
-                canActivate:[protectedRouteGuard],
-                title:'Change Password'
+                title:'Admin - Change Password'
             }
         ]
-    },
+   },
+
     {
         path:'**',
         component:NotfoundComponent,
