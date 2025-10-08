@@ -28,12 +28,16 @@ export class AdminService {
     return this.http.delete(environment.apiUrl + environment.apiBranchUrl.deleteUser, { responseType: 'text' as 'json' }) as unknown as Observable<any>;
   }
 
+  editProfile(data:any):Observable<any> {
+    return this.http.put<any>(environment.apiUrl + environment.apiBranchUrl.updateProfile, data)
+  }
+
   deletePortfolio(id:string):Observable<any> {
     return this.http.delete<any>(environment.apiUrl + environment.apiBranchUrl.deletePortfolio + id)
   }
 
-  addPortfolio(data:FormData):Observable<apiResponseAddPortfolio<PortfolioById>> {
-    return this.http.post<apiResponseAddPortfolio<PortfolioById>>(environment.apiUrl + environment.apiBranchUrl.addPortfolio,data)
+  addPortfolio(data:FormData):Observable<apiResponseAddPortfolio<AddPortfolio>> {
+    return this.http.post<apiResponseAddPortfolio<AddPortfolio>>(environment.apiUrl + environment.apiBranchUrl.addPortfolio,data)
   }
 
   editPortfolio(id:string, data:FormData):Observable<any> {

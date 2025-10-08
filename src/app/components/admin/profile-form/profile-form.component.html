@@ -1,1 +1,220 @@
-<p>profile-form works!</p>
+<div class="min-h-screen bg-[#121212] py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="mb-8">
+        <button (click)="goBack()" 
+                class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-4">
+          <i class="pi pi-arrow-left"></i>
+          <span>Back to Profile</span>
+        </button>
+        <h1 class="text-3xl font-bold text-white">Edit Profile</h1>
+        <p class="text-gray-400 mt-2">Update your personal information</p>
+      </div>
+  
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        
+        <!-- Avatar Upload -->
+        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
+          <h3 class="text-lg font-semibold text-white mb-4">Profile Picture</h3>
+          <div class="flex items-center gap-6">
+            <div class="w-24 h-24 rounded-full overflow-hidden bg-zinc-800 flex items-center justify-center">
+              <img *ngIf="previewUrl" [src]="previewUrl" alt="Avatar" class="w-full h-full object-cover">
+              <i *ngIf="!previewUrl" class="pi pi-user text-4xl text-gray-500"></i>
+            </div>
+            <div>
+              <label class="cursor-pointer px-4 py-2 bg-[#34D399] hover:bg-[#059669] text-white rounded-lg transition-colors inline-block">
+                Choose File
+                <input type="file" 
+                       accept="image/*" 
+                       (change)="onFileSelected($event)" 
+                       class="hidden">
+              </label>
+              <p class="text-sm text-gray-400 mt-2">JPG, PNG or GIF (max. 2MB)</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Basic Information -->
+        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
+          <h3 class="text-lg font-semibold text-white mb-4">Basic Information</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+              <input type="text" 
+                     formControlName="nama"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+              <input type="email" 
+                     formControlName="email"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+              <input type="text" 
+                     formControlName="phone"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Bio</label>
+              <textarea formControlName="bio"
+                        rows="4"
+                        class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Location -->
+        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6" formGroupName="location">
+          <h3 class="text-lg font-semibold text-white mb-4">Location</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">City</label>
+              <input type="text" 
+                     formControlName="city"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Country</label>
+              <input type="text" 
+                     formControlName="country"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Street</label>
+              <input type="text" 
+                     formControlName="street"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Postal Code</label>
+              <input type="text" 
+                     formControlName="postal_code"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Social Media -->
+        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6" formGroupName="social">
+          <h3 class="text-lg font-semibold text-white mb-4">Social Media</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                <i class="pi pi-github mr-2"></i>GitHub
+              </label>
+              <input type="text" 
+                     formControlName="github"
+                     placeholder="https://github.com/username"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                <i class="pi pi-linkedin mr-2"></i>LinkedIn
+              </label>
+              <input type="text" 
+                     formControlName="linkedin"
+                     placeholder="linkedin.com/in/username"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                <i class="pi pi-instagram mr-2"></i>Instagram
+              </label>
+              <input type="text" 
+                     formControlName="instagram"
+                     placeholder="instagram.com/username"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                <i class="pi pi-facebook mr-2"></i>Facebook
+              </label>
+              <input type="text" 
+                     formControlName="facebook"
+                     placeholder="facebook.com/username"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                <i class="pi pi-globe mr-2"></i>Website
+              </label>
+              <input type="text" 
+                     formControlName="website"
+                     placeholder="www.yourwebsite.com"
+                     class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Skills -->
+        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-white">Skills</h3>
+            <button type="button" 
+                    (click)="addSkill()"
+                    class="px-4 py-2 bg-[#34D399] hover:bg-[#059669] text-white rounded-lg text-sm transition-colors flex items-center gap-2">
+              <i class="pi pi-plus"></i>
+              Add Skill
+            </button>
+          </div>
+          
+          <div formArrayName="skills" class="space-y-4">
+            <div *ngFor="let skill of skills.controls; let i = index" 
+                 [formGroupName]="i"
+                 class="flex gap-4 items-start">
+              <div class="flex-1 grid grid-cols-2 gap-4">
+                <div>
+                  <input type="text" 
+                         formControlName="name"
+                         placeholder="Skill name"
+                         class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+                </div>
+                <div>
+                  <select formControlName="category"
+                          class="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] outline-none">
+                    <option value="">Select category</option>
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="database">Database</option>
+                    <option value="devops">DevOps</option>
+                    <option value="design">Design</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" 
+                      (click)="removeSkill(i)"
+                      class="px-3 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/50 hover:border-red-500 rounded-lg transition-colors">
+                <i class="pi pi-trash"></i>
+              </button>
+            </div>
+            
+            <p *ngIf="skills.length === 0" class="text-gray-500 text-center py-4">
+              No skills added yet. Click "Add Skill" to add your skills.
+            </p>
+          </div>
+        </div>
+  
+        <!-- Submit Buttons -->
+        <div class="flex gap-4 justify-end">
+          <button type="button" 
+                  (click)="goBack()"
+                  class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors">
+            Cancel
+          </button>
+          <button type="submit" 
+                  [disabled]="profileForm.invalid"
+                  class="px-6 py-3 bg-[#34D399] hover:bg-[#059669] text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+            <i class="pi pi-check"></i>
+            Save Changes
+          </button>
+        </div>
+  
+      </form>
+  
+    </div>
+  </div>
