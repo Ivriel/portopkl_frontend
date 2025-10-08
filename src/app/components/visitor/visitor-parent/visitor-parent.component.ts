@@ -4,10 +4,11 @@ import { ListPortfolioComponent } from '../list-portfolio/list-portfolio.compone
 import { IntroductionComponent } from '../introduction/introduction.component';
 import { AboutComponent } from '../about/about.component';
 import { TimelineProjectComponent } from '../timeline-project/timeline-project.component';
+import { HeroComponent } from '../hero/hero.component';
 
 @Component({
   selector: 'app-visitor-parent',
-  imports: [ListPortfolioComponent,IntroductionComponent,TimelineProjectComponent, AboutComponent,CommonModule],
+  imports: [ListPortfolioComponent,IntroductionComponent,TimelineProjectComponent, AboutComponent,HeroComponent,CommonModule],
   templateUrl: './visitor-parent.component.html',
   styleUrl: './visitor-parent.component.css'
 })

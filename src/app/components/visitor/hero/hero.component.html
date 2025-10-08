@@ -1,0 +1,41 @@
+<!-- Section Galaxy -->
+<div class="relative max-w-full h-screen bg-black overflow-hidden">
+    <!-- Galaxy background -->
+    <om-galaxy
+      [focal]="[0.5, 0.5]"
+      [rotation]="[1.0, 0.0]"
+      [starSpeed]="0.6"
+      [density]="1.2"
+      [hueShift]="200"
+      [glowIntensity]="0.5"
+      [saturation]="0.3"
+      [twinkleIntensity]="0.4"
+      [rotationSpeed]="0.05"
+      [repulsionStrength]="3"
+      [autoCenterRepulsion]="0"
+      [mouseInteraction]="true"
+      [mouseRepulsion]="true"
+      class="absolute inset-0 w-full h-full"
+    ></om-galaxy>
+  
+    <!-- Konten di atas galaxy -->
+    <div class="relative z-10 flex items-center justify-center h-full">
+      <div class=" rounded-2xl shadow-xl p-10 text-center max-w-2xl">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+            <om-typewriter
+              [words]="words"
+              [writeSpeed]="100"
+              [deleteDelay]="100"
+              [writeDelay]="100"
+              textCursorColor="#ffffff"
+            ></om-typewriter>
+          </h1>
+        <p class="text-lg text-white/80 mb-6">
+          IVRIEL DEI GRATIA GUNAWAN XII RPL A / 14
+        </p>
+        <button class="px-6 py-3 rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition">
+          🚀 Mulai Jelajah
+        </button>
+      </div>
+    </div>
+  </div>
