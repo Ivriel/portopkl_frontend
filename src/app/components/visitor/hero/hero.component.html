@@ -1,41 +1,90 @@
-<!-- Section Galaxy -->
-<div class="relative max-w-full h-screen bg-black overflow-hidden">
-    <!-- Galaxy background -->
-    <om-galaxy
-      [focal]="[0.5, 0.5]"
-      [rotation]="[1.0, 0.0]"
-      [starSpeed]="0.6"
-      [density]="1.2"
-      [hueShift]="200"
-      [glowIntensity]="0.5"
-      [saturation]="0.3"
-      [twinkleIntensity]="0.4"
-      [rotationSpeed]="0.05"
-      [repulsionStrength]="3"
-      [autoCenterRepulsion]="0"
-      [mouseInteraction]="true"
-      [mouseRepulsion]="true"
-      class="absolute inset-0 w-full h-full"
-    ></om-galaxy>
+<!-- hero.component.html -->
+<div class="relative max-w-full h-screen overflow-hidden hero-container">
   
-    <!-- Konten di atas galaxy -->
-    <div class="relative z-10 flex items-center justify-center h-full">
-      <div class=" rounded-2xl shadow-xl p-10 text-center max-w-2xl">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
-            <om-typewriter
-              [words]="words"
-              [writeSpeed]="100"
-              [deleteDelay]="100"
-              [writeDelay]="100"
-              textCursorColor="#ffffff"
-            ></om-typewriter>
-          </h1>
-        <p class="text-lg text-white/80 mb-6">
-          IVRIEL DEI GRATIA GUNAWAN XII RPL A / 14
-        </p>
-        <button class="px-6 py-3 rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition">
-          🚀 Mulai Jelajah
+  <!-- Animated Background Gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#121212] via-[#1a1a1a] to-[#0a0a0a]">
+    <!-- Grid Pattern Overlay -->
+    <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2334D399\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  </div>
+
+  <!-- Gradient Orbs -->
+  <div class="absolute top-1/4 -left-20 w-72 h-72 bg-[#34D399] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+  <div class="absolute top-1/3 -right-20 w-72 h-72 bg-[#059669] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+  <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#10b981] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 flex items-center justify-center h-full px-4">
+    <div class="text-center max-w-4xl">
+      
+      <!-- Animated Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/50 backdrop-blur-sm border border-[#34D399]/20 rounded-full mb-8 animate-fade-in-down">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34D399] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34D399]"></span>
+        </span>
+        <span class="text-xs font-medium text-gray-300">3PM Solution</span>
+      </div>
+
+      <!-- Typewriter Heading -->
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in">
+        <om-typewriter
+          [words]="words"
+          [writeSpeed]="100"
+          [deleteDelay]="1500"
+          [writeDelay]="100"
+          textCursorColor="#34D399"
+          class="typewriter-text"
+        ></om-typewriter>
+      </h1>
+
+      <!-- Subtitle with Gradient -->
+      <p class="text-lg md:text-xl text-gray-400 mb-4 animate-fade-in-up animation-delay-500">
+        <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#34D399] to-[#059669]">
+          IVRIEL DEI GRATIA GUNAWAN
+        </span>
+      </p>
+      <p class="text-sm md:text-base text-gray-500 mb-2 animate-fade-in-up animation-delay-700">
+       Frontend - Mobile Developer
+      </p>
+      <p class="text-sm md:text-base text-gray-500 mb-10 animate-fade-in-up animation-delay-700">
+        XII RPL A / 14
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-1000">
+        <button (click)="scrollToContent()" 
+                class="group px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 shadow-lg cta-button relative overflow-hidden">
+          <span class="relative z-10 flex items-center gap-2">
+            <i class="pi pi-rocket"></i>
+            Mulai Jelajah
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#34D399] to-[#059669] transition-transform duration-300 group-hover:scale-110"></div>
+        </button>
+        
+        <button class="px-8 py-4 rounded-xl font-semibold text-white bg-zinc-900/50 backdrop-blur-sm border border-zinc-700 hover:border-[#34D399]/50 transition-all duration-300 hover:bg-zinc-800/50 flex items-center gap-2">
+          <i class="pi pi-download"></i>
+          Download CV
         </button>
       </div>
+
+      <!-- Social Links -->
+      <div class="flex items-center justify-center gap-4 mt-12 animate-fade-in-up animation-delay-1500">
+        <a href="#" class="social-icon">
+          <i class="pi pi-github"></i>
+        </a>
+        <a href="#" class="social-icon">
+          <i class="pi pi-linkedin"></i>
+        </a>
+        <a href="#" class="social-icon">
+          <i class="pi pi-instagram"></i>
+        </a>
+        <a href="#" class="social-icon">
+          <i class="pi pi-envelope"></i>
+        </a>
+      </div>
+
     </div>
   </div>
+
+
+</div>
