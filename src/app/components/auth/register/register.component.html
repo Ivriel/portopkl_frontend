@@ -1,68 +1,89 @@
+<div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden" style="background-color: #121212;">
+  
+  <!-- Subtle Background Pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2334D399\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 
-<div class="min-h-screen bg-[#09090B] flex items-center justify-center p-4 relative overflow-hidden"> 
-  <div class="bg-[#18181B] border border-[#6EE7B7] rounded-xl shadow-lg w-full max-w-md p-8 relative z-10">
+  <div class="bg-[#18181B] border border-[#34D399] rounded-xl shadow-lg w-full max-w-md p-8 relative z-10">
 
-<div class="text-center mb-8">
-  <h2 class="text-2xl font-semibold text-white mb-2">Welcome</h2>
-  <p class="text-gray-400 text-sm">Please register your account first</p>
-</div>
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-semibold text-white mb-2">Welcome</h2>
+      <p class="text-gray-400 text-sm">Please register your account first</p>
+    </div>
 
-<form (ngSubmit)="onRegister()" class="space-y-5">
-  <div>
-    <label>Nama</label><br>
-    <input type="text"
-           [(ngModel)]="registerObj.nama"
-           name="registerNama"
-           required />
-  </div>
+    <form (ngSubmit)="onRegister()" class="space-y-5">
+      <div class="space-y-2">
+        <p-floatlabel class="block" variant="in">
+          <input 
+            pInputText 
+            id="nama_field" 
+            name="nama" 
+            class="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+                   rounded-md focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] 
+                   text-white placeholder-gray-500 text-sm transition-colors duration-200" 
+            [(ngModel)]="registerObj.nama" 
+            autocomplete="name"
+            required
+          />
+          <label for="nama_field" class="text-gray-400 text-sm">Nama</label>
+        </p-floatlabel>
+      </div>
 
-  <div class="space-y-2">
-    <p-floatlabel class="block" variant="in">
-      <input 
-        pInputText 
-        id="email_field" 
-        name="email" 
-        class="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
-               rounded-md focus:border-[#475569] focus:ring-1 focus:ring-[#475569] 
-               text-white placeholder-gray-500 text-sm transition-colors duration-200" 
-        [(ngModel)]="registerObj.email" 
-        autocomplete="email"
-        required
-      />
-      <label for="email_field" class="text-gray-400 text-sm">Email Address</label>
-    </p-floatlabel>
-  </div>
+      <div class="space-y-2">
+        <p-floatlabel class="block" variant="in">
+          <input 
+            pInputText 
+            id="email_field" 
+            name="email" 
+            class="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+                   rounded-md focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399] 
+                   text-white placeholder-gray-500 text-sm transition-colors duration-200" 
+            [(ngModel)]="registerObj.email" 
+            autocomplete="email"
+            required
+          />
+          <label for="email_field" class="text-gray-400 text-sm">Email Address</label>
+        </p-floatlabel>
+      </div>
 
-  <div class="space-y-2">
-    <p-floatlabel class="block" variant="in">
-      <p-password
-        id="password_field"
-        name="password"
-        [(ngModel)]="registerObj.password"
-        [feedback]="false" 
-        toggleMask="true"
-        autocomplete="current-password"
-        styleClass="w-full" 
-        inputStyleClass="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
-                        rounded-md focus:border-[#475569] focus:ring-1 
-                        focus:ring-[#475569] text-white placeholder-gray-500 text-sm 
-                        transition-colors duration-200"
-      ></p-password>
-      <label for="password_field" class="text-gray-400 text-sm">Password</label>
-    </p-floatlabel>
-  </div>
+      <div class="space-y-2">
+        <p-floatlabel class="block" variant="in">
+          <p-password
+            id="password_field"
+            name="password"
+            [(ngModel)]="registerObj.password"
+            [feedback]="false" 
+            toggleMask="true"
+            autocomplete="current-password"
+            styleClass="w-full" 
+            inputStyleClass="w-full h-11 px-3 py-2 bg-[#0f172a] border border-[#334155] 
+                            rounded-md focus:border-[#34D399] focus:ring-1 
+                            focus:ring-[#34D399] text-white placeholder-gray-500 text-sm 
+                            transition-colors duration-200"
+          ></p-password>
+          <label for="password_field" class="text-gray-400 text-sm">Password</label>
+        </p-floatlabel>
+      </div>
 
-  <button type="submit">Register</button>
-</form>
+      <div class="pt-2">
+        <p-button 
+          label="Register" 
+          type="submit"
+          styleClass="w-full h-10 border-none 
+                      text-white font-medium rounded-md transition-colors duration-200 
+                      flex items-center justify-center text-sm"
+        
+        />
+      </div>
+    </form>
 
-  <div class="mt-6 text-center">
-    <p class="text-gray-400 text-sm">
-      Already have an account?
-      <a routerLink="/admin/login" class="text-[#34D399] hover:text-white font-medium transition-colors duration-200 hover:underline">
-        Log in here
-      </a>
-    </p>
-  </div>
+    <div class="mt-6 text-center">
+      <p class="text-gray-400 text-sm">
+        Already have an account?
+        <a routerLink="/admin/login" class="text-[#34D399] hover:text-white font-medium transition-colors duration-200 hover:underline">
+          Log in here
+        </a>
+      </p>
+    </div>
 
   </div>
 </div>

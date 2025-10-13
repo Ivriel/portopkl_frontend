@@ -1,5 +1,5 @@
 <!-- hero.component.html -->
-<div class="relative max-w-full h-screen overflow-hidden hero-container">
+<div class="relative max-w-full h-screen overflow-hidden">
   
   <!-- Animated Background Gradient -->
   <div class="absolute inset-0 bg-gradient-to-br from-[#121212] via-[#1a1a1a] to-[#0a0a0a]">
@@ -15,16 +15,7 @@
   <!-- Main Content -->
   <div class="relative z-10 flex items-center justify-center h-full px-4">
     <div class="text-center max-w-4xl">
-      
-      <!-- Animated Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/50 backdrop-blur-sm border border-[#34D399]/20 rounded-full mb-8 animate-fade-in-down">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34D399] opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34D399]"></span>
-        </span>
-        <span class="text-xs font-medium text-gray-300">3PM Solution</span>
-      </div>
-
+    
       <!-- Typewriter Heading -->
       <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in">
         <om-typewriter
@@ -46,42 +37,42 @@
       <p class="text-sm md:text-base text-gray-500 mb-2 animate-fade-in-up animation-delay-700">
        Frontend - Mobile Developer
       </p>
-      <p class="text-sm md:text-base text-gray-500 mb-10 animate-fade-in-up animation-delay-700">
+      <p class="text-sm md:text-base text-gray-500 mb-5 animate-fade-in-up animation-delay-700">
         XII RPL A / 14
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-1000">
-        <button (click)="scrollToContent()" 
-                class="group px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 shadow-lg cta-button relative overflow-hidden">
-          <span class="relative z-10 flex items-center gap-2">
-            <i class="pi pi-rocket"></i>
-            Mulai Jelajah
+        <!-- Animated Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/50 backdrop-blur-sm border border-[#34D399]/20 rounded-full mb-8 animate-fade-in-down">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34D399] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#34D399]"></span>
           </span>
-          <div class="absolute inset-0 bg-gradient-to-r from-[#34D399] to-[#059669] transition-transform duration-300 group-hover:scale-110"></div>
-        </button>
-        
-        <button class="px-8 py-4 rounded-xl font-semibold text-white bg-zinc-900/50 backdrop-blur-sm border border-zinc-700 hover:border-[#34D399]/50 transition-all duration-300 hover:bg-zinc-800/50 flex items-center gap-2">
-          <i class="pi pi-download"></i>
-          Download CV
-        </button>
-      </div>
+          <span class="text-xs font-medium text-gray-300">3PM Solution</span>
+        </div>
+  
 
-      <!-- Social Links -->
-      <div class="flex items-center justify-center gap-4 mt-12 animate-fade-in-up animation-delay-1500">
-        <a href="#" class="social-icon">
-          <i class="pi pi-github"></i>
-        </a>
-        <a href="#" class="social-icon">
-          <i class="pi pi-linkedin"></i>
-        </a>
-        <a href="#" class="social-icon">
-          <i class="pi pi-instagram"></i>
-        </a>
-        <a href="#" class="social-icon">
-          <i class="pi pi-envelope"></i>
-        </a>
-      </div>
+      <p-divider align="center" type="solid" class="co">
+        <b class="text-emerald-500">Mulai Jelajah</b>
+        </p-divider>
+
+        <!-- Tombol tombol navigasi section -->
+         <div class="flex items-center justify-center gap-4">
+            <a href="" class="hover:text-emerald-400">
+              Introduction
+            </a>
+            <span class="text-gray-500">|</span>
+            <a href="" class="hover:text-emerald-400">
+              About
+            </a>
+            <span class="text-gray-500">|</span>
+            <a href="" class="hover:text-emerald-400">
+              Timeline
+            </a>
+            <span class="text-gray-500">|</span>
+            <a href="" class="hover:text-emerald-400">
+              List Projects
+            </a>
+         </div>
 
     </div>
   </div>

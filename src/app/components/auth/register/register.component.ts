@@ -5,11 +5,12 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { Router,RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, FloatLabel, PasswordModule, RouterLink],
+  imports: [FormsModule, FloatLabel, PasswordModule, RouterLink,ButtonModule,InputTextModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -34,7 +35,6 @@ export class RegisterComponent {
 
   this.authService.register(this.registerObj).subscribe({
     next:()=> {
-      this.router.navigateByUrl("/admin/login")
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -50,6 +50,8 @@ export class RegisterComponent {
         icon: "success",
         title: "Berhasil register"
       });
+
+      this.router.navigateByUrl("/admin/login")
     },
     error:(error:any)=> {
       Swal.fire({
