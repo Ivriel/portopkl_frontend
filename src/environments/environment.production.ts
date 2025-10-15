@@ -10,6 +10,7 @@ export const environment = {
         addPortfolio:'portfolio/addPortfolio',
         deletePortfolio:'portfolio/deletePortfolio/',
         updatePortfolio:'portfolio/updatePortfolio/',
+        getGalleryPortfolio:'portfolio/getPortfolioGallery',
         getProfile:'UserToken/getSelfUser',
         updateProfile:'UserToken/updateUser',
         deleteUser:'UserToken/deleteUser',
