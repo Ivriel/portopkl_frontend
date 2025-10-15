@@ -5,10 +5,11 @@ import { IntroductionComponent } from '../introduction/introduction.component';
 import { AboutComponent } from '../about/about.component';
 import { TimelineProjectComponent } from '../timeline-project/timeline-project.component';
 import { HeroComponent } from '../hero/hero.component';
+import { GalleryComponent } from '../gallery/gallery.component';
 
 @Component({
   selector: 'app-visitor-parent',
-  imports: [ListPortfolioComponent,IntroductionComponent,TimelineProjectComponent, AboutComponent,HeroComponent,CommonModule],
+  imports: [ListPortfolioComponent,IntroductionComponent,TimelineProjectComponent, AboutComponent,HeroComponent,CommonModule,GalleryComponent],
   templateUrl: './visitor-parent.component.html',
   styleUrl: './visitor-parent.component.css'
 })

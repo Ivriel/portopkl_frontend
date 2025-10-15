@@ -1,0 +1,100 @@
+<!-- gallery.component.html -->
+<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8" style="background-color: #121212;">
+  
+    <!-- Header Section -->
+    <div class="max-w-7xl mx-auto mb-12">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-[#34D399]/20 rounded-full mb-4">
+          <i class="pi pi-images text-[#34D399]"></i>
+          <span class="text-sm text-gray-400">Photo Gallery</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Project <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#34D399] to-[#059669]">Gallery</span>
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Explore my work through images. From development setups to team collaborations.
+        </p>
+      </div>
+    </div>
+  
+    <!-- Gallery Container -->
+    <div class="max-w-6xl mx-auto">
+      <div class="gallery-container">
+        <p-galleria 
+          [value]="images" 
+          [responsiveOptions]="responsiveOptions" 
+          [numVisible]="5"
+          [circular]="true"
+          [showItemNavigators]="true"
+          [showThumbnails]="true"
+          [showIndicators]="true"
+          [changeItemOnIndicatorHover]="true"
+          [showItemNavigatorsOnHover]="true"
+          [autoPlay]="false"
+          [transitionInterval]="3000">
+          
+          <!-- Main Image Template -->
+          <ng-template #item let-item>
+            <div class="gallery-item-wrapper">
+              <img 
+                [src]="item.itemImageSrc" 
+                [alt]="item.alt"
+                class="gallery-main-image"
+              />
+            </div>
+          </ng-template>
+          
+          <!-- Thumbnail Template -->
+          <ng-template #thumbnail let-item>
+            <div class="gallery-thumbnail-wrapper">
+              <img 
+                [src]="item.thumbnailImageSrc" 
+                [alt]="item.alt"
+                class="gallery-thumbnail-image"
+              />
+            </div>
+          </ng-template>
+          
+          <!-- Caption Template -->
+          <ng-template #caption let-item>
+            <div class="gallery-caption">
+              <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <i class="pi pi-image text-[#34D399]"></i>
+                {{ item.title }}
+              </h3>
+              <p class="text-gray-300">{{ item.alt }}</p>
+            </div>
+          </ng-template>
+          
+        </p-galleria>
+      </div>
+  
+      <!-- Info Cards Below Gallery -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-[#34D399]/30 transition-all">
+          <div class="w-12 h-12 bg-[#34D399]/10 rounded-lg flex items-center justify-center mb-4">
+            <i class="pi pi-images text-2xl text-[#34D399]"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">{{images.length}} Images</h3>
+          <p class="text-sm text-gray-400">High quality project documentation</p>
+        </div>
+        
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-[#34D399]/30 transition-all">
+          <div class="w-12 h-12 bg-[#34D399]/10 rounded-lg flex items-center justify-center mb-4">
+            <i class="pi pi-eye text-2xl text-[#34D399]"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">HD Quality</h3>
+          <p class="text-sm text-gray-400">Crystal clear images in high resolution</p>
+        </div>
+        
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-[#34D399]/30 transition-all">
+          <div class="w-12 h-12 bg-[#34D399]/10 rounded-lg flex items-center justify-center mb-4">
+            <i class="pi pi-mobile text-2xl text-[#34D399]"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Responsive</h3>
+          <p class="text-sm text-gray-400">Works perfectly on all devices</p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
