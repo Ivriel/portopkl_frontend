@@ -1,89 +1,165 @@
-<div class="min-h-screen">
+<div class="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
   
-  <!-- Header -->
-  <div class="border-b border-zinc-800 py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">Pengenalan Industri</h1>
-      <p class="text-gray-400">Pengalaman PKL di 3PM Solution</p>
+  <!-- Header Section -->
+  <div class="max-w-7xl mx-auto mb-12">
+    <div class="text-center mb-4">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-[#34D399]/20 rounded-full mb-4">
+        <i class="pi pi-briefcase text-[#34D399]"></i>
+        <span class="text-sm text-gray-400">3PM Solution</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+        Pengenalan <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#34D399] to-[#059669]">Industri</span>
+      </h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        Pengalaman PKL di 3PM Solution
+      </p>
     </div>
   </div>
 
-  <!-- Content -->
-  <div class="max-w-6xl mx-auto px-4 py-16">
-    
-    <!-- Bento Grid Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+  <!-- Bento Grid -->
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Box 1: 3PM Solution (2 cols) -->
-      <div class="md:col-span-2 bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+      <!-- Company Profile - Large Box (2 cols) -->
+      <div class="lg:col-span-2 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-[#34D399]/30 transition-all duration-300">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-16 h-16 bg-gradient-to-br from-[#34D399] to-[#059669] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#34D399]/20">
+            <i class="pi pi-building text-white text-2xl"></i>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-2">3PM Solution</h2>
+            <p class="text-[#34D399] text-sm font-semibold">IT Consulting & Digital Transformation</p>
+          </div>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6">
+          Perusahaan yang berfokus pada solusi teknologi informasi dan konsultasi bisnis untuk transformasi digital. Dengan pengalaman lebih dari satu dekade, kami telah membantu ratusan klien mencapai kesuksesan melalui inovasi teknologi terdepan.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-zinc-800/50 rounded-xl p-4 border border-zinc-700/50">
+            <div class="text-2xl font-bold text-[#34D399] mb-1">5+</div>
+            <div class="text-xs text-gray-400">Jenis Layanan</div>
+          </div>
+          <div class="bg-zinc-800/50 rounded-xl p-4 border border-zinc-700/50">
+            <div class="text-2xl font-bold text-[#34D399] mb-1">11+</div>
+            <div class="text-xs text-gray-400">Partner</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Box -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-[#34D399]/30 transition-all duration-300">
+        <h4 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+          <i class="pi pi-phone text-[#34D399]"></i>
+          Hubungi Kami
+        </h4>
+        <div class="space-y-4">
+          <a href="https://wa.me/62818388010" target="_blank" 
+             class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-all group">
+            <div class="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center group-hover:bg-[#34D399]/10 transition-colors">
+              <i class="pi pi-whatsapp text-lg"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium">WhatsApp</div>
+              <div class="text-xs text-gray-500">0818388010</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/3pmsolution" target="_blank" 
+             class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-all group">
+            <div class="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center group-hover:bg-[#34D399]/10 transition-colors">
+              <i class="pi pi-instagram text-lg"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium">Instagram</div>
+              <div class="text-xs text-gray-500">&#64;3pmsolution</div>
+            </div>
+          </a>
+          <a href="https://www.3pm-solution.com/" target="_blank" 
+             class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-all group">
+            <div class="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center group-hover:bg-[#34D399]/10 transition-colors">
+              <i class="pi pi-globe text-lg"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium">Website</div>
+              <div class="text-xs text-gray-500">https://www.3pm-solution.com</div>
+            </div>
+          </a>
+          <a href="mailto:hrd3pmsolution@gmail.com" 
+             class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-all group">
+            <div class="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center group-hover:bg-[#34D399]/10 transition-colors">
+              <i class="pi pi-envelope text-lg"></i>
+            </div>
+            <div>
+              <div class="text-sm font-medium">Email</div>
+              <div class="text-xs text-gray-500">hrd3pmsolution&#64;gmail.com</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Office Image - Full Width (3 cols) -->
+      <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-2xl p-3 overflow-hidden group hover:border-[#34D399]/30 transition-all duration-300">
+        <div class="relative overflow-hidden rounded-xl h-full">
+          <img src="assets/3PM-Kantor.png" alt="3PM Solution Office" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6">
+            <h3 class="text-2xl font-bold text-white mb-2">Kantor 3PM Solution</h3>
+            <p class="text-gray-300 text-sm">Modern workspace untuk inovasi teknologi</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PKL Experience Box (2 cols) -->
+      <div class="lg:col-span-2 bg-gradient-to-br from-[#34D399]/10 to-[#059669]/10 border border-[#34D399]/30 rounded-2xl p-8">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="w-12 h-12 bg-[#34D399] rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#34D399]/30">
+            <i class="pi pi-graduation-cap text-white text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-white mb-2">Pengalaman PKL</h3>
+            <p class="text-gray-400 text-sm">Periode: Agustus - November 2024</p>
+          </div>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Selama PKL di 3PM Solution, saya berkesempatan untuk belajar dan berkontribusi dalam berbagai proyek pengembangan aplikasi web, manajemen database, serta implementasi solusi digital untuk klien.
+        </p>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-zinc-900/50 rounded-lg p-3 border border-zinc-800">
+            <div class="text-xl font-bold text-[#34D399] mb-1">Angular</div>
+            <div class="text-xs text-gray-400">Frontend</div>
+          </div>
+          <div class="bg-zinc-900/50 rounded-lg p-3 border border-zinc-800">
+            <div class="text-xl font-bold text-[#34D399] mb-1">Node.js</div>
+            <div class="text-xs text-gray-400">Backend</div>
+          </div>
+          <div class="bg-zinc-900/50 rounded-lg p-3 border border-zinc-800">
+            <div class="text-xl font-bold text-[#34D399] mb-1">MongoDB</div>
+            <div class="text-xs text-gray-400">Database</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Box -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-[#34D399]/30 transition-all duration-300">
         <div class="flex items-start gap-4 mb-4">
           <div class="w-12 h-12 bg-[#34D399]/10 border border-[#34D399]/30 rounded-lg flex items-center justify-center flex-shrink-0">
-            <i class="pi pi-building text-[#34D399] text-xl"></i>
+            <i class="pi pi-map-marker text-[#34D399] text-xl"></i>
           </div>
-          <h2 class="text-3xl font-bold text-white">3PM Solution</h2>
+          <h3 class="text-xl font-bold text-white">Lokasi</h3>
         </div>
-        <p class="text-gray-400 leading-relaxed">
-          Perusahaan yang berfokus pada solusi teknologi informasi dan konsultasi bisnis untuk transformasi digital. Dengan pengalaman lebih dari satu dekade, mereka telah membantu ratusan klien melalui inovasi teknologi terdepan.
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          Jl. Lkr. Blimbing Indah No.47, <br>
+          Pandanwangi, Kec. Blimbing, <br>
+          Kota Malang, Jawa Timur 65126
+          Indonesia
         </p>
-      </div>
-
-      <!-- Box 2: Hubungi (1 col) -->
-      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 flex flex-col justify-between">
-        <div>
-          <h4 class="text-sm font-semibold text-[#34D399] uppercase tracking-wide mb-4">Hubungi</h4>
-          <div class="space-y-3">
-            <a href="https://wa.me/62123456789" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-colors group">
-              <i class="pi pi-whatsapp text-lg group-hover:scale-110 transition-transform"></i>
-              <span class="text-sm">WhatsApp</span>
-            </a>
-            <a href="https://instagram.com/3pmsolution" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-colors group">
-              <i class="pi pi-instagram text-lg group-hover:scale-110 transition-transform"></i>
-              <span class="text-sm">Instagram</span>
-            </a>
-            <a href="https://3pmsolution.com" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-colors group">
-              <i class="pi pi-globe text-lg group-hover:scale-110 transition-transform"></i>
-              <span class="text-sm">Website</span>
-            </a>
-            <a href="mailto:info@3pmsolution.com" class="flex items-center gap-3 text-gray-400 hover:text-[#34D399] transition-colors group">
-              <i class="pi pi-envelope text-lg group-hover:scale-110 transition-transform"></i>
-              <span class="text-sm">Email</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Box 3: Industri IT & Konsultasi (1 col) -->
-      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="w-12 h-12 bg-[#34D399]/10 border border-[#34D399]/30 rounded-lg flex items-center justify-center flex-shrink-0">
-            <i class="pi pi-info-circle text-[#34D399] text-xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white">Industri IT</h3>
-        </div>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Fokus pada pengembangan software, cloud infrastructure, business intelligence, cybersecurity, dan konsultasi transformasi digital.
-        </p>
-      </div>
-
-      <!-- Box 4: Gambar (2 cols) -->
-      <div class="md:col-span-2 bg-zinc-900 border border-zinc-800 rounded-2xl p-2 overflow-hidden">
-        <img src="assets/3PM-Kantor.png" alt="3PM Solution Office" class="w-full h-80 object-cover rounded-xl">
-      </div>
-
-      <!-- Box 5: Pengalaman PKL (1 col) -->
-      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="w-12 h-12 bg-[#34D399]/10 border border-[#34D399]/30 rounded-lg flex items-center justify-center flex-shrink-0">
-            <i class="pi pi-star-fill text-[#34D399] text-xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white">PKL</h3>
-        </div>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Belajar dan berkontribusi dalam pengembangan aplikasi web, manajemen database, dan transformasi digital.
-        </p>
+        <a href="https://www.google.com/maps/place/3PM-Solution/@-7.9410325,112.65863,17z/data=!4m6!3m5!1s0x2dd629a221533759:0x2511839f49f76cad!8m2!3d-7.9410378!4d112.6612049!16s%2Fg%2F11cnrg3f62?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" 
+           class="inline-flex items-center gap-2 text-[#34D399] hover:text-white text-sm font-medium transition-colors group">
+          <span>Lihat di Maps</span>
+          <i class="pi pi-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+        </a>
       </div>
 
     </div>
-
   </div>
+
 </div>
