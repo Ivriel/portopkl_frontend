@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
+import { ApiResponseProfile, Profile } from '../../../shared/interfaces/profile';
+import { Skeleton } from 'primeng/skeleton';
+
 @Component({
   selector: 'app-change-password',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,Skeleton],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css'
 })
-export class ChangePasswordComponent {
+export class ChangePasswordComponent implements OnInit{
+  imageAvatar:string | null = null
+  isLoadingAvatar:boolean = true;
   currentPassword: string = '';
   newPassword: string = '';
   confirmPassword: string = '';
@@ -28,6 +33,10 @@ export class ChangePasswordComponent {
   passwordsMatch:boolean = false;
 
   constructor(private adminService:AdminService, private authService:AuthService){}
+
+  ngOnInit(): void {
+    this.getUserData()
+  }
 
   onPasswordChange():void {
     this.validatePassword()
@@ -58,6 +67,23 @@ export class ChangePasswordComponent {
     } else {
       this.passwordStrength = 'legend'
     }
+  }
+
+  getUserData():void {
+    console.log("🔍 Starting getImageAvatar...")
+    this.adminService.getProfile().subscribe({
+      next:(res:ApiResponseProfile<Profile>) => {
+        
+        this.isLoadingAvatar = false
+        this.imageAvatar = res.userData.avatar
+        console.log(" imageAvatar value:", this.imageAvatar)
+      },
+      error:(error:any)=> {
+        this.isLoadingAvatar = false
+        console.error("Error fetching user avatar: ",error)
+        this.imageAvatar = "https://static.vecteezy.com/system/resources/thumbnails/003/337/584/small_2x/default-avatar-photo-placeholder-profile-icon-vector.jpg"
+      }
+    })
   }
 
   checkPasswordMatch(): void {
