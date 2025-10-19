@@ -42,20 +42,24 @@
 
     <!-- Tombol tombol navigasi section -->
     <div class="flex items-center justify-center gap-4">
-      <a href="" class="hover:text-emerald-400">
+      <a [routerLink]="['/']" fragment="introduction" class="hover:text-emerald-400">
         Introduction
       </a>
       <span class="text-gray-500">|</span>
-      <a href="" class="hover:text-emerald-400">
+      <a [routerLink]="['/']" fragment="about" class="hover:text-emerald-400">
         About
       </a>
       <span class="text-gray-500">|</span>
-      <a href="" class="hover:text-emerald-400">
+      <a [routerLink]="['/']" fragment="timeline" class="hover:text-emerald-400">
         Timeline
       </a>
       <span class="text-gray-500">|</span>
-      <a href="" class="hover:text-emerald-400">
+      <a [routerLink]="['/']" fragment="list-project" class="hover:text-emerald-400">
         List Projects
+      </a>
+      <span class="text-gray-500">|</span>
+      <a [routerLink]="['/']" fragment="gallery" class="hover:text-emerald-400">
+        Gallery
       </a>
     </div>
 
