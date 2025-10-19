@@ -19,5 +19,8 @@
     <app-timeline-project></app-timeline-project>
     <app-list-portfolio></app-list-portfolio>
     <app-gallery></app-gallery>
+    <button title="Scroll to top" *ngIf="showButton" (click)="scrollToTop()"  class="bg-[#34D399] fixed cursor-pointer rounded-lg h-fit p-4 w-fit z-50 m-8 right-0 bottom-0">
+      <i class="pi pi-arrow-up"></i>
+    </button>
   </div>
 </div>
