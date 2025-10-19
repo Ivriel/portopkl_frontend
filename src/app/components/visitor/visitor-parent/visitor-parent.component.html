@@ -19,7 +19,12 @@
     <app-timeline-project></app-timeline-project>
     <app-list-portfolio></app-list-portfolio>
     <app-gallery></app-gallery>
-    <button title="Scroll to top" *ngIf="showButton" (click)="scrollToTop()"  class="bg-[#34D399] fixed cursor-pointer rounded-lg h-fit p-4 w-fit z-50 m-8 right-0 bottom-0">
+    <button title="Scroll to top" (click)="scrollToTop()"
+      class="bg-[#34D399] fixed cursor-pointer rounded-lg h-[50px] flex items-center p-4 w-fit z-50 m-2 right-0 bottom-0 transition-all duration-300 ease-out"
+      [class.opacity-100]="showButton" [class.scale-100]="showButton" [class.translate-y-0]="showButton"
+      [class.opacity-0]="!showButton" [class.scale-95]="!showButton" [class.translate-y-3]="!showButton" 
+      [class.rotate-x-3]="!showButton"
+      [class.pointer-events-none]="!showButton" [class.select-none]="!showButton">
       <i class="pi pi-arrow-up"></i>
     </button>
   </div>
