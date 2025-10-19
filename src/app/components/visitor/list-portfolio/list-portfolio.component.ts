@@ -7,12 +7,12 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-list-portfolio',
-  imports: [CardModule, ButtonModule, TagModule, TooltipModule, CommonModule,RouterLink,Skeleton],
+  imports: [CardModule, ButtonModule, TagModule, TooltipModule, CommonModule,Skeleton],
   templateUrl: './list-portfolio.component.html',
   styleUrl: './list-portfolio.component.css'
 })
@@ -20,7 +20,10 @@ export class ListPortfolioComponent implements OnInit {
   listPortfolio: PortfolioAll[] = []
   isLoading:boolean = true
 
-  constructor(private getPortfolioService: GetPortfolioService) {}
+  constructor(
+    private getPortfolioService: GetPortfolioService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllPortfolio()
@@ -44,6 +47,15 @@ export class ListPortfolioComponent implements OnInit {
         console.error("Error loading data list portfolio: ", error)
       }
     })
+  }
+
+  // Method to handle portfolio click and save scroll position
+  onPortfolioClick(portfolioId: string): void {
+    // Save current scroll position before navigating
+    sessionStorage.setItem('portfolioScrollPosition', window.scrollY.toString());
+    
+    // Navigate to portfolio detail
+    this.router.navigate(['/portfolio', portfolioId]);
   }
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ViewportScroller, Location } from '@angular/common';
 import { ApiResponsePortfolioById, PortfolioById } from '../../../shared/interfaces/portfolio-by-id';
 import Swal from 'sweetalert2';
 import { GetPortfolioService } from '../../../shared/services/get-portfolio.service';
@@ -19,7 +20,14 @@ export class PortfolioDetailComponent implements OnInit{
   portfolioDetail!:PortfolioById;
   isLoading:boolean = true;
 
-  constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title, private router:Router){
+  constructor(
+    private route:ActivatedRoute, 
+    private getPortfolioService:GetPortfolioService, 
+    private title:Title, 
+    private router:Router,
+    private viewportScroller: ViewportScroller,
+    private location: Location
+  ){
     this.portfolioId = this.route.snapshot.paramMap.get('id')
     if(!this.portfolioId) return;
   }
@@ -50,7 +58,26 @@ export class PortfolioDetailComponent implements OnInit{
   }
 
   backToListPortfolio():void {
-    this.router.navigateByUrl("")
+    // Get the saved scroll position from sessionStorage
+    const savedScrollPosition = sessionStorage.getItem('portfolioScrollPosition');
+    
+    if (savedScrollPosition) {
+      // Navigate to home page without fragment
+      this.router.navigate(['/']).then(() => {
+        // Restore the exact scroll position instantly
+        setTimeout(() => {
+          window.scrollTo({
+            top: parseInt(savedScrollPosition),
+            behavior: 'instant' // No animation
+          });
+          // Clear the saved position
+          sessionStorage.removeItem('portfolioScrollPosition');
+        }, 0);
+      });
+    } else {
+      // Fallback: navigate to list-project section
+      this.router.navigate(['/'], { fragment: 'list-project' });
+    }
   }
 
 

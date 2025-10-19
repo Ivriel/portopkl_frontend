@@ -92,7 +92,7 @@
           </div>
 
           <!-- View Button -->
-          <button [routerLink]="['/portfolio', portfolio._id]"
+          <button (click)="onPortfolioClick(portfolio._id)"
                   class="w-full px-4 py-2.5 bg-[#34D399]/10 hover:bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/30 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2">
             <i class="pi pi-arrow-right text-xs"></i>
             View Details
