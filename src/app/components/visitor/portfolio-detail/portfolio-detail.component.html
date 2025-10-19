@@ -1,29 +1,203 @@
-<p-button label="Back" icon="pi pi-angle-left" styleClass="border-[#334155]" (onClick)="backToListPortfolio()"></p-button>
-<div *ngIf="portfolioDetail">
-  <h1>{{ portfolioDetail.title }}</h1>
-  <p><strong>Category:</strong> {{ portfolioDetail.category }}</p>
-  <p><strong>Status:</strong> {{ portfolioDetail.status }}</p>
-  <p><strong>Description:</strong> {{ portfolioDetail.description }}</p>
-  <p><strong>GitHub URL:</strong> <a [href]="portfolioDetail.githubUrl" target="_blank">{{ portfolioDetail.githubUrl }}</a></p>
-  <p><strong>Type Project:</strong> {{ portfolioDetail.typeProject }}</p>
-  
-  <div *ngIf="portfolioDetail.thumbnail">
-    <h3>Thumbnail:</h3>
-    <img [src]="portfolioDetail.thumbnail" [alt]="portfolioDetail.title" style="max-width: 300px;">
-  </div>
-  
-  <div *ngIf="portfolioDetail.images && portfolioDetail.images.length > 0">
-    <h3>Images:</h3>
-    <div *ngFor="let image of portfolioDetail.images">
-      <img [src]="image" [alt]="portfolioDetail.title" style="max-width: 200px; margin: 5px;">
+<div class="min-h-screen p-4 sm:p-6" style="background-color: #121212;">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Back Button -->
+    <div class="mb-6">
+      <button (click)="backToListPortfolio()"
+              class="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium">
+        <i class="pi pi-angle-left"></i>
+        Back to Portfolio
+      </button>
     </div>
-  </div>
-  
-  <div *ngIf="portfolioDetail.technologies && portfolioDetail.technologies.length > 0">
-    <h3>Technologies:</h3>
-    <div *ngFor="let tech of portfolioDetail.technologies">
-      <span [style.color]="tech.color" style="margin-right: 10px;">{{ tech.name }}</span>
+
+    <!-- Skeleton Loading State -->
+    <div *ngIf="isLoading">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left Column Skeleton -->
+        <div class="lg:col-span-2">
+          <!-- Header Skeleton -->
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 mb-6">
+            <p-skeleton width="70%" height="2.5rem" styleClass="mb-3"></p-skeleton>
+            <div class="flex gap-2 mb-4">
+              <p-skeleton width="6rem" height="2rem" borderRadius="9999px"></p-skeleton>
+              <p-skeleton width="5rem" height="2rem" borderRadius="9999px"></p-skeleton>
+              <p-skeleton width="7rem" height="2rem" borderRadius="9999px"></p-skeleton>
+            </div>
+            <p-skeleton width="100%" height="4rem" styleClass="mb-3"></p-skeleton>
+            <p-skeleton width="90%" height="1rem"></p-skeleton>
+          </div>
+
+          <!-- Images Skeleton -->
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+            <p-skeleton width="10rem" height="1.5rem" styleClass="mb-4"></p-skeleton>
+            <div class="grid grid-cols-2 gap-3">
+              <p-skeleton *ngFor="let i of [1,2,3,4]" width="100%" height="10rem" borderRadius="12px"></p-skeleton>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column Skeleton -->
+        <div class="lg:col-span-1">
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+            <p-skeleton width="8rem" height="1.5rem" styleClass="mb-3"></p-skeleton>
+            <p-skeleton width="100%" height="16rem" borderRadius="12px" styleClass="mb-6"></p-skeleton>
+            
+            <p-skeleton width="100%" height="1px" styleClass="mb-6"></p-skeleton>
+            
+            <p-skeleton width="10rem" height="1.5rem" styleClass="mb-3"></p-skeleton>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <p-skeleton *ngFor="let i of [1,2,3,4]" width="5rem" height="2.5rem" borderRadius="8px"></p-skeleton>
+            </div>
+
+            <p-skeleton width="100%" height="1px" styleClass="mb-6"></p-skeleton>
+            
+            <p-skeleton width="100%" height="3rem" borderRadius="8px"></p-skeleton>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Actual Content -->
+    <div *ngIf="!isLoading && portfolioDetail">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left Column - Main Content -->
+        <div class="lg:col-span-2">
+          
+          <!-- Project Info Card -->
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 mb-6">
+            <h1 class="text-3xl font-bold text-white mb-3">{{ portfolioDetail.title }}</h1>
+            
+            <!-- Badges -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span [ngClass]="{
+                'bg-[#34D399]/20 text-[#34D399] border-[#34D399]/30': portfolioDetail.status === 'finished',
+                'bg-blue-500/20 text-blue-400 border-blue-500/30': portfolioDetail.status === 'on progress'
+              }" class="px-3 py-1 rounded-full text-xs font-semibold border inline-flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full" [ngClass]="{
+                  'bg-[#34D399]': portfolioDetail.status === 'finished',
+                  'bg-blue-400': portfolioDetail.status === 'on progress'
+                }"></span>
+                {{ portfolioDetail.status | titlecase }}
+              </span>
+
+              <span class="px-3 py-1 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
+                <i class="pi pi-tag text-[10px]"></i>
+                {{ portfolioDetail.category | titlecase }}
+              </span>
+
+              <span class="px-3 py-1 bg-zinc-800 text-gray-300 border border-zinc-700 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
+                <i [ngClass]="{
+                  'pi-desktop': portfolioDetail.typeProject === 'web',
+                  'pi-mobile': portfolioDetail.typeProject === 'mobile'
+                }" class="pi text-[10px]"></i>
+                {{ portfolioDetail.typeProject | titlecase }}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <div>
+              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Description</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">{{ portfolioDetail.description }}</p>
+            </div>
+          </div>
+
+          <!-- Images Gallery Card -->
+          <div *ngIf="portfolioDetail.images && portfolioDetail.images.length > 0" 
+               class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <i class="pi pi-images text-[#34D399] text-sm"></i>
+              Project Gallery
+            </h2>
+            <div class="grid grid-cols-2 gap-3">
+              <div *ngFor="let image of portfolioDetail.images; let i = index"
+                   class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-800 group cursor-pointer hover:border-[#34D399]/50 transition-all duration-300 aspect-video">
+                <img [src]="image" 
+                     [alt]="portfolioDetail.title + ' - Image ' + (i + 1)"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-3">
+                  <span class="text-white font-medium text-xs">Image {{ i + 1 }}</span>
+                  <div class="w-7 h-7 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <i class="pi pi-search-plus text-white text-xs"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column - Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+            
+            <!-- Thumbnail -->
+            <div class="mb-6">
+              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Project Preview</h3>
+              <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-800 group">
+                <img [src]="portfolioDetail.thumbnail" 
+                     [alt]="portfolioDetail.title"
+                     class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent mb-6"></div>
+
+            <!-- Technologies -->
+            <div *ngIf="portfolioDetail.technologies && portfolioDetail.technologies.length > 0" class="mb-6">
+              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <i class="pi pi-code text-[#34D399] text-xs"></i>
+                Technologies Used
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                <div *ngFor="let tech of portfolioDetail.technologies"
+                     class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-all duration-300 cursor-default">
+                  <span class="text-xs font-semibold" [style.color]="tech.color">
+                    {{ tech.name }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent mb-6"></div>
+
+            <!-- GitHub Button -->
+            <div *ngIf="portfolioDetail.githubUrl">
+              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Repository</h3>
+              <a [href]="portfolioDetail.githubUrl" 
+                 target="_blank"
+                 class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-medium group">
+                <i class="pi pi-github text-base"></i>
+                <span class="text-sm">View on GitHub</span>
+                <i class="pi pi-external-link text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && !portfolioDetail" 
+         class="text-center py-20">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900 border border-zinc-800 mb-4">
+        <i class="pi pi-exclamation-triangle text-4xl text-yellow-500"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-white mb-2">Project Not Found</h3>
+      <p class="text-gray-400 text-sm mb-6">Proyek yang Anda cari tidak ditemukan atau telah dihapus.</p>
+      <button (click)="backToListPortfolio()"
+              class="px-6 py-3 rounded-lg text-sm cursor-pointer font-semibold text-white inline-flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg shadow-[#34D399]/30 add-project-btn">
+        <i class="pi pi-angle-left"></i>
+        Back to Portfolio
+      </button>
+    </div>
+
   </div>
 </div>
-
