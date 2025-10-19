@@ -7,10 +7,11 @@ import { Router,RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, FloatLabel, PasswordModule, RouterLink,ButtonModule,InputTextModule],
+  imports: [FormsModule, FloatLabel, PasswordModule, RouterLink,ButtonModule,InputTextModule,CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -56,7 +57,7 @@ export class RegisterComponent {
     error:(error:any)=> {
       Swal.fire({
         title:'Error',
-        text:error?.error || 'Terjadi kesalahan saat login',
+        text:error?.error.error || 'Terjadi kesalahan saat login',
         icon:'error'
       }),
       console.error(error)
