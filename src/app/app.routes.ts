@@ -9,18 +9,18 @@ import { NotfoundComponent } from './components/fallback/notfound/notfound.compo
 import { ProfileComponent } from './components/admin/profile/profile.component';
 import { ProfileFormComponent } from './components/admin/profile-form/profile-form.component';
 import { ProjectFormComponent } from './components/admin/project-form/project-form.component';
-import { VisitorParentComponent } from './components/visitor/visitor-parent/visitor-parent.component';
 import { ProjectDisplayComponent } from './components/admin/project-display/project-display.component';
 import { ProjectDetailComponent } from './components/admin/project-detail/project-detail.component';
 import { ChangePasswordComponent } from './components/admin/change-password/change-password.component';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
+import { VisitorLayoutComponent } from './components/layouts/visitor-layout/visitor-layout.component';
 
 export const routes: Routes = [
     { // route buat pengunjung (public)
         path:'',
         pathMatch:'full',
-        component:VisitorParentComponent,
+        component:VisitorLayoutComponent,
         title:'Porto PKL - Ivriel'
     },
     {

@@ -1,0 +1,32 @@
+<div class="relative max-w-full min-h-screen overflow-hidden">
+  
+    <!-- Animated Background Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#121212] via-[#1a1a1a] to-[#0a0a0a]">
+      <!-- Grid Pattern Overlay -->
+      <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2334D399\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+  
+    <!-- Gradient Orbs -->
+    <div class="absolute top-1/4 -left-20 w-72 h-72 bg-[#34D399] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+    <div class="absolute top-1/3 -right-20 w-72 h-72 bg-[#059669] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-[#10b981] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+  
+    <!-- Page Content -->
+    <div class="relative z-10">
+      <app-hero></app-hero>
+      <app-introduction></app-introduction>
+      <app-about></app-about>
+      <app-timeline-project></app-timeline-project>
+      <app-list-portfolio></app-list-portfolio>
+      <app-gallery></app-gallery>
+      <button title="Scroll to top" (click)="scrollToTop()"
+        class="bg-[#34D399] fixed cursor-pointer rounded-lg h-[50px] flex items-center p-4 w-fit z-50 m-2 right-0 bottom-0 transition-all duration-300 ease-out"
+        [class.opacity-100]="showButton" [class.scale-100]="showButton" [class.translate-y-0]="showButton"
+        [class.opacity-0]="!showButton" [class.scale-95]="!showButton" [class.translate-y-3]="!showButton" 
+        [class.rotate-x-3]="!showButton"
+        [class.pointer-events-none]="!showButton" [class.select-none]="!showButton">
+        <i class="pi pi-arrow-up"></i>
+      </button>
+      <app-footer></app-footer>
+    </div>
+  </div>

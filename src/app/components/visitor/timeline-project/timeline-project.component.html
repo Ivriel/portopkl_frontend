@@ -2,20 +2,19 @@
     <div class="w-full">
         <div class="timeline-container">
             <div class="card">
-                <p-timeline [value]="events" align="alternate" class="customized-timeline">
+                <p-timeline [value]="timeline" align="alternate" class="customized-timeline">
                     <ng-template #marker let-event>
                         <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm" [style]="{ 'background-color': event.color }">
-                            <i [class]="event.icon"></i>
+                            <p-badge  [value]="event.number" badgeSize="xlarge" [style]="{'background-color': '#34D399', 'color':'#fff'}" styleClass="bg-red-500"></p-badge>
                         </span>
                     </ng-template>
                     <ng-template #content let-event>
-                        <p-card [header]="event.status" [subheader]="event.date">
+                        <p-card [header]="event.project" [subheader]="event.date">
                             <img *ngIf="event.image" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + event.image" [alt]="event.name" class="timeline-image shadow" />
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
-                                neque quas!
+                               {{event.description}}
                             </p>
-                            <p-button label="Read more" [text]="true" />
+                            <p-button label="Read more" [text]="true" [routerLink]="event.urlDetail" />
                         </p-card>
                     </ng-template>
                 </p-timeline>
