@@ -27,6 +27,8 @@ export class LoginComponent {
   onLogin(): void{
     Swal.fire({
       title:'Loading...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick:false,
       didOpen:()=> {
         Swal.showLoading()
@@ -40,6 +42,8 @@ export class LoginComponent {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
+          background: '#18181B',
+          color: '#ffffff',
           timer: 3000,
           timerProgressBar: true,
           didOpen: (toast) => {
@@ -49,6 +53,8 @@ export class LoginComponent {
         });
         Toast.fire({
           icon: "success",
+          background: '#18181B',
+          color: '#ffffff',
           title: "Berhasil login"
         });
         console.log(response)

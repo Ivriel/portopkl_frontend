@@ -28,6 +28,8 @@ export class RegisterComponent {
   Swal.fire({
     title:'Loading...',
     allowOutsideClick:false,
+    background: '#18181B',
+    color: '#ffffff',
     didOpen:()=> {
       Swal.showLoading()
     }
@@ -36,11 +38,14 @@ export class RegisterComponent {
 
   this.authService.register(this.registerObj).subscribe({
     next:()=> {
+      this.router.navigateByUrl("/admin/login")
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
         timer: 3000,
+        background: '#18181B',
+        color: '#ffffff',
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
@@ -49,15 +54,18 @@ export class RegisterComponent {
       });
       Toast.fire({
         icon: "success",
+        background: '#18181B',
+        color: '#ffffff',
         title: "Berhasil register"
       });
 
-      this.router.navigateByUrl("/admin/login")
     },
     error:(error:any)=> {
       Swal.fire({
         title:'Error',
-        text:error?.error.error || 'Terjadi kesalahan saat login',
+        background: '#18181B',
+        color: '#ffffff',
+        text:error?.error || 'Terjadi kesalahan saat register',
         icon:'error'
       }),
       console.error(error)

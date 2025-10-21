@@ -183,6 +183,8 @@ export class ProfileFormComponent implements OnInit{
 
     Swal.fire({
       title: 'Updating profile...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -207,6 +209,8 @@ export class ProfileFormComponent implements OnInit{
         
         Toast.fire({
           icon: "success",
+          background: '#18181B',
+          color: '#ffffff',
           title: "Profile updated successfully"
         })
       },

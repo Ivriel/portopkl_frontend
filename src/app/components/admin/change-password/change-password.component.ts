@@ -144,6 +144,8 @@ export class ChangePasswordComponent implements OnInit{
       if (result.isConfirmed) {
         Swal.fire({
           title:'Mengganti Password...',
+          background: '#18181B',
+          color: '#ffffff',
           allowOutsideClick:false,
           didOpen:()=> {
             Swal.showLoading()

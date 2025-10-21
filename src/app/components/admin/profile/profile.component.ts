@@ -32,6 +32,8 @@ export class ProfileComponent implements OnInit {
   getProfile(): void {
     Swal.fire({
       title: 'Memuat data profile...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -132,6 +134,8 @@ export class ProfileComponent implements OnInit {
   verifyAndDelete(password: string): void {
     Swal.fire({
       title: 'Verifying password...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();

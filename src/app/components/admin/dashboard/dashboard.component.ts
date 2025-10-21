@@ -67,6 +67,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getDashboardSummary(): void {
     Swal.fire({
       title: 'Memuat data dashboard...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
