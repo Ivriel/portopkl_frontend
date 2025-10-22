@@ -1,4 +1,3 @@
-<!-- hero.component.html -->
 <section class="flex items-center justify-center min-h-screen px-4 sm:px-6">
   <div class="text-center max-w-4xl w-full">
     
@@ -41,7 +40,13 @@
     </p-divider>
 
     <!-- Tombol tombol navigasi section -->
-    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-sm sm:text-base mt-6">
+    <div 
+      [ngClass]="{
+        'fixed top-1 left-1/2 -translate-x-1/2 z-50 translate-y-0 opacity-100 bg-black border border-emerald-500 rounded-full px-6 py-3 backdrop-blur-md shadow-lg shadow-emerald-500/20': isScrolled,
+        'relative translate-y-4 opacity-0': !isScrolled && false,
+        'relative': !isScrolled
+      }"
+      class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-sm sm:text-base mt-6 transition-all duration-500 ease-in-out">
       <a [routerLink]="['/']" fragment="introduction" class="hover:text-emerald-400 transition-colors whitespace-nowrap">
         Introduction
       </a>
