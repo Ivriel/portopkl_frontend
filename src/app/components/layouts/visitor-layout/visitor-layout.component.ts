@@ -21,7 +21,7 @@ export class VisitorLayoutComponent {
   @HostListener('window:scroll',[])
   onWindowScroll():void {
     if(isPlatformBrowser(this.platformId)) {
-      if(window.scrollY > 200) {
+      if(window.scrollY >= 700) {
         this.showButton = true
       } else {
         this.showButton = false
