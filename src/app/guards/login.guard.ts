@@ -12,6 +12,8 @@ export const loginGuard: CanActivateFn = (route, state) => {
       icon: "error",
       title: "Anda sudah login",
       text: "Kembali ke dashboard...",
+      background: '#18181B',
+      color: '#ffffff',
       confirmButtonText:"OK"
     }).then(()=> {// pakai then soalnya sweet alert itu asyncronus. jadiharus tunggu tekan ok dulu baru jalan redirect nya. biar logis .
       router.navigateByUrl("/admin/dashboard")

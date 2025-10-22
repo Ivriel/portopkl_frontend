@@ -66,6 +66,8 @@ export class ProjectFormComponent implements OnInit{
   GetPortfolioById():void {
     Swal.fire({
       title: 'Getting detail project...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -224,6 +226,8 @@ export class ProjectFormComponent implements OnInit{
   addProject(formData:FormData):void {
     Swal.fire({
       title: 'Adding project...',
+      background: '#18181B',
+      color: '#ffffff',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -255,7 +259,9 @@ export class ProjectFormComponent implements OnInit{
         Swal.fire({
           title: 'Error',
           text: error?.error?.message || 'Failed to add project',
-          icon: 'error'
+          icon: 'error',
+          background: '#18181B',
+          color: '#ffffff',
         });
         console.error("Error adding project: ",error)
       }
@@ -267,6 +273,8 @@ export class ProjectFormComponent implements OnInit{
     Swal.fire({
       title: 'Updating project...',
       allowOutsideClick: false,
+      background: '#18181B',
+      color: '#ffffff',
       didOpen: () => {
         Swal.showLoading();
       }
@@ -297,7 +305,9 @@ export class ProjectFormComponent implements OnInit{
         Swal.fire({
           title: 'Error',
           text: error?.error?.message || 'Failed to edit project',
-          icon: 'error'
+          icon: 'error',
+          background: '#18181B',
+          color: '#ffffff',
         });
         console.error("Error editing project: ",error)
       }

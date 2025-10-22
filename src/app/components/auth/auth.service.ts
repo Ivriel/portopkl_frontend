@@ -27,7 +27,7 @@ export class AuthService {
     this.cookieService.set('token',token,{
       expires:expirationDate,
       path:'/',
-      secure:false, // set ke true kalo di production
+      secure:true, // set ke true kalo di production
       sameSite:'Lax'
     })
   }

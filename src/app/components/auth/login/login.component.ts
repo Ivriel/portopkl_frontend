@@ -65,7 +65,9 @@ export class LoginComponent {
         Swal.fire({
           title:'Error',
           text:error?.error || 'Terjadi kesalahan saat login',
-          icon:'error'
+          icon:'error',
+          background: '#18181B',
+          color: '#ffffff'
         })
         console.error(error)
       },

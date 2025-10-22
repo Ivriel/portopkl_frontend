@@ -1,10 +1,10 @@
 <div class="min-h-screen p-4 sm:p-6" style="background-color: #121212;">
   <div class="max-w-7xl mx-auto">
-    
+
     <!-- Back Button -->
     <div class="mb-6">
       <button (click)="backToListPortfolio()"
-              class="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium">
+        class="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium">
         <i class="pi pi-angle-left"></i>
         Back to Portfolio
       </button>
@@ -41,16 +41,16 @@
           <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
             <p-skeleton width="8rem" height="1.5rem" styleClass="mb-3"></p-skeleton>
             <p-skeleton width="100%" height="16rem" borderRadius="12px" styleClass="mb-6"></p-skeleton>
-            
+
             <p-skeleton width="100%" height="1px" styleClass="mb-6"></p-skeleton>
-            
+
             <p-skeleton width="10rem" height="1.5rem" styleClass="mb-3"></p-skeleton>
             <div class="flex flex-wrap gap-2 mb-6">
               <p-skeleton *ngFor="let i of [1,2,3,4]" width="5rem" height="2.5rem" borderRadius="8px"></p-skeleton>
             </div>
 
             <p-skeleton width="100%" height="1px" styleClass="mb-6"></p-skeleton>
-            
+
             <p-skeleton width="100%" height="3rem" borderRadius="8px"></p-skeleton>
           </div>
         </div>
@@ -59,16 +59,16 @@
 
     <!-- Actual Content -->
     <div *ngIf="!isLoading && portfolioDetail">
-      
+
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         <!-- Left Column - Main Content -->
         <div class="lg:col-span-2">
-          
+
           <!-- Project Info Card -->
           <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800 mb-6">
             <h1 class="text-3xl font-bold text-white mb-3">{{ portfolioDetail.title }}</h1>
-            
+
             <!-- Badges -->
             <div class="flex flex-wrap gap-2 mb-4">
               <span [ngClass]="{
@@ -82,12 +82,14 @@
                 {{ portfolioDetail.status | titlecase }}
               </span>
 
-              <span class="px-3 py-1 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
+              <span
+                class="px-3 py-1 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
                 <i class="pi pi-tag text-[10px]"></i>
                 {{ portfolioDetail.category | titlecase }}
               </span>
 
-              <span class="px-3 py-1 bg-zinc-800 text-gray-300 border border-zinc-700 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
+              <span
+                class="px-3 py-1 bg-zinc-800 text-gray-300 border border-zinc-700 rounded-full text-xs font-semibold inline-flex items-center gap-1.5">
                 <i [ngClass]="{
                   'pi-desktop': portfolioDetail.typeProject === 'web',
                   'pi-mobile': portfolioDetail.typeProject === 'mobile'
@@ -104,20 +106,19 @@
           </div>
 
           <!-- Images Gallery Card -->
-          <div *ngIf="portfolioDetail.images && portfolioDetail.images.length > 0" 
-               class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+          <div *ngIf="portfolioDetail.images && portfolioDetail.images.length > 0"
+            class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
             <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
               <i class="pi pi-images text-[#34D399] text-sm"></i>
               Project Gallery
             </h2>
             <div class="grid grid-cols-2 gap-3">
-              <div *ngFor="let image of portfolioDetail.images; let i = index"
-                   (click)="openFullscreen(i)"
-                   class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-800 group cursor-pointer hover:border-[#34D399]/50 transition-all duration-300 aspect-video">
-                <img [src]="image" 
-                     [alt]="portfolioDetail.title + ' - Image ' + (i + 1)"
-                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-start justify-end p-3">
+              <div *ngFor="let image of portfolioDetail.images; let i = index" (click)="openFullscreen(i)"
+                class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-800 group cursor-pointer hover:border-[#34D399]/50 transition-all duration-300 aspect-video">
+                <img [src]="image" [alt]="portfolioDetail.title + ' - Image ' + (i + 1)"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-start justify-end p-3">
                   <span class="text-white font-semibold text-sm mb-1">{{ portfolioDetail.title }}</span>
                   <div class="flex items-center justify-between w-full">
                     <span class="text-gray-300 text-xs">Image {{ i + 1 }} of {{ portfolioDetail.images.length }}</span>
@@ -135,15 +136,17 @@
         <!-- Right Column - Sidebar -->
         <div class="lg:col-span-1">
           <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-            
+
             <!-- Thumbnail -->
             <div class="mb-6">
               <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Project Preview</h3>
-              <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-gradient-to-br from-[#34D399] to-[#059669] group">
-                <img [src]="portfolioDetail.thumbnail" 
-                     [alt]="portfolioDetail.title"
-                     class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div
+                class="relative rounded-lg overflow-hidden border border-zinc-800 bg-gradient-to-br from-[#34D399] to-[#059669] group">
+                <img [src]="portfolioDetail.thumbnail" [alt]="portfolioDetail.title"
+                  class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105">
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                </div>
               </div>
             </div>
 
@@ -158,7 +161,7 @@
               </h3>
               <div class="flex flex-wrap gap-2">
                 <div *ngFor="let tech of portfolioDetail.technologies"
-                     class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-all duration-300 cursor-default">
+                  class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-all duration-300 cursor-default">
                   <span class="text-xs font-semibold" [style.color]="tech.color">
                     {{ tech.name }}
                   </span>
@@ -172,9 +175,8 @@
             <!-- GitHub Button -->
             <div *ngIf="portfolioDetail.githubUrl">
               <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Repository</h3>
-              <a [href]="portfolioDetail.githubUrl" 
-                 target="_blank"
-                 class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-medium group">
+              <a [href]="portfolioDetail.githubUrl" target="_blank"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-medium group">
                 <i class="pi pi-github text-base"></i>
                 <span class="text-sm">View on GitHub</span>
                 <i class="pi pi-external-link text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
@@ -189,15 +191,15 @@
     </div>
 
     <!-- Empty State -->
-    <div *ngIf="!isLoading && !portfolioDetail" 
-         class="text-center py-20">
-      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900 border border-zinc-800 mb-4">
+    <div *ngIf="!isLoading && !portfolioDetail" class="text-center py-20">
+      <div
+        class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900 border border-zinc-800 mb-4">
         <i class="pi pi-exclamation-triangle text-4xl text-yellow-500"></i>
       </div>
       <h3 class="text-xl font-semibold text-white mb-2">Project Not Found</h3>
       <p class="text-gray-400 text-sm mb-6">Proyek yang Anda cari tidak ditemukan atau telah dihapus.</p>
       <button (click)="backToListPortfolio()"
-              class="px-6 py-3 rounded-lg text-sm cursor-pointer font-semibold text-white inline-flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg shadow-[#34D399]/30 add-project-btn">
+        class="px-6 py-3 rounded-lg text-sm cursor-pointer font-semibold text-white inline-flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg shadow-[#34D399]/30 add-project-btn">
         <i class="pi pi-angle-left"></i>
         Back to Portfolio
       </button>
@@ -205,49 +207,49 @@
 
   </div>
 
-  <!-- Fullscreen Image Viewer Modal -->
-  <div *ngIf="isFullscreenOpen" 
-       class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
-       (click)="closeFullscreen()">
-    
+  <div *ngIf="isFullscreenOpen"
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+    (click)="closeFullscreen()">
+
     <!-- Close Button -->
-    <button (click)="closeFullscreen()" 
-            class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group">
+    <button (click)="closeFullscreen()"
+      class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group">
       <i class="pi pi-times text-white text-lg group-hover:rotate-90 transition-transform duration-300"></i>
     </button>
 
     <!-- Image Counter -->
-    <div class="absolute top-4 left-4 z-10 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
-      <span class="text-white font-semibold text-sm">{{ currentImageIndex + 1 }} / {{ portfolioDetail.images.length }}</span>
+    <div class="absolute top-4 left-4 z-10 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full"
+      [title]="'Image number ' + (currentImageIndex + 1) + ' of ' + portfolioDetail.images.length ">
+      <span class="text-white font-semibold text-sm">{{ currentImageIndex + 1 }} / {{ portfolioDetail.images.length
+        }}</span>
     </div>
 
     <!-- Previous Button -->
-    <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1"
-            (click)="previousImage($event)" 
-            class="absolute left-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
-            [disabled]="currentImageIndex === 0">
+    <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" (click)="previousImage($event)"
+      [title]="currentImageIndex === 0 ? 'Already in first image' : 'Previous image' "
+      class="absolute cursor-pointer left-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+      [disabled]="currentImageIndex === 0">
       <i class="pi pi-chevron-left text-white text-xl group-hover:-translate-x-1 transition-transform duration-300"></i>
     </button>
 
     <!-- Next Button -->
-    <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1"
-            (click)="nextImage($event)" 
-            class="absolute right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
-            [disabled]="currentImageIndex === portfolioDetail.images.length - 1">
+    <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" (click)="nextImage($event)"
+      [title]="currentImageIndex === portfolioDetail.images.length - 1 ? 'Already in last image' : 'Next image' "
+      class="absolute cursor-pointer right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+      [disabled]="currentImageIndex === portfolioDetail.images.length - 1">
       <i class="pi pi-chevron-right text-white text-xl group-hover:translate-x-1 transition-transform duration-300"></i>
     </button>
-
     <!-- Image Container -->
-    <div (click)="$event.stopPropagation()" 
-         class="max-w-7xl max-h-[90vh] w-full mx-4 flex items-center justify-center">
-      <img *ngIf="portfolioDetail?.images && portfolioDetail.images[currentImageIndex]" 
-           [src]="portfolioDetail.images[currentImageIndex]" 
-           [alt]="portfolioDetail.title + ' - Image ' + (currentImageIndex + 1)"
-           class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    <div (click)="$event.stopPropagation()" class="max-w-7xl max-h-[90vh] w-full mx-4 flex items-center justify-center">
+      <img *ngIf="portfolioDetail?.images && portfolioDetail.images[currentImageIndex]"
+        [src]="portfolioDetail.images[currentImageIndex]"
+        [alt]="portfolioDetail.title + ' - Image ' + (currentImageIndex + 1)"
+        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
     </div>
 
     <!-- Image Title -->
-    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full max-w-2xl">
+    <div
+      class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full max-w-2xl">
       <p class="text-white font-semibold text-center">{{ portfolioDetail.title }}</p>
     </div>
 
