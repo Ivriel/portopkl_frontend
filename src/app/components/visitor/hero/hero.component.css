@@ -1,1 +1,25 @@
+/* hero.component.css */
 
+/* Pastikan word rotation tetap center */
+::ng-deep om-word-rotation {
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+::ng-deep .word-rotation-text {
+    display: inline-block !important;
+    text-align: center !important;
+}
+
+/* Smooth transitions */
+a {
+  transition: color 0.2s ease-in-out;
+}
+
+/* Responsive adjustments untuk mobile kecil */
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(2rem, 10vw, 3rem) !important;
+  }
+}

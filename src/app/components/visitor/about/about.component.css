@@ -1,10 +1,52 @@
+.social-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(63, 63, 70, 0.5);
+    border: 1px solid rgba(82, 82, 91, 0.5);
+    border-radius: 0.75rem;
+    color: #9ca3af;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .social-icon:hover {
+    background-color: #34D399;
+    border-color: #34D399;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
+  }
+  
+  /* Smooth transitions */
+  * {
+    transition-property: color, background-color, border-color, transform, box-shadow;
+    transition-timing-function: ease-in-out;
+  }
+  
+  /* Section spacing and centering */
+  section {
+    scroll-margin-top: 2rem;
+  }
+  
+  /* Image optimization */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Focus states for accessibility */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #34D399;
+    outline-offset: 2px;
+  }
 
-.angular {
-    background-color: #DD0031;
-}
-.flutter {
-    background-color: #02569B;
-}
-.transparent {
-    background-color: transparent;
+  @media (max-width: 1024px) {
+    .social-icon {
+      width: 40px;
+      height: 40px;
+    }
 }

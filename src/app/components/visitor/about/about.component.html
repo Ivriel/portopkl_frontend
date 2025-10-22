@@ -1,60 +1,184 @@
-<div id="about" class="max-w-full h-screen">
-    <h1 class="text-3xl font-bold text-center">About Me</h1>
-  <div class="h-full flex justify-center gap-2 items-center">
-      
-    <div class="flex justify-center items-center w-full">
-        <img src="assets/Foto-diri.png" alt="Foto diri" width="300">
+<!-- about.component.html -->
+<section id="about" class="min-h-screen w-full px-4 sm:px-6 lg:px-8 py-20 flex items-center">
+  <div class="max-w-6xl mx-auto w-full">
+    
+    <!-- Section Title - Centered -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">
+        About <span class="text-[#34D399]">Me</span>
+      </h1>
+      <div class="w-20 h-1 bg-[#34D399] mx-auto"></div>
     </div>
-        
-  
-      <div class="flex flex-col items-start w-full justify-center gap-4">
-        
-        <ul>
-            <li>Nama: Ivriel Dei Gratia Gunawan</li>
-            <li>Kelas: XII RPL A</li>
-            <li class="text-justify pr-6">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt laborum corrupti, corporis quam nostrum quae quaerat et quidem debitis nemo repellendus, fugit provident officia doloribus autem assumenda modi cum odio!
-                Sit amet reprehenderit voluptas error repellendus esse alias quidem, molestias reiciendis aspernatur, vel illo veniam molestiae officiis iusto, nihil quo. Veritatis sed est eos ipsam? Illo quod accusamus libero ut.
-            </li>
-            <li class="flex items-center gap-4">
-                <span>Techstack: </span>
-                <div class="flex gap-3">
-                    <img class="rounded" src="https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white" alt="Angular"/>
-                    <img class="rounded" src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter"/>
-                    <img class="rounded" src="https://img.shields.io/badge/GetX-6f42c1?style=flat-square&logo=getx&logoColor=white" alt="GetX"/>
-                </div>
-            </li>
-        </ul>
 
-      <div class="flex items-center justify-start w-full h-20 gap-4">
-        <button class="px-8 py-4 rounded-xl font-semibold text-white bg-zinc-900/50 backdrop-blur-sm border border-zinc-700 hover:border-[#34D399]/50 transition-all duration-300 hover:bg-emerald-500 cursor-pointer flex items-center gap-2">
-            <i class="pi pi-download"></i>
-            Download CV
-          </button>
-  
-          <div class="flex items-center justify-center">
-              <p-divider layout="vertical" class="!hidden md:!flex" styleClass="transparent"><b>OR</b></p-divider>
-              <p-divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></p-divider>
+    <!-- Main Card Container -->
+    <div class="bg-zinc-900/40 backdrop-blur-sm border border-zinc-800 rounded-3xl p-8 sm:p-12 hover:border-[#34D399]/50 transition-all duration-300">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left: Profile Image Circle (4 cols) -->
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="relative">
+            <!-- Circle Border with Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#34D399] to-[#059669] rounded-full p-1">
+              <div class="w-full h-full bg-zinc-900 rounded-full"></div>
+            </div>
+            <!-- Image -->
+            <div class="relative rounded-full overflow-hidden w-64 h-64 sm:w-80 sm:h-80 border-4 border-transparent bg-gradient-to-br from-[#34D399] to-[#059669] p-1">
+              <img 
+                src="assets/Foto-diri.png" 
+                alt="Ivriel Dei Gratia Gunawan" 
+                class="w-full h-full object-cover rounded-full"
+              >
+            </div>
           </div>
+        </div>
+
+        <!-- Right: Info Section (8 cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- Info Box 1: Name & Class -->
+          <div class="bg-zinc-800/50 rounded-2xl p-6 hover:bg-zinc-800/80 hover:border-[#34D399]/30 border border-zinc-700/50 transition-all duration-300 group">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-[#34D399] transition-colors">
+              Ivriel Dei Gratia Gunawan
+            </h2>
+            <p class="text-[#34D399] text-lg font-medium">
+              Kelas: XII RPL A
+            </p>
+          </div>
+
+          <!-- Info Box 2: Description -->
+          <div class="bg-zinc-800/50 rounded-2xl p-6 hover:bg-zinc-800/80 hover:border-[#34D399]/30 border border-zinc-700/50 transition-all duration-300">
+            <p class="text-gray-300 leading-relaxed mb-4">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt laborum corrupti, 
+              corporis quam nostrum quae quaerat et quidem debitis nemo repellendus, fugit provident 
+              officia doloribus autem assumenda modi cum odio!
+            </p>
+            <p class="text-gray-300 leading-relaxed">
+              Sit amet reprehenderit voluptas error repellendus esse alias quidem, molestias reiciendis 
+              aspernatur, vel illo veniam molestiae officiis iusto, nihil quo. Veritatis sed est eos 
+              ipsam? Illo quod accusamus libero ut.
+            </p>
+          </div>
+
+        <!-- Info Box 3: Tech Stack -->
+<div
+class="bg-zinc-800/50 rounded-2xl p-6 hover:bg-zinc-800/80 hover:border-[#34D399]/30 border border-zinc-700/50 transition-all duration-300"
+>
+<h3
+  class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4"
+>
+  Tech Stack AND TOOLS SELAMA PKL
+</h3>
+<div class="flex flex-wrap gap-5 items-center">
+  <!-- Angular -->
+  <img
+    src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/angular-icon.png"
+    alt="Angular"
+    class="w-14 h-14 object-contain"
+  />
+
+  <!-- Flutter -->
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flutter_logo.svg/96px-Flutter_logo.svg.png?20230821075714"
+    alt="Flutter"
+    class="w-14 h-14 object-contain"
+  />
+
   
+  <!-- GetX  -->
+  <img
+    src="https://camo.githubusercontent.com/bcdbf585f4b3a7a60cb6e64acc8c8fdd486266780d1d0e3bcf87f018a7d8e91f/68747470733a2f2f6170692e696e746f70726f732e636f6d2f75706c6f6164732f323032332d30332f756e617574682d313637393339393231353830302d35333034626536346262383934396630623138653731623566393434383863302e706e67"
+    alt="GetX"
+    class="w-14 h-14 object-contain"
+  />
+
+
+  <!-- TypeScript -->
+  <img
+    src="https://cdn.worldvectorlogo.com/logos/typescript.svg"
+    alt="TypeScript"
+    class="w-14 h-14 object-contain"
+  />
+
+  <!-- Tailwind CSS -->
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png"
+    alt="TailwindCSS"
+    class="w-14 h-14 object-contain"
+  />
+
+  <!-- HTML -->
+  <img
+    src="https://cdn1.iconfinder.com/data/icons/programing-development-7/24/html_html5_web_programing_developer-512.png"
+    alt="HTML5"
+    class="w-14 h-14 object-contain"
+  />
+</div>
+</div>
+
+
+          <!-- Info Box 4: CTA & Social -->
+          <div class="bg-zinc-800/50 rounded-2xl p-6 hover:bg-zinc-800/80 hover:border-[#34D399]/30 border border-zinc-700/50 transition-all duration-300">
+            <div class="flex flex-col sm:flex-row items-center gap-6">
+              
+              <!-- Download CV Button -->
+              <a 
+              title="Download CV"
+              href="/CV-Ivriel.pdf"
+              download="CV-Ivriel.pdf" 
+                class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#34D399] hover:bg-[#059669] text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl w-full sm:w-auto"
+              >
+                <i class="pi pi-download"></i>
+                Download CV
+              </a>
+
+              <!-- Divider -->
+              <span class="hidden sm:block text-gray-600 font-medium">or</span>
+
               <!-- Social Links -->
-              <div class="flex items-center justify-center gap-4">
-                  <a href="#" class="social-icon">
-                    <i class="pi pi-github"></i>
-                  </a>
-                  <a href="#" class="social-icon">
-                    <i class="pi pi-linkedin"></i>
-                  </a>
-                  <a href="#" class="social-icon">
-                    <i class="pi pi-instagram"></i>
-                  </a>
-                  <a href="#" class="social-icon">
-                    <i class="pi pi-envelope"></i>
-                  </a>
-                </div>
-      </div>
+              <div class="flex items-center gap-3 w-full sm:w-auto justify-center">
+                <a 
+                  href="https://github.com/Ivriel" 
+                  class="social-icon"
+                  target="_blank"
+                  aria-label="GitHub"
+                >
+                  <i class="pi pi-github text-lg"></i>
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/ivrielgunawan" 
+                  class="social-icon"
+                  target="_blank"
+                  aria-label="LinkedIn"
+                >
+                  <i class="pi pi-linkedin text-lg"></i>
+                </a>
+                <a 
+                  href="https://www.instagram.com/wynsc_u13/" 
+                  class="social-icon"
+                  target="_blank"
+                  aria-label="Instagram"
+                >
+                  <i class="pi pi-instagram text-lg"></i>
+                </a>
+                <a 
+                  href="https://mail.google.com/mail/?view=cm&to=gunawanivriel@gmail.com" 
+                  class="social-icon"
+                  target="_blank"
+                  aria-label="Email"
+                >
+                  <i class="pi pi-envelope text-lg"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
+    </div>
 
   </div>
-</div>
+</section>
