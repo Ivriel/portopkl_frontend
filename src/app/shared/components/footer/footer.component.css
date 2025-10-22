@@ -1,0 +1,28 @@
+/* footer.component.css */
+
+/* Footer always at bottom but NOT fixed */
+footer {
+    width: 100%;
+    margin-top: auto;
+  }
+  
+  /* Smooth transitions for all links */
+  footer a {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Social icon hover effects */
+  footer a:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive text adjustments */
+  @media (max-width: 640px) {
+    footer h3 {
+      font-size: 1rem;
+    }
+    
+    footer h4 {
+      font-size: 0.75rem;
+    }
+  }

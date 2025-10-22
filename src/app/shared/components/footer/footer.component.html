@@ -1,3 +1,102 @@
-<div class="bg-[#121212]  flex items-center justify-center h-[10vh]">
-    Copyright © Ivriel Dei Gratia Gunawan - {{year | date:'yyyy'}}. All rights reserved.
-</div>
+<!-- footer.component.html -->
+<footer class="bg-black/95 border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Main Footer Content -->
+      <div class="py-8 sm:py-10 grid gap-6 md:gap-8" [ngClass]="{
+         'grid-cols-1 md:grid-cols-3': !isAdminRoute,
+         'grid-cols-1 md:grid-cols-2': isAdminRoute
+      }">
+        
+        <!-- Left: Brand/Info -->
+        <div class="text-center md:text-left">
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-2">
+            Ivriel <span class="text-[#34D399]">Gunawan</span>
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Frontend & Mobile Developer
+          </p>
+          <p class="text-gray-500 text-xs mt-1">
+            XII RPL A - PKL 2025
+          </p>
+        </div>
+  
+        <!-- Center: Quick Links -->
+        <div class="text-center" *ngIf="!isAdminRoute">
+          <h4 class="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+            Jelajah
+          </h4>
+          <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <a href="#about" class="text-gray-300 hover:text-[#34D399] transition-colors text-sm">
+              About
+            </a>
+            <a href="#timeline" class="text-gray-300 hover:text-[#34D399] transition-colors text-sm">
+              Timeline
+            </a>
+            <a href="#list-project" class="text-gray-300 hover:text-[#34D399] transition-colors text-sm">
+              Projects
+            </a>
+            <a href="#gallery" class="text-gray-300 hover:text-[#34D399] transition-colors text-sm">
+              Gallery
+            </a>
+          </div>
+        </div>
+  
+        <!-- Right: Social Media -->
+        <div class="text-center md:text-right">
+          <h4 class="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+            Connect with Me
+          </h4>
+          <div class="flex items-center justify-center md:justify-end gap-2 sm:gap-3">
+            <a 
+              href="#" 
+              class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-zinc-900/80 hover:bg-[#34D399] text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-zinc-800 hover:border-[#34D399]"
+              aria-label="GitHub"
+            >
+              <i class="pi pi-github text-sm"></i>
+            </a>
+            <a 
+              href="#" 
+              class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-zinc-900/80 hover:bg-[#34D399] text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-zinc-800 hover:border-[#34D399]"
+              aria-label="LinkedIn"
+            >
+              <i class="pi pi-linkedin text-sm"></i>
+            </a>
+            <a 
+              href="#" 
+              class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-zinc-900/80 hover:bg-[#34D399] text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-zinc-800 hover:border-[#34D399]"
+              aria-label="Instagram"
+            >
+              <i class="pi pi-instagram text-sm"></i>
+            </a>
+            <a 
+              href="#" 
+              class="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-zinc-900/80 hover:bg-[#34D399] text-gray-300 hover:text-white rounded-lg transition-all duration-300 border border-zinc-800 hover:border-[#34D399]"
+              aria-label="Email"
+            >
+              <i class="pi pi-envelope text-sm"></i>
+            </a>
+          </div>
+        </div>
+  
+      </div>
+  
+      <!-- Bottom Copyright Bar -->
+      <div class="border-t border-zinc-800/50 py-4 sm:py-5">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+          
+          <!-- Copyright Text -->
+          <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+            Copyright © <span class="text-[#34D399] font-medium">Ivriel Dei Gratia Gunawan</span> - {{year | date:'yyyy'}}. All rights reserved.
+          </p>
+  
+          <!-- Made with Love -->
+          <p class="text-gray-500 text-xs flex items-center gap-1">
+          Portfolio PKL di 3PM Solution
+          </p>
+  
+        </div>
+      </div>
+  
+    </div>
+</footer>

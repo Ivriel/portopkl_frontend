@@ -3,7 +3,7 @@
   <!-- Header -->
   <div class="max-w-7xl mx-auto mb-12">
     <div class="text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">Portfolio</h1>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">List  <span class="text-[#27BE89]">Proyek</span></h1>
       <p class="text-gray-400 text-lg">Koleksi proyek-proyek yang telah saya kerjakan</p>
     </div>
   </div>
@@ -46,7 +46,7 @@
            class="group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-[#34D399]/50 transition-all duration-300 cursor-pointer">
         
         <!-- Thumbnail -->
-        <div class="relative overflow-hidden h-48 bg-zinc-800">
+        <div class="relative overflow-hidden h-48 bg-gradient-to-br from-[#34D399] to-[#059669]">
           <img *ngIf="portfolio.thumbnail" 
                [src]="portfolio.thumbnail" 
                [alt]="portfolio.title"
@@ -93,7 +93,7 @@
 
           <!-- View Button -->
           <button (click)="onPortfolioClick(portfolio._id)"
-                  class="w-full px-4 py-2.5 bg-[#34D399]/10 hover:bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/30 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2">
+                  class="w-full px-4 py-2.5 bg-[#34D399]/10 cursor-pointer hover:bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/30 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2">
             <i class="pi pi-arrow-right text-xs"></i>
             View Details
           </button>
