@@ -1,3 +1,4 @@
+<!-- hero.component.html -->
 <section class="flex items-center justify-center min-h-screen px-4 sm:px-6">
   <div class="text-center max-w-4xl w-full">
     
@@ -39,34 +40,91 @@
       <b class="text-emerald-500 text-base sm:text-lg">Mulai Jelajah</b>
     </p-divider>
 
-    <!-- Tombol tombol navigasi section -->
-    <div 
+    <!-- Floating Navigation -->
+    <nav 
       [ngClass]="{
-        'fixed top-1 left-1/2 -translate-x-1/2 z-50 translate-y-0 opacity-100 bg-black border border-emerald-500 rounded-full px-6 py-3 backdrop-blur-md shadow-lg shadow-emerald-500/20': isScrolled,
-        'relative translate-y-4 opacity-0': !isScrolled && false,
-        'relative': !isScrolled
+        'fixed top-4 left-1/2 -translate-x-1/2 z-50': isScrolled,
+        'relative mt-6': !isScrolled
       }"
-      class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-sm sm:text-base mt-6 transition-all duration-500 ease-in-out">
-      <a [routerLink]="['/']" fragment="introduction" class="hover:text-emerald-400 transition-colors whitespace-nowrap">
-        Introduction
-      </a>
-      <span class="text-gray-500">|</span>
-      <a [routerLink]="['/']" fragment="about" class="hover:text-emerald-400 transition-colors whitespace-nowrap">
-        About
-      </a>
-      <span class="text-gray-500">|</span>
-      <a [routerLink]="['/']" fragment="timeline" class="hover:text-emerald-400 transition-colors whitespace-nowrap">
-        Timeline
-      </a>
-      <span class="text-gray-500">|</span>
-      <a [routerLink]="['/']" fragment="list-project" class="hover:text-emerald-400 transition-colors whitespace-nowrap">
-        List Projects
-      </a>
-      <span class="text-gray-500">|</span>
-      <a [routerLink]="['/']" fragment="gallery" class="hover:text-emerald-400 transition-colors whitespace-nowrap">
-        Gallery
-      </a>
-    </div>
+      class="transition-all duration-500 ease-in-out inline-flex"
+    >
+      <div 
+        [ngClass]="{
+          'bg-black/95 border-emerald-500/80 shadow-lg shadow-emerald-500/20 px-4 sm:px-6 py-2.5 sm:py-3 w-[95vw] sm:w-auto': isScrolled,
+          'bg-transparent border-transparent px-0 py-0': !isScrolled
+        }"
+        class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 border rounded-full backdrop-blur-md transition-all duration-500"
+      >
+        <!-- Introduction -->
+        <a 
+          [routerLink]="['/']" 
+          fragment="introduction" 
+          [ngClass]="{
+            'text-xs sm:text-sm': isScrolled,
+            'text-sm sm:text-base': !isScrolled
+          }"
+          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+        >
+          Introduction
+        </a>
+        <span class="text-gray-500 text-xs sm:text-sm">|</span>
+        
+        <!-- About -->
+        <a 
+          [routerLink]="['/']" 
+          fragment="about"
+          [ngClass]="{
+            'text-xs sm:text-sm': isScrolled,
+            'text-sm sm:text-base': !isScrolled
+          }"
+          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+        >
+          About
+        </a>
+        <span class="text-gray-500 text-xs sm:text-sm">|</span>
+        
+        <!-- Timeline -->
+        <a 
+          [routerLink]="['/']" 
+          fragment="timeline"
+          [ngClass]="{
+            'text-xs sm:text-sm': isScrolled,
+            'text-sm sm:text-base': !isScrolled
+          }"
+          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+        >
+          Timeline
+        </a>
+        <span class="text-gray-500 text-xs sm:text-sm">|</span>
+        
+        <!-- List Projects -->
+        <a 
+          [routerLink]="['/']" 
+          fragment="list-project"
+          [ngClass]="{
+            'text-xs sm:text-sm': isScrolled,
+            'text-sm sm:text-base': !isScrolled
+          }"
+          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+        >
+          List Projects
+        </a>
+        <span class="text-gray-500 text-xs sm:text-sm">|</span>
+        
+        <!-- Gallery -->
+        <a 
+          [routerLink]="['/']" 
+          fragment="gallery"
+          [ngClass]="{
+            'text-xs sm:text-sm': isScrolled,
+            'text-sm sm:text-base': !isScrolled
+          }"
+          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+        >
+          Gallery
+        </a>
+      </div>
+    </nav>
 
   </div>
 </section>
