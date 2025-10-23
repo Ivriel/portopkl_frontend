@@ -207,49 +207,85 @@
 
   </div>
 
+  <!-- Fullscreen Modal -->
   <div *ngIf="isFullscreenOpen"
-    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex flex-col cursor-pointer"
     (click)="closeFullscreen()">
 
-    <!-- Close Button -->
-    <button (click)="closeFullscreen()"
-      class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group">
-      <i class="pi pi-times text-white text-lg group-hover:rotate-90 transition-transform duration-300"></i>
-    </button>
+    <!-- Top Bar -->
+    <div class="flex items-center justify-between p-4">
+      <!-- Image Counter (Left on mobile, stays on top) -->
+      <div class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full"
+        [title]="'Image number ' + (currentImageIndex + 1) + ' of ' + portfolioDetail.images.length">
+        <span class="text-white font-semibold text-sm">{{ currentImageIndex + 1 }} / {{ portfolioDetail.images.length }}</span>
+      </div>
 
-    <!-- Image Counter -->
-    <div class="absolute top-4 left-4 z-10 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full"
-      [title]="'Image number ' + (currentImageIndex + 1) + ' of ' + portfolioDetail.images.length ">
-      <span class="text-white font-semibold text-sm">{{ currentImageIndex + 1 }} / {{ portfolioDetail.images.length
-        }}</span>
+      <!-- Close Button (Right) -->
+      <button (click)="closeFullscreen()"
+        class="w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer group">
+        <i class="pi pi-times text-white text-lg group-hover:rotate-90 transition-transform duration-300"></i>
+      </button>
     </div>
 
-    <!-- Previous Button -->
-    <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" (click)="previousImage($event)"
-      [title]="currentImageIndex === 0 ? 'Already in first image' : 'Previous image' "
-      class="absolute cursor-pointer left-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
-      [disabled]="currentImageIndex === 0">
-      <i class="pi pi-chevron-left text-white text-xl group-hover:-translate-x-1 transition-transform duration-300"></i>
-    </button>
+    <!-- Image Container (Center, grows to fill space) -->
+    <div class="flex-1 flex items-center justify-center px-4 lg:px-16 relative">
+      <!-- Desktop Navigation Buttons (Hidden on mobile) -->
+      <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" 
+        (click)="previousImage($event)"
+        [title]="currentImageIndex === 0 ? 'Already in first image' : 'Previous image'"
+        class="hidden lg:flex absolute left-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        [disabled]="currentImageIndex === 0">
+        <i class="pi pi-chevron-left text-white text-xl group-hover:-translate-x-1 transition-transform duration-300"></i>
+      </button>
 
-    <!-- Next Button -->
-    <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" (click)="nextImage($event)"
-      [title]="currentImageIndex === portfolioDetail.images.length - 1 ? 'Already in last image' : 'Next image' "
-      class="absolute cursor-pointer right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
-      [disabled]="currentImageIndex === portfolioDetail.images.length - 1">
-      <i class="pi pi-chevron-right text-white text-xl group-hover:translate-x-1 transition-transform duration-300"></i>
-    </button>
-    <!-- Image Container -->
-    <div (click)="$event.stopPropagation()" class="max-w-7xl max-h-[90vh] w-full mx-4 flex items-center justify-center">
-      <img *ngIf="portfolioDetail?.images && portfolioDetail.images[currentImageIndex]"
-        [src]="portfolioDetail.images[currentImageIndex]"
-        [alt]="portfolioDetail.title + ' - Image ' + (currentImageIndex + 1)"
-        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+      <!-- Image -->
+      <div (click)="$event.stopPropagation()" class="max-w-7xl w-full flex items-center justify-center">
+        <img *ngIf="portfolioDetail?.images && portfolioDetail.images[currentImageIndex]"
+          [src]="portfolioDetail.images[currentImageIndex]"
+          [alt]="portfolioDetail.title + ' - Image ' + (currentImageIndex + 1)"
+          class="max-w-full max-h-[70vh] lg:max-h-[80vh] object-contain rounded-lg shadow-2xl">
+      </div>
+
+      <!-- Desktop Navigation Buttons (Hidden on mobile) -->
+      <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" 
+        (click)="nextImage($event)"
+        [title]="currentImageIndex === portfolioDetail.images.length - 1 ? 'Already in last image' : 'Next image'"
+        class="hidden lg:flex absolute right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        [disabled]="currentImageIndex === portfolioDetail.images.length - 1">
+        <i class="pi pi-chevron-right text-white text-xl group-hover:translate-x-1 transition-transform duration-300"></i>
+      </button>
     </div>
 
-    <!-- Image Title -->
-    <div
-      class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full max-w-2xl">
+    <!-- Bottom Section -->
+    <div class="p-4 pb-6 flex flex-col items-center gap-3">
+      <!-- Mobile Navigation Buttons (buat di tablet/mobile) -->
+      <div *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" 
+        class="flex lg:hidden items-center gap-4 justify-center w-full max-w-xs">
+        <button (click)="previousImage($event)"
+          [title]="currentImageIndex === 0 ? 'Already in first image' : 'Previous image'"
+          class="flex-1 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          [disabled]="currentImageIndex === 0">
+          <i class="pi pi-chevron-left text-white text-lg"></i>
+          <span class="text-white text-sm font-medium ml-2">Previous</span>
+        </button>
+
+        <button (click)="nextImage($event)"
+          [title]="currentImageIndex === portfolioDetail.images.length - 1 ? 'Already in last image' : 'Next image'"
+          class="flex-1 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          [disabled]="currentImageIndex === portfolioDetail.images.length - 1">
+          <span class="text-white text-sm font-medium mr-2">Next</span>
+          <i class="pi pi-chevron-right text-white text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Image Title - Mobile (dibawah buttons) -->
+      <div class="lg:hidden px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full max-w-2xl mx-4">
+        <p class="text-white font-semibold text-center">{{ portfolioDetail.title }}</p>
+      </div>
+    </div>
+
+    <!-- Image Title - Desktop (biasa) -->
+    <div class="hidden lg:block absolute bottom-4 left-1/2 -translate-x-1/2 z-10 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full max-w-2xl">
       <p class="text-white font-semibold text-center">{{ portfolioDetail.title }}</p>
     </div>
 
