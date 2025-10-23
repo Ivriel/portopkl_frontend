@@ -19,7 +19,8 @@ a {
 
 /* Responsive adjustments untuk mobile kecil */
 @media (max-width: 640px) {
-  h1 {
-    font-size: clamp(2rem, 10vw, 3rem) !important;
+  /* Perbaikan spacing untuk mobile */
+  .min-h-\[80vh\] {
+    min-height: 70vh;
   }
 }
