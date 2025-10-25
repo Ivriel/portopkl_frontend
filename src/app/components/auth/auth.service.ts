@@ -16,10 +16,6 @@ export class AuthService {
     return this.http.post<any>(environment.apiUrl + environment.apiBranchUrl.login ,obj)
   }
 
-  register(obj:any):Observable<any> {
-    return this.http.post<any>(environment.apiUrl + environment.apiBranchUrl.register,obj)
-  } 
-
   setToken(token:string):void {
     const expirationDate = new Date();
     expirationDate.setHours(expirationDate.getHours() + 1); // expire 1 jam kaya dari BE

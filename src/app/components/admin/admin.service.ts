@@ -8,6 +8,8 @@ import { PortfolioById,ApiResponsePortfolioById } from '../../shared/interfaces/
 import { ApiResponsePortfolioAll, PortfolioAll } from '../../shared/interfaces/portfolio-all';
 import { AddPortfolio, apiResponseAddPortfolio } from '../../shared/interfaces/portfolio-add';
 import { ChangePassword } from '../../shared/interfaces/change-password';
+import { ApiResponseSetting, Setting } from '../../shared/interfaces/setting';
+import { ApiResponseSettingAboutMe, SettingAboutMe } from '../../shared/interfaces/setting-about-me';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +24,6 @@ export class AdminService {
 
   getProfile():Observable<ApiResponseProfile<Profile>>{
     return this.http.get<ApiResponseProfile<Profile>>(environment.apiUrl + environment.apiBranchUrl.getProfile)
-  }
-
-  deleteProfile():Observable<any> {
-    return this.http.delete(environment.apiUrl + environment.apiBranchUrl.deleteUser, { responseType: 'text' as 'json' }) as unknown as Observable<any>;
   }
 
   editProfile(data:any):Observable<any> {
@@ -52,8 +50,14 @@ export class AdminService {
     ) as unknown as Observable<string>;
   }
 
-  verifyPassword(password:string):Observable<any> {
-    return this.http.post(environment.apiUrl + environment.apiBranchUrl.verifyPassword, {password:password}, { responseType: 'text' as 'json' }) as unknown as Observable<any>;
+  updateSetting(data:FormData):Observable<any> {
+    return this.http.put<any>(environment.apiUrl + environment.apiBranchUrl.updateSetting, data)
+  }
+
+
+
+  updateSettingAboutMe(data:FormData):Observable<any> {
+    return this.http.put<any>(environment.apiUrl + environment.apiBranchUrl.updateSettingAboutMe,data)
   }
   
 }

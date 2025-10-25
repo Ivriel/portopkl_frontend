@@ -1,9 +1,8 @@
 export const environment = {
     production:false,
-    apiUrl:"https://portopklbackend-production.up.railway.app/api/",
+    apiUrl:"http://localhost:5000/api/",
     apiBranchUrl: {
         login:'auth/login',
-        register:'auth/register',
         getAllPortfolio:'portfolio/GetAllPortfolio',
         getPortfolioById:'portfolio/GetPortfolioById/',
         getDashboardSummary:'portfolio/getDashboardSummary',
@@ -13,8 +12,10 @@ export const environment = {
         getGalleryPortfolio:'portfolio/getPortfolioGallery',
         getProfile:'UserToken/getSelfUser',
         updateProfile:'UserToken/updateUser',
-        deleteUser:'UserToken/deleteUser',
         changePassword:'UserToken/change-password',
-        verifyPassword:'UserToken/verify-password'
+        getSetting:'setting/getSetting',
+        updateSetting:'setting/updateSetting',
+        getSettingAboutMe:'SettingAboutMe/getSettingAboutMe',
+        updateSettingAboutMe:'SettingAboutMe/updateSettingAboutMe'
     }
 };

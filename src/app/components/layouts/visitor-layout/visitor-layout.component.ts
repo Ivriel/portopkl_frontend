@@ -22,7 +22,6 @@ export class VisitorLayoutComponent {
   onWindowScroll():void {
     if(isPlatformBrowser(this.platformId)) {
       const maxScrollBeforeFooter = document.body.scrollHeight - window.innerHeight - 200;
-      console.log('ScrollY:', window.scrollY); 
       if(window.scrollY >= 700 && window.scrollY <= maxScrollBeforeFooter) {
         this.showButton = true
       } else {

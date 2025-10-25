@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { loginGuard } from './guards/login.guard';
 import { protectedRouteGuard } from './guards/protected-route.guard';
@@ -15,6 +14,10 @@ import { ChangePasswordComponent } from './components/admin/change-password/chan
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
 import { VisitorLayoutComponent } from './components/layouts/visitor-layout/visitor-layout.component';
+import { SettingDisplayComponent } from './components/admin/setting-display/setting-display.component';
+import { SettingFormComponent } from './components/admin/setting-form/setting-form.component';
+import { SettingAboutMeDisplayComponent } from './components/admin/setting-about-me-display/setting-about-me-display.component';
+import { SettingAboutMeFormComponent } from './components/admin/setting-about-me-form/setting-about-me-form.component';
 
 export const routes: Routes = [
     { // route buat pengunjung (public)
@@ -43,11 +46,6 @@ export const routes: Routes = [
             component:LoginComponent,
             canActivate:[loginGuard],
             title:'Porto PKL - Login'
-        },
-        {
-            path:'register',
-            component:RegisterComponent,
-            title:'Porto PKL - Register'
         }
     ]
    },
@@ -91,6 +89,26 @@ export const routes: Routes = [
                 path:'change-password',
                 component:ChangePasswordComponent,
                 title:'Admin - Change Password'
+            },
+            {
+                path:'setting-display',
+                component:SettingDisplayComponent,
+                title:'Admin - Setting Display'
+            },
+            {
+                path:'edit-setting',
+                component:SettingFormComponent,
+                title:'Admin - Setting Form'
+            },
+            {
+                path:'setting-about-me',
+                component:SettingAboutMeDisplayComponent,
+                title:'Admin - Setting About Me Display'
+            },
+            {
+                path:'setting-about-me-edit',
+                component:SettingAboutMeFormComponent,
+                title:'Admin - Setting About Me Edit'
             }
         ]
    },

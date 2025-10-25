@@ -12,21 +12,44 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-1">
           <a routerLink="/admin/dashboard" 
-             routerLinkActive="bg-gray-800 text-emerald-400"
+             routerLinkActive="active"
              [routerLinkActiveOptions]="{exact: true}"
-             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
-            Dashboard
+             class="px-4 py-2 flex items-center gap-2 rounded-lg text-gray-300  hover:text-emerald-400 transition-colors duration-200">
+           <i class="pi pi-gauge"></i> Dashboard
           </a>
           <a routerLink="/admin/profile" 
-             routerLinkActive="bg-gray-800 text-emerald-400"
-             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
-            Profile
+             routerLinkActive="active"
+             class="px-4 py-2 flex items-center gap-2 rounded-lg text-gray-300  hover:text-emerald-400 transition-colors duration-200">
+             <i class="pi pi-user"></i> Profile
           </a>
           <a routerLink="/admin/project-display" 
-             routerLinkActive="bg-gray-800 text-emerald-400"
-             class="px-4 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
-            Projects
+             routerLinkActive="active"
+             class="px-4 py-2 flex items-center gap-2 rounded-lg text-gray-300  hover:text-emerald-400 transition-colors duration-200">
+             <i class="pi pi-clipboard"></i> Projects
           </a>
+          
+          <!-- Settings Dropdown -->
+          <div class="relative" (mouseenter)="showSettingsDropdown = true" (mouseleave)="showSettingsDropdown = false">
+            <button class="px-4 py-2 flex items-center gap-2 rounded-lg text-gray-300 hover:text-emerald-400 transition-colors duration-200"
+                    [class.text-emerald-400]="isSettingsActive()">
+              <i class="pi pi-cog"></i> Settings
+              <i class="pi pi-chevron-down text-xs"></i>
+            </button>
+            
+            <div *ngIf="showSettingsDropdown" 
+            class="absolute top-full right-0 mt-1 min-w-[14rem] bg-zinc-900 border border-zinc-800 rounded-lg shadow-lg z-50">       
+              <a routerLink="/admin/setting-display" 
+                 routerLinkActive="bg-zinc-800 text-emerald-400"
+                 class="block px-4 py-2 text-gray-300 hover:bg-zinc-800 hover:text-emerald-400 transition-colors duration-200">
+                <i class="pi pi-image mr-2"></i>Background Settings
+              </a>
+              <a routerLink="/admin/setting-about-me" 
+                 routerLinkActive="bg-zinc-800 text-emerald-400"
+                 class="block px-4 py-2 text-gray-300 hover:bg-zinc-800 hover:text-emerald-400 transition-colors duration-200">
+                <i class="pi pi-user-edit mr-2"></i>About Me Settings
+              </a>
+            </div>
+          </div>
         </div>
   
         <!-- Logout Button Desktop -->
@@ -75,6 +98,24 @@
            class="block px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
           Projects
         </a>
+        
+        <!-- Settings Section -->
+        <div class="px-3 py-2  text-gray-400 text-sm font-medium cursor-pointer">
+          <i class="pi pi-cog mr-2 cursor-pointer"></i>Settings
+        </div>
+        <a routerLink="/admin/setting-display" 
+           routerLinkActive="bg-gray-800 text-emerald-400"
+           (click)="toggleMenu()"
+           class="block px-6 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+          <i class="pi pi-image mr-2"></i>Background Settings
+        </a>
+        <a routerLink="/admin/setting-about-me" 
+           routerLinkActive="bg-gray-800 text-emerald-400"
+           (click)="toggleMenu()"
+           class="block px-6 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors duration-200">
+          <i class="pi pi-user-edit mr-2"></i>About Me Settings
+        </a>
+        
         <a routerLink="/admin/change-password" 
            routerLinkActive="bg-gray-800 text-emerald-400"
            (click)="toggleMenu()"

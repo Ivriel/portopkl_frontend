@@ -13,10 +13,17 @@ import Swal from 'sweetalert2';
 })
 export class HeaderComponent {
   isMenuOpen:boolean = false
+  showSettingsDropdown:boolean = false
+  
   constructor(private router:Router,private authService:AuthService){}
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen
+  }
+
+  isSettingsActive(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl.includes('/setting-display') || currentUrl.includes('/setting-about-me');
   }
 
   logout():void {
