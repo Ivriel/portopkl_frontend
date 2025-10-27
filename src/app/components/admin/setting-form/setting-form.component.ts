@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GetSettingService } from '../../../shared/services/get-setting.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-setting-form',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule],
   templateUrl: './setting-form.component.html',
   styleUrl: './setting-form.component.css'
 })
@@ -18,6 +19,8 @@ export class SettingFormComponent implements OnInit{
   settingForm!:UntypedFormGroup;
   formBuilder = inject(FormBuilder)
   settingData!:Setting;
+  bgTypeVisitor!:string;
+  bgTypeAdmin!:string;
 
   backgroundImageVisitor!:File | null;
   backgroundImageVisitorPreview!:string | null;
@@ -33,6 +36,7 @@ export class SettingFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.loadBackgroundTypeFromLocalStorage()
     this.getSetting()    
   }
 
@@ -69,6 +73,21 @@ export class SettingFormComponent implements OnInit{
 
   backToSetting(): void {
     this.router.navigateByUrl("/admin/setting-display")
+  }
+
+  loadBackgroundTypeFromLocalStorage(): void {
+    this.bgTypeVisitor = localStorage.getItem('bgTypeVisitor') || 'color'
+    this.bgTypeAdmin = localStorage.getItem('bgTypeAdmin') || 'color'
+  }
+
+  saveBackgroundTypeToLocalStorage(type: 'visitor' | 'admin', value: string): void {
+    if (type === 'visitor') {
+      this.bgTypeVisitor = value
+      localStorage.setItem('bgTypeVisitor', value)
+    } else {
+      this.bgTypeAdmin = value
+      localStorage.setItem('bgTypeAdmin', value)
+    }
   }
 
   patchFormValues(): void {
@@ -179,5 +198,9 @@ export class SettingFormComponent implements OnInit{
       console.error("Error editing setting: ",error)
     }
   })
+}
+
+onBackToSetting(): void {
+  this.router.navigateByUrl("/admin/setting-display")
 }
 }

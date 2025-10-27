@@ -1,9 +1,9 @@
 <!-- Background Setting Display - Admin View -->
 <div class="min-h-screen p-4 sm:p-6 lg:p-8" style="background-color: #121212;">
   <div class="max-w-7xl mx-auto">
-    
+
     <!-- Header Section -->
-    <div class="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800">
+    <div class="flex items-center justify-between mb-4 pb-4 border-b border-zinc-800">
       <div>
         <h1 class="text-2xl font-bold text-white flex items-center gap-2">
           <i class="pi pi-cog"></i>
@@ -11,8 +11,7 @@
         </h1>
         <p class="text-gray-400 text-sm mt-1">Manage and view all your settings</p>
       </div>
-      <button 
-        (click)="onEditSetting()" 
+      <button (click)="onEditSetting()"
         class="px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-200 flex items-center gap-2 font-medium text-sm">
         <i class="pi pi-pencil"></i>
         Edit Setting
@@ -21,7 +20,7 @@
 
     <!-- Background Settings Grid -->
     <div class="space-y-8">
-      
+
       <!-- Background Images Section -->
       <div>
         <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
@@ -29,7 +28,7 @@
           Background Images
         </h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          
+
           <!-- Background Image Visitor -->
           <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
@@ -40,9 +39,7 @@
             </div>
             <div class="p-4">
               <div class="relative w-full h-48 bg-zinc-800 rounded-lg overflow-hidden">
-                <img 
-                  [src]="setting.backgroundImageVisitor" 
-                  alt="Background Image Visitor" 
+                <img [src]="setting.backgroundImageVisitor" alt="Background Image Visitor"
                   class="w-full h-full object-cover">
               </div>
             </div>
@@ -58,9 +55,7 @@
             </div>
             <div class="p-4">
               <div class="relative w-full h-48 bg-zinc-800 rounded-lg overflow-hidden">
-                <img 
-                  [src]="setting.backgroundImageAdmin" 
-                  alt="Background Image Admin" 
+                <img [src]="setting.backgroundImageAdmin" alt="Background Image Admin"
                   class="w-full h-full object-cover">
               </div>
             </div>
@@ -76,7 +71,7 @@
           Background Colors
         </h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          
+
           <!-- Background Color Visitor -->
           <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
@@ -88,8 +83,7 @@
               </div>
             </div>
             <div class="p-4">
-              <div 
-                class="w-full h-48 rounded-lg border-2 border-zinc-700" 
+              <div class="w-full h-48 rounded-lg border-2 border-zinc-700"
                 [style.background-color]="setting.backgroundColorVisitor">
               </div>
             </div>
@@ -106,8 +100,7 @@
               </div>
             </div>
             <div class="p-4">
-              <div 
-                class="w-full h-48 rounded-lg border-2 border-zinc-700" 
+              <div class="w-full h-48 rounded-lg border-2 border-zinc-700"
                 [style.background-color]="setting.backgroundColorAdmin">
               </div>
             </div>
@@ -123,7 +116,7 @@
           Background SVG Patterns
         </h2>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          
+
           <!-- Background SVG Visitor -->
           <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
@@ -133,9 +126,7 @@
               </div>
             </div>
             <div class="p-4">
-              <div 
-                class="w-full h-48 rounded-lg border-2 border-zinc-700" 
-                [ngStyle]="visitorSvgStyle">
+              <div class="w-full h-48 rounded-lg border-2 border-zinc-700" [ngStyle]="visitorSvgStyle">
               </div>
             </div>
           </div>
@@ -149,9 +140,7 @@
               </div>
             </div>
             <div class="p-4">
-              <div 
-                class="w-full h-48 rounded-lg border-2 border-zinc-700" 
-                [ngStyle]="adminSvgStyle">
+              <div class="w-full h-48 rounded-lg border-2 border-zinc-700" [ngStyle]="adminSvgStyle">
               </div>
             </div>
           </div>

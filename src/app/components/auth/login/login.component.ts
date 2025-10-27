@@ -6,12 +6,12 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import Swal from 'sweetalert2';
-import { Router,RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, InputTextModule, FloatLabel, PasswordModule, ButtonModule, RouterLink,CommonModule],
+  imports: [FormsModule, InputTextModule, FloatLabel, PasswordModule, ButtonModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

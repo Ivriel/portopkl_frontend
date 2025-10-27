@@ -1,9 +1,17 @@
 <div class="relative max-w-full min-h-screen overflow-hidden">
   
-    <!-- Animated Background Gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-[#121212] via-[#1a1a1a] to-[#0a0a0a]">
-      <!-- Grid Pattern Overlay -->
-  <div class="absolute inset-0 opacity-20" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='80' height='80' fill='none' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.25'/%3E%3C/svg%3E&quot;);"></div>
+    <!-- Dynamic Background -->
+    <div class="absolute inset-0"
+         [style.background-color]="isBackgroundColor ? backgroundColorVisitor : null"
+         [style.background-image]="isBackgroundImage ? 'url(' + backgroundImageVisitor + ')' : null"
+         [style.background-size]="isBackgroundImage ? 'cover' : null"
+         [style.background-position]="isBackgroundImage ? 'center' : null"
+         [style.background-repeat]="isBackgroundImage ? 'no-repeat' : null"
+         [ngStyle]="isBackgroundSvg ? visitorSvgStyle : {}">
+      <!-- bg color buat overlaynya svg pattern/image -->
+      <div class="absolute inset-0 opacity-20" 
+           *ngIf="isBackgroundColor"
+           style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='80' height='80' fill='none' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.25'/%3E%3C/svg%3E&quot;);"></div>
     </div>
   
     <!-- Page Content -->

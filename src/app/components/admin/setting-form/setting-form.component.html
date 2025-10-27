@@ -1,215 +1,224 @@
 <div class="min-h-screen p-4 sm:p-6" style="background-color: #121212;">
-    <div class="max-w-7xl mx-auto">
-      
-      <!-- Header -->
-      <div class="mb-8">
-        <button routerLink="/admin/setting-display"
-                class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
-          <i class="pi pi-angle-left"></i>
-          Back to Settings
-        </button>
-        
-        <h1 class="text-3xl font-bold text-white mb-2">
-          Edit Settings
-        </h1>
-        <p class="text-gray-400">Update application display settings</p>
-      </div>
-  
-      <!-- Form -->
-      <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
-        
-        <!-- Two Column Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          
-          <!-- Visitor Background Settings -->
-          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <i class="pi pi-users text-[#34D399]"></i>
-              Visitor Background
-            </h2>
-  
-            <div class="space-y-4">
-              <!-- Background Image Visitor -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Background Image
-                </label>
-  
-                <div class="space-y-3">
-                  <div *ngIf="!backgroundImageVisitorPreview" 
-                       class="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-[#34D399] transition-colors cursor-pointer"
-                       (click)="bgImageVisitorInput.click()">
-                    <i class="pi pi-cloud-upload text-3xl text-gray-500 mb-2"></i>
-                    <p class="text-gray-400 text-sm mb-1">Click to upload</p>
-                    <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
-                  </div>
-  
-                  <div *ngIf="backgroundImageVisitorPreview" class="relative">
-                    <img [src]="backgroundImageVisitorPreview" 
-                         alt="Background preview" 
-                         class="w-full h-48 object-cover rounded-lg border border-zinc-700">
-                    <button type="button"
-                            (click)="removeBackgroundImageVisitor()"
-                            class="absolute top-2 right-2 cursor-pointer w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
-                      <i class="pi pi-times text-xs"></i>
-                    </button>
-                  </div>
-  
-                  <input #bgImageVisitorInput
-                         type="file"
-                         accept="image/*"
-                         (change)="onBackgroundImageVisitorSelect($event)"
-                         class="hidden">
-                  
-                  <button type="button"
-                          (click)="bgImageVisitorInput.click()"
-                          class="w-full px-3 cursor-pointer py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-sm rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
-                    <i class="pi pi-upload text-xs"></i>
-                    {{ backgroundImageVisitorPreview ? 'Change Image' : 'Upload Image' }}
-                  </button>
-                </div>
-              </div>
-  
-              <!-- Background Color Visitor -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Background Color
-                </label>
-                <div class="flex gap-2 items-center">
-                  <input type="color" 
-                         title="Color picker for visitor background"
-                         formControlName="backgroundColorVisitor"
-                         (input)="onColorChange('backgroundColorVisitor', $event)"
-                         class="h-10 w-16 px-1 py-1 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer">
-                  <input type="text" 
-                         formControlName="backgroundColorVisitor"
-                         placeholder="#000000"
-                         class="flex-1 px-3 py-2 text-sm bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
-                </div>
-              </div>
-  
-              <!-- Background SVG Visitor -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  SVG Pattern
-                </label>
-                <textarea formControlName="backgroundSvgVisitor"
-                          rows="4"
-                          placeholder="background-image: url(&quot;data:image/svg+xml,...&quot;);"
-                          class="w-full px-3 py-2 text-xs bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors resize-none font-mono"></textarea>
-              </div>
-            </div>
+  <div class="max-w-7xl mx-auto">
 
-            <p class="text-gray-400">
-                Diisi string Inline SVG dalam format Data URI Scheme yang digunakan untuk background image url css. Contoh data:image/svg+xml,...
-            </p>
+    <!-- Header -->
+    <div class="mb-4 border-b pb-4 border-zinc-800">
+      <button (click)="onBackToSetting()"
+        class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
+        <i class="pi pi-angle-left"></i>
+        Back to Settings
+      </button>
 
-          </div>
-  
-          <!-- Admin Background Settings -->
-          <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <i class="pi pi-shield text-[#34D399]"></i>
-              Admin Background
-            </h2>
-  
-            <div class="space-y-4">
-              <!-- Background Image Admin -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Background Image
-                </label>
-  
-                <div class="space-y-3">
-                  <div *ngIf="!backgroundImageAdminPreview" 
-                       class="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-[#34D399] transition-colors cursor-pointer"
-                       (click)="bgImageAdminInput.click()">
-                    <i class="pi pi-cloud-upload text-3xl text-gray-500 mb-2"></i>
-                    <p class="text-gray-400 text-sm mb-1">Click to upload</p>
-                    <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
-                  </div>
-  
-                  <div *ngIf="backgroundImageAdminPreview" class="relative">
-                    <img [src]="backgroundImageAdminPreview" 
-                         alt="Background preview" 
-                         class="w-full h-48 object-cover rounded-lg border border-zinc-700">
-                    <button type="button"
-                            (click)="removeBackgroundImageAdmin()"
-                            class="absolute top-2 right-2 cursor-pointer w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
-                      <i class="pi pi-times text-xs"></i>
-                    </button>
-                  </div>
-  
-                  <input #bgImageAdminInput
-                         type="file"
-                         accept="image/*"
-                         (change)="onBackgroundImageAdminSelect($event)"
-                         class="hidden">
-                  
-                  <button type="button"
-                          (click)="bgImageAdminInput.click()"
-                          class="w-full px-3 cursor-pointer py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-sm rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
-                    <i class="pi pi-upload text-xs"></i>
-                    {{ backgroundImageAdminPreview ? 'Change Image' : 'Upload Image' }}
-                  </button>
-                </div>
-              </div>
-  
-              <!-- Background Color Admin -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Background Color
-                </label>
-                <div class="flex gap-2 items-center">
-                  <input type="color" 
-                         title="Color picker for admin background"
-                         formControlName="backgroundColorAdmin"
-                         (input)="onColorChange('backgroundColorAdmin', $event)"
-                         class="h-10 w-16 px-1 py-1 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer">
-                  <input type="text" 
-                         formControlName="backgroundColorAdmin"
-                         placeholder="#000000"
-                         class="flex-1 px-3 py-2 text-sm bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
-                </div>
-              </div>
-  
-              <!-- Background SVG Admin -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  SVG Pattern
-                </label>
-                <textarea formControlName="backgroundSvgAdmin"
-                          rows="4"
-                          placeholder="background-image: url(&quot;data:image/svg+xml,...&quot;);"
-                          class="w-full px-3 py-2 text-xs bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors resize-none font-mono"></textarea>
-              </div>
-            </div>
-            
-            <p class="text-gray-400">
-                Diisi string Inline SVG dalam format Data URI Scheme yang digunakan untuk background image url css. Contoh data:image/svg+xml,...
-            </p>
-
-          </div>
-  
-        </div>
-  
-        <!-- Action Buttons -->
-        <div class="flex gap-4 justify-end">
-          <button type="button"
-                  routerLink="/admin/setting-display"
-                  class="px-6 py-3 bg-zinc-800 cursor-pointer hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-semibold">
-            Cancel
-          </button>
-          <button type="submit"
-                  [disabled]="settingForm.invalid"
-                  [title]="settingForm.invalid ? 'Please check all fields' : 'Save Settings'"
-                  class="px-6 py-3 bg-[#34D399] hover:bg-[#2bbd87] text-white rounded-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-[#34D399]/30">
-            <i class="pi pi-check"></i>
-            Save Settings
-          </button>
-        </div>
-  
-      </form>
-  
+      <h1 class="text-3xl font-bold text-white mb-2">
+        Edit Settings
+      </h1>
+      <p class="text-gray-400">Update application display settings</p>
     </div>
+
+    <!-- Form -->
+    <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
+
+      <!-- Two Column Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+
+        <!-- Visitor Background Settings -->
+        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+          <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <i class="pi pi-users text-[#34D399]"></i>
+            Visitor Background
+          </h2>
+
+          <div class="mb-4">
+            <h1>Choose background type visitor</h1>
+            <div class="flex items-center gap-5 ">
+              <label class="flex items-center gap-2">
+                <input type="radio" name="bgTypeVisitor" value="color" [(ngModel)]="bgTypeVisitor" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('visitor', 'color')" /> Color
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="radio" name="bgTypeVisitor" value="image" [(ngModel)]="bgTypeVisitor" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('visitor', 'image')" /> Image
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="radio" name="bgTypeVisitor" value="svg" [(ngModel)]="bgTypeVisitor" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('visitor', 'svg')" /> SVG Pattern
+              </label>
+            </div>
+          </div>
+
+
+          <div class="space-y-4">
+            <!-- Background Image Visitor -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                Background Image
+              </label>
+
+              <div class="space-y-3">
+                <div *ngIf="!backgroundImageVisitorPreview"
+                  class="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-[#34D399] transition-colors cursor-pointer"
+                  (click)="bgImageVisitorInput.click()">
+                  <i class="pi pi-cloud-upload text-3xl text-gray-500 mb-2"></i>
+                  <p class="text-gray-400 text-sm mb-1">Click to upload</p>
+                  <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                </div>
+
+                <div *ngIf="backgroundImageVisitorPreview" class="relative">
+                  <img [src]="backgroundImageVisitorPreview" alt="Background preview"
+                    class="w-full h-48 object-cover rounded-lg border border-zinc-700">
+                  <button type="button" (click)="removeBackgroundImageVisitor()"
+                    class="absolute top-2 right-2 cursor-pointer w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
+                    <i class="pi pi-times text-xs"></i>
+                  </button>
+                </div>
+
+                <input #bgImageVisitorInput type="file" accept="image/*"
+                  (change)="onBackgroundImageVisitorSelect($event)" class="hidden">
+
+                <button type="button" (click)="bgImageVisitorInput.click()"
+                  class="w-full px-3 cursor-pointer py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-sm rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
+                  <i class="pi pi-upload text-xs"></i>
+                  {{ backgroundImageVisitorPreview ? 'Change Image' : 'Upload Image' }}
+                </button>
+              </div>
+            </div>
+
+            <!-- Background Color Visitor -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                Background Color
+              </label>
+              <div class="flex gap-2 items-center">
+                <input type="color" title="Color picker for visitor background" formControlName="backgroundColorVisitor"
+                  (input)="onColorChange('backgroundColorVisitor', $event)"
+                  class="h-10 w-16 px-1 py-1 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer">
+                <input type="text" formControlName="backgroundColorVisitor" placeholder="#000000"
+                  class="flex-1 px-3 py-2 text-sm bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
+              </div>
+            </div>
+
+            <!-- Background SVG Visitor -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                SVG Pattern
+              </label>
+              <textarea formControlName="backgroundSvgVisitor" rows="4"
+                placeholder="background-image: url(&quot;data:image/svg+xml,...&quot;);"
+                class="w-full px-3 py-2 text-xs bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors resize-none font-mono"></textarea>
+            </div>
+          </div>
+
+          <p class="text-gray-400">
+            Diisi string Inline SVG dalam format Data URI Scheme yang digunakan untuk background image url css. Contoh
+            data:image/svg+xml,...
+          </p>
+
+        </div>
+
+        <!-- Admin Background Settings -->
+        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+          <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <i class="pi pi-shield text-[#34D399]"></i>
+            Admin Background
+          </h2>
+
+          <div class="mb-4">
+            <h1>Choose background type admin</h1>
+            <div class="flex items-center gap-5">
+              <label class="flex items-center gap-2">
+                <input type="radio" name="bgTypeAdmin" value="color" [(ngModel)]="bgTypeAdmin" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('admin', 'color')" /> Color
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="radio" name="bgTypeAdmin" value="image" [(ngModel)]="bgTypeAdmin" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('admin', 'image')" /> Image
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="radio" name="bgTypeAdmin" value="svg" [(ngModel)]="bgTypeAdmin" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('admin', 'svg')" /> SVG Pattern
+              </label>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Background Image Admin -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                Background Image
+              </label>
+
+              <div class="space-y-3">
+                <div *ngIf="!backgroundImageAdminPreview"
+                  class="border-2 border-dashed border-zinc-700 rounded-lg p-6 text-center hover:border-[#34D399] transition-colors cursor-pointer"
+                  (click)="bgImageAdminInput.click()">
+                  <i class="pi pi-cloud-upload text-3xl text-gray-500 mb-2"></i>
+                  <p class="text-gray-400 text-sm mb-1">Click to upload</p>
+                  <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                </div>
+
+                <div *ngIf="backgroundImageAdminPreview" class="relative">
+                  <img [src]="backgroundImageAdminPreview" alt="Background preview"
+                    class="w-full h-48 object-cover rounded-lg border border-zinc-700">
+                  <button type="button" (click)="removeBackgroundImageAdmin()"
+                    class="absolute top-2 right-2 cursor-pointer w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
+                    <i class="pi pi-times text-xs"></i>
+                  </button>
+                </div>
+
+                <input #bgImageAdminInput type="file" accept="image/*" (change)="onBackgroundImageAdminSelect($event)"
+                  class="hidden">
+
+                <button type="button" (click)="bgImageAdminInput.click()"
+                  class="w-full px-3 cursor-pointer py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-sm rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
+                  <i class="pi pi-upload text-xs"></i>
+                  {{ backgroundImageAdminPreview ? 'Change Image' : 'Upload Image' }}
+                </button>
+              </div>
+            </div>
+
+            <!-- Background Color Admin -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                Background Color
+              </label>
+              <div class="flex gap-2 items-center">
+                <input type="color" title="Color picker for admin background" formControlName="backgroundColorAdmin"
+                  (input)="onColorChange('backgroundColorAdmin', $event)"
+                  class="h-10 w-16 px-1 py-1 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer">
+                <input type="text" formControlName="backgroundColorAdmin" placeholder="#000000"
+                  class="flex-1 px-3 py-2 text-sm bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
+              </div>
+            </div>
+
+            <!-- Background SVG Admin -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">
+                SVG Pattern
+              </label>
+              <textarea formControlName="backgroundSvgAdmin" rows="4"
+                placeholder="background-image: url(&quot;data:image/svg+xml,...&quot;);"
+                class="w-full px-3 py-2 text-xs bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors resize-none font-mono"></textarea>
+            </div>
+          </div>
+
+          <p class="text-gray-400">
+            Diisi string Inline SVG dalam format Data URI Scheme yang digunakan untuk background image url css. Contoh
+            data:image/svg+xml,...
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-4 justify-end">
+        <button type="button" routerLink="/admin/setting-display"
+          class="px-6 py-3 bg-zinc-800 cursor-pointer hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-semibold">
+          Cancel
+        </button>
+        <button type="submit" [disabled]="settingForm.invalid"
+          [title]="settingForm.invalid ? 'Please check all fields' : 'Save Settings'"
+          class="px-6 py-3 bg-[#34D399] hover:bg-[#2bbd87] text-white rounded-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-[#34D399]/30">
+          <i class="pi pi-check"></i>
+          Save Settings
+        </button>
+      </div>
+
+    </form>
+
   </div>
+</div>

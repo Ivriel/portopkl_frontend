@@ -1,6 +1,6 @@
 export const environment = {
     production:false,
-    apiUrl:"http://localhost:5000/api/",
+    apiUrl:"https://portopklbackend-production-56a2.up.railway.app/api/",
     apiBranchUrl: {
         login:'auth/login',
         getAllPortfolio:'portfolio/GetAllPortfolio',
