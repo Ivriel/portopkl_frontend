@@ -1,7 +1,7 @@
 // gallery.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { GalleriaModule } from 'primeng/galleria';
 interface GalleryItem {
   id: number;
   image: string;
@@ -12,7 +12,7 @@ interface GalleryItem {
 
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule],
+  imports: [CommonModule,GalleriaModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css'
 })
@@ -33,40 +33,38 @@ export class GalleryComponent {
       description: 'Foto bersama tim developer di hari pertama PKL',
       size: 'medium'
     },
-    {
+      {
       id: 3,
-      image: 'assets/gallery/workspace.jpg',
-      title: 'Workspace',
-      description: 'Meja kerja dengan setup lengkap untuk coding',
-      size: 'small'
+      image: 'assets/Foto-diri.png',
+      title: 'Perkenalan Tim',
+      description: 'Foto bersama tim developer di hari pertama PKL',
+      size: 'medium'
     },
-    {
+     {
       id: 4,
-      image: 'assets/gallery/meeting.jpg',
-      title: 'Daily Meeting',
-      description: 'Diskusi project dan sprint planning bersama mentor',
-      size: 'small'
-    },
-    {
-      id: 5,
-      image: 'assets/gallery/coding.jpg',
-      title: 'Coding Session',
-      description: 'Sesi ngoding mengembangkan fitur aplikasi web',
+      image: 'assets/Foto-diri.png',
+      title: 'Perkenalan Tim',
+      description: 'Foto bersama tim developer di hari pertama PKL',
       size: 'medium'
     },
     {
-      id: 6,
-      image: 'assets/gallery/presentation.jpg',
-      title: 'Project Presentation',
-      description: 'Presentasi hasil project di akhir sprint',
-      size: 'large'
-    },
-    {
-      id: 7,
-      image: 'assets/gallery/team.jpg',
-      title: 'Team Building',
-      description: 'Kegiatan team building dan networking session',
-      size: 'small'
+      id: 4,
+      image: 'assets/Foto-diri.png',
+      title: 'Perkenalan Tim',
+      description: 'Foto bersama tim developer di hari pertama PKL',
+      size: 'medium'
     }
   ];
+
+   responsiveOptions: any[] = [
+        {
+            breakpoint: '1300px',
+            numVisible: 4
+        },
+        {
+            breakpoint: '575px',
+            numVisible: 1
+        }
+    ];
+
 }
