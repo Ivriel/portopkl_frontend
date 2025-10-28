@@ -111,11 +111,13 @@ export class VisitorLayoutComponent implements OnInit{
     const cleanSvg = this.setting.backgroundSvgVisitor.replace(/\\\'/g, "'");
     console.log('SVG Data:', cleanSvg);
     console.log('SVG Style:', {
+      'background-color': '#181818',  // Pastikan warna background sesuai
       'background-image': `url("${cleanSvg}")`,
       'background-size': 'auto',
       'background-repeat': 'repeat'
     });
     return {
+      'background-color': '#181818',  // Pastikan warna background sesuai
       'background-image': `url("${cleanSvg}")`,
       'background-size': 'auto',
       'background-repeat': 'repeat'

@@ -1,269 +1,236 @@
 <!-- referensi style form kode -->
 <div class="min-h-screen p-4 sm:p-6" style="background-color: #121212;">
-    <div class="max-w-5xl mx-auto">
-      
-      <!-- Header -->
-      <div class="mb-8">
-        <button (click)="onCancel()"
-                class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
-          <i class="pi pi-angle-left"></i>
-          Back to Projects
-        </button>
-        
-        <h1 class="text-3xl font-bold text-white mb-2">
-          {{ isEditMode ? 'Edit Project' : 'Add New Project' }}
-        </h1>
-        <p class="text-gray-400">{{ isEditMode ? 'Update project information' : 'Create a new project entry' }}</p>
-      </div>
-  
-      <!-- Form -->
-      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="space-y-6">
-        
-        <!-- Basic Information -->
-        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-          <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <i class="pi pi-info-circle text-[#34D399]"></i>
-            Basic Information
-          </h2>
-  
-          <div class="space-y-4">
-            <!-- Title -->
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="mb-8">
+      <button (click)="onCancel()"
+        class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
+        <i class="pi pi-angle-left"></i>
+        Back to Projects
+      </button>
+
+      <h1 class="text-3xl font-bold text-white mb-2">
+        {{ isEditMode ? 'Edit Project' : 'Add New Project' }}
+      </h1>
+      <p class="text-gray-400">{{ isEditMode ? 'Update project information' : 'Create a new project entry' }}</p>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+      <!-- Basic Information -->
+      <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <i class="pi pi-info-circle text-[#34D399]"></i>
+          Basic Information
+        </h2>
+
+        <div class="space-y-4">
+          <!-- Title -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">
+              Project Title <span class="text-red-500">*</span>
+            </label>
+            <input type="text" formControlName="title" placeholder="Enter project title"
+              class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
+            <p *ngIf="projectForm.get('title')?.invalid && projectForm.get('title')?.touched"
+              class="text-red-400 text-sm mt-1">Title is required</p>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">
+              Description <span class="text-red-500">*</span>
+            </label>
+            <textarea formControlName="description" rows="4" placeholder="Enter project description"
+              class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors resize-none"></textarea>
+            <p *ngIf="projectForm.get('description')?.invalid && projectForm.get('description')?.touched"
+              class="text-red-400 text-sm mt-1">Description is required</p>
+          </div>
+
+          <!-- Category, Status, Type in Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Category -->
             <div>
               <label class="block text-sm font-medium text-gray-300 mb-2">
-                Project Title <span class="text-red-500">*</span>
+                Category <span class="text-red-500">*</span>
               </label>
-              <input type="text" 
-                     formControlName="title"
-                     placeholder="Enter project title"
-                     class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
-              <p *ngIf="projectForm.get('title')?.invalid && projectForm.get('title')?.touched" 
-                 class="text-red-400 text-sm mt-1">Title is required</p>
+              <select formControlName="category"
+                class="w-full px-4 py-2.5 cursor-pointer bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
+                <option value="" selected disabled>Select Category</option>
+                <option value="web">Web</option>
+                <option value="mobile">Mobile</option>
+              </select>
+              <p *ngIf="projectForm.get('category')?.invalid && projectForm.get('category')?.touched"
+                class="text-red-400 text-sm mt-1">Category is required</p>
             </div>
-  
-            <!-- Description -->
+
+            <!-- Status -->
             <div>
               <label class="block text-sm font-medium text-gray-300 mb-2">
-                Description <span class="text-red-500">*</span>
+                Status <span class="text-red-500">*</span>
               </label>
-              <textarea formControlName="description"
-                        rows="4"
-                        placeholder="Enter project description"
-                        class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors resize-none"></textarea>
-              <p *ngIf="projectForm.get('description')?.invalid && projectForm.get('description')?.touched" 
-                 class="text-red-400 text-sm mt-1">Description is required</p>
+              <select formControlName="status"
+                class="w-full px-4 py-2.5 cursor-pointer bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
+                <option value="" selected disabled>Select Status</option>
+                <option value="finished">Finished</option>
+                <option value="on progress">On Progress</option>
+              </select>
+              <p *ngIf="projectForm.get('status')?.invalid && projectForm.get('status')?.touched"
+                class="text-red-400 text-sm mt-1">Status is required</p>
             </div>
-  
-            <!-- Category, Status, Type in Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <!-- Category -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Category <span class="text-red-500">*</span>
-                </label>
-                <select formControlName="category"
-                        class="w-full px-4 py-2.5 cursor-pointer bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
-                  <option value="" selected disabled>Select Category</option>
-                  <option value="web">Web</option>
-                  <option value="mobile">Mobile</option>
-                </select>
-                <p *ngIf="projectForm.get('category')?.invalid && projectForm.get('category')?.touched" 
-                   class="text-red-400 text-sm mt-1">Category is required</p>
-              </div>
-  
-              <!-- Status -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Status <span class="text-red-500">*</span>
-                </label>
-                <select formControlName="status"
-                        class="w-full px-4 py-2.5 cursor-pointer bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
-                  <option value="" selected disabled>Select Status</option>
-                  <option value="finished">Finished</option>
-                  <option value="on progress">On Progress</option>
-                </select>
-                <p *ngIf="projectForm.get('status')?.invalid && projectForm.get('status')?.touched" 
-                   class="text-red-400 text-sm mt-1">Status is required</p>
-              </div>
-  
-              <!-- Type Project -->
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">
-                  Type <span class="text-red-500">*</span>
-                </label>
-                <select formControlName="typeProject"
-                        class="w-full px-4 py-2.5 cursor-pointer bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
-                  <option value="" selected disabled>Select Type</option>
-                  <option value="industry">Industry</option>
-                  <option value="personal">Personal</option>
-                </select>
-                <p *ngIf="projectForm.get('typeProject')?.invalid && projectForm.get('typeProject')?.touched" 
-                   class="text-red-400 text-sm mt-1">Type is required</p>
-              </div>
-            </div>
-  
-            <!-- GitHub URL -->
+
+            <!-- Type Project -->
             <div>
               <label class="block text-sm font-medium text-gray-300 mb-2">
-                GitHub URL
+                Type <span class="text-red-500">*</span>
               </label>
-              <input type="url" 
-                     formControlName="githubUrl"
-                     placeholder="https://github.com/username/repo"
-                     class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
-              <p *ngIf="projectForm.get('githubUrl')?.invalid && projectForm.get('githubUrl')?.touched" 
-                 class="text-red-400 text-sm mt-1">Please enter a valid URL</p>
+              <select formControlName="typeProject"
+                class="w-full px-4 py-2.5 cursor-pointer bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-[#34D399] transition-colors">
+                <option value="" selected disabled>Select Type</option>
+                <option value="industry">Industry</option>
+                <option value="personal">Personal</option>
+              </select>
+              <p *ngIf="projectForm.get('typeProject')?.invalid && projectForm.get('typeProject')?.touched"
+                class="text-red-400 text-sm mt-1">Type is required</p>
             </div>
           </div>
+
+          <!-- GitHub URL -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">
+              GitHub URL
+            </label>
+            <input type="url" formControlName="githubUrl" placeholder="https://github.com/username/repo"
+              class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
+            <p *ngIf="projectForm.get('githubUrl')?.invalid && projectForm.get('githubUrl')?.touched"
+              class="text-red-400 text-sm mt-1">Please enter a valid URL</p>
+          </div>
         </div>
-  
-        <!-- Thumbnail Upload -->
-        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-          <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <i class="pi pi-image text-[#34D399]"></i>
-            Thumbnail <span class="text-red-500 text-base">*</span>
-          </h2>
-  
-          <div class="space-y-4">
-            <div *ngIf="!thumbnailPreview" 
-                 class="border-2 border-dashed border-zinc-700 rounded-lg p-8 text-center hover:border-[#34D399] transition-colors cursor-pointer"
-                 (click)="thumbnailInput.click()">
-              <i class="pi pi-cloud-upload text-4xl text-gray-500 mb-2"></i>
-              <p class="text-gray-400 mb-2">Click to upload thumbnail</p>
-              <p class="text-sm text-gray-500">PNG, JPG up to 10MB</p>
-            </div>
-  
-            <div *ngIf="thumbnailPreview" class="relative">
-              <img [src]="thumbnailPreview" 
-                   alt="Thumbnail preview" 
-                   class="w-full h-64 object-cover rounded-lg border border-zinc-700">
-              <button type="button"
-                      (click)="removeThumbnail()"
-                      class="absolute top-2 right-2 cursor-pointer w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
+      </div>
+
+      <!-- Thumbnail Upload -->
+      <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <i class="pi pi-image text-[#34D399]"></i>
+          Thumbnail <span class="text-red-500 text-base">*</span>
+        </h2>
+
+        <div class="space-y-4">
+          <div *ngIf="!thumbnailPreview"
+            class="border-2 border-dashed border-zinc-700 rounded-lg p-8 text-center hover:border-[#34D399] transition-colors cursor-pointer"
+            (click)="thumbnailInput.click()">
+            <i class="pi pi-cloud-upload text-4xl text-gray-500 mb-2"></i>
+            <p class="text-gray-400 mb-2">Click to upload thumbnail</p>
+            <p class="text-sm text-gray-500">PNG, JPG up to 10MB</p>
+          </div>
+
+          <div *ngIf="thumbnailPreview" class="relative">
+            <img [src]="thumbnailPreview" alt="Thumbnail preview"
+              class="w-full h-64 object-cover rounded-lg border border-zinc-700">
+            <button type="button" (click)="removeThumbnail()"
+              class="absolute top-2 right-2 cursor-pointer w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors">
+              <i class="pi pi-times"></i>
+            </button>
+          </div>
+
+          <input #thumbnailInput type="file" accept="image/*" (change)="onThumbnailSelect($event)" class="hidden">
+
+          <button type="button" (click)="thumbnailInput.click()"
+            class="w-full px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="pi pi-upload"></i>
+            {{ thumbnailPreview ? 'Change Thumbnail' : 'Upload Thumbnail' }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Images -->
+      <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+        <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <i class="pi pi-images text-[#34D399]"></i>
+          Project Images <span class="text-red-500 text-base">*</span>
+        </h2>
+
+        <div class="space-y-4">
+          <div *ngIf="imagesPreviews.length === 0"
+            class="border-2 border-dashed border-zinc-700  rounded-lg p-8 text-center hover:border-[#34D399] transition-colors cursor-pointer"
+            (click)="imagesInput.click()">
+            <i class="pi pi-images text-4xl text-gray-500 mb-2"></i>
+            <p class="text-gray-400 mb-2">Click to upload project images</p>
+            <p class="text-sm text-gray-500">You can select multiple images</p>
+          </div>
+
+          <div *ngIf="imagesPreviews.length > 0" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div *ngFor="let preview of imagesPreviews; let i = index" class="relative">
+              <img [src]="preview" [alt]="'Image ' + (i + 1)"
+                class="w-full h-40 object-cover rounded-lg border border-zinc-700">
+              <button type="button" (click)="removeImage(i)"
+                class="absolute top-2 right-2 w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors text-xs">
                 <i class="pi pi-times"></i>
               </button>
             </div>
-  
-            <input #thumbnailInput
-                   type="file"
-                   accept="image/*"
-                   (change)="onThumbnailSelect($event)"
-                   class="hidden">
-            
-            <button type="button"
-                    (click)="thumbnailInput.click()"
-                    class="w-full px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
-              <i class="pi pi-upload"></i>
-              {{ thumbnailPreview ? 'Change Thumbnail' : 'Upload Thumbnail' }}
-            </button>
           </div>
+
+          <input #imagesInput type="file" accept="image/*" multiple (change)="onImagesSelect($event)" class="hidden">
+
+          <button type="button" (click)="imagesInput.click()"
+            class="w-full px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="pi pi-upload"></i>
+            Add More Images
+          </button>
         </div>
-  
-        <!-- Project Images -->
-        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-          <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <i class="pi pi-images text-[#34D399]"></i>
-            Project Images <span class="text-red-500 text-base">*</span>
+      </div>
+
+      <!-- Technologies -->
+      <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="pi pi-code text-[#34D399]"></i>
+            Technologies <span class="text-red-500 text-base">*</span>
           </h2>
-  
-          <div class="space-y-4">
-            <div *ngIf="imagesPreviews.length === 0" 
-                 class="border-2 border-dashed border-zinc-700  rounded-lg p-8 text-center hover:border-[#34D399] transition-colors cursor-pointer"
-                 (click)="imagesInput.click()">
-              <i class="pi pi-images text-4xl text-gray-500 mb-2"></i>
-              <p class="text-gray-400 mb-2">Click to upload project images</p>
-              <p class="text-sm text-gray-500">You can select multiple images</p>
+          <button type="button" (click)="addTechnology()"
+            class="w-full sm:w-auto px-4 py-2 cursor-pointer bg-[#34D399]/10 hover:bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/30 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="pi pi-plus text-xs"></i>
+            Add Technology
+          </button>
+        </div>
+        <div formArrayName="technologies" class="space-y-3">
+          <div *ngFor="let tech of technologies.controls; let i = index" [formGroupName]="i"
+            class="flex gap-3 items-start">
+            <div class="flex-1">
+              <input type="text" formControlName="name" placeholder="Technology name (e.g., React)"
+                class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
             </div>
-  
-            <div *ngIf="imagesPreviews.length > 0" 
-                 class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div *ngFor="let preview of imagesPreviews; let i = index" 
-                   class="relative">
-                <img [src]="preview" 
-                     [alt]="'Image ' + (i + 1)" 
-                     class="w-full h-40 object-cover rounded-lg border border-zinc-700">
-                <button type="button"
-                        (click)="removeImage(i)"
-                        class="absolute top-2 right-2 w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors text-xs">
-                  <i class="pi pi-times"></i>
-                </button>
-              </div>
+            <div class="w-32">
+              <input type="color" title="Color picker for technologies" formControlName="color"
+                class="w-full h-[42px] px-2 py-1 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer">
             </div>
-  
-            <input #imagesInput
-                   type="file"
-                   accept="image/*"
-                   multiple
-                   (change)="onImagesSelect($event)"
-                   class="hidden">
-            
-            <button type="button"
-                    (click)="imagesInput.click()"
-                    class="w-full px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 flex items-center justify-center gap-2">
-              <i class="pi pi-upload"></i>
-              Add More Images
+            <button type="button" (click)="removeTechnology(i)"
+              [title]="technologies.length === 1? 'Fill the technology first' : 'Delete Technology'"
+              [disabled]="technologies.length === 1"
+              class="px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/30 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+              <i class="pi pi-trash"></i>
             </button>
           </div>
         </div>
-  
-        <!-- Technologies -->
-        <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-bold text-white flex items-center gap-2">
-              <i class="pi pi-code text-[#34D399]"></i>
-              Technologies <span class="text-red-500 text-base">*</span>
-            </h2>
-            <button type="button"
-                    (click)="addTechnology()"
-                    class="px-4 py-2 cursor-pointer bg-[#34D399]/10 hover:bg-[#34D399]/20 text-[#34D399] border border-[#34D399]/30 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center gap-2">
-              <i class="pi pi-plus text-xs"></i>
-              Add Technology
-            </button>
-          </div>
-  
-          <div formArrayName="technologies" class="space-y-3">
-            <div *ngFor="let tech of technologies.controls; let i = index" 
-                 [formGroupName]="i"
-                 class="flex gap-3 items-start">
-              <div class="flex-1">
-                <input type="text" 
-                       formControlName="name"
-                       placeholder="Technology name (e.g., React)"
-                       class="w-full px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#34D399] transition-colors">
-              </div>
-              <div class="w-32">
-                <input type="color" 
-                       title="Color picker for technologies"
-                       formControlName="color"
-                       class="w-full h-[42px] px-2 py-1 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer">
-              </div>
-              <button type="button"
-                      (click)="removeTechnology(i)"
-                      [title]="technologies.length === 1? 'Fill the technology first' : 'Delete Technology'"
-                      [disabled]="technologies.length === 1"
-                      class="px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/30 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                <i class="pi pi-trash"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Action Buttons -->
-        <div class="flex gap-4 justify-end">
-          <button type="button"
-                  (click)="onCancel()"
-                  class="px-6 py-3 bg-zinc-800 cursor-pointer hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-semibold">
-            Cancel
-          </button>
-          <button type="submit"
-                  [disabled]="projectForm.invalid || isLoading"
-                  [title]="projectForm.invalid? 'Fill all required field':'Submit'"
-                  class="px-6 py-3 bg-[#34D399] hover:bg-[#2bb d87] text-white rounded-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-[#34D399]/30">
-            <i class="pi" [ngClass]="isLoading ? 'pi-spin pi-spinner' : 'pi-check'"></i>
-            {{ isEditMode ? 'Update Project' : 'Create Project' }}
-          </button>
-        </div>
-  
-      </form>
-  
-    </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-4 justify-end">
+        <button type="button" (click)="onCancel()"
+          class="px-6 py-3 bg-zinc-800 cursor-pointer hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-semibold">
+          Cancel
+        </button>
+        <button type="submit" [disabled]="projectForm.invalid || isLoading"
+          [title]="projectForm.invalid? 'Fill all required field':'Submit'"
+          class="px-6 py-3 bg-[#34D399] hover:bg-[#2bb d87] text-white rounded-lg transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-[#34D399]/30">
+          <i class="pi" [ngClass]="isLoading ? 'pi-spin pi-spinner' : 'pi-check'"></i>
+          {{ isEditMode ? 'Update Project' : 'Create Project' }}
+        </button>
+      </div>
+
+    </form>
+
   </div>
+</div>

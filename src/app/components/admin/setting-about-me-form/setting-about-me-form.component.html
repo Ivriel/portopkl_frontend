@@ -1,24 +1,24 @@
 <!-- setting-about-me-form.component.html -->
 <div class="min-h-screen p-4 sm:p-6 lg:p-8" style="background-color: #121212;">
   <div class="max-w-5xl mx-auto">
-    
-         <!-- Header -->
-         <div class="mb-8">
-            <button (click)="onCancel()"
-                    class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
-              <i class="pi pi-angle-left"></i>
-              Back to Settings
-            </button>
-            
-            <h1 class="text-3xl font-bold text-white mb-2">
-             Edit About Me 
-            </h1>
-            <p class="text-gray-400">Edit section about me</p>
-          </div>
+
+    <!-- Header -->
+    <div class="mb-8">
+      <button (click)="onCancel()"
+        class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
+        <i class="pi pi-angle-left"></i>
+        Back to Settings
+      </button>
+
+      <h1 class="text-3xl font-bold text-white mb-2">
+        Edit About Me
+      </h1>
+      <p class="text-gray-400">Edit section about me</p>
+    </div>
 
     <!-- Form Container -->
     <form [formGroup]="settingAboutMeForm" (ngSubmit)="onSubmit()">
-      
+
       <!-- Basic Information Section -->
       <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6 mb-6">
         <h2 class="text-lg font-semibold text-white mb-6 flex items-center gap-2">
@@ -32,10 +32,7 @@
             <label class="block text-sm font-medium text-gray-300 mb-2">
               Full Name <span class="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              formControlName="nama"
-              placeholder="Enter your full name"
+            <input type="text" formControlName="nama" placeholder="Enter your full name"
               class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#34D399] focus:border-transparent transition-all">
           </div>
 
@@ -44,10 +41,7 @@
             <label class="block text-sm font-medium text-gray-300 mb-2">
               Class <span class="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              formControlName="kelas"
-              placeholder="Enter your class (e.g., XII RPL A)"
+            <input type="text" formControlName="kelas" placeholder="Enter your class (e.g., XII RPL A)"
               class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#34D399] focus:border-transparent transition-all">
           </div>
 
@@ -56,10 +50,7 @@
             <label class="block text-sm font-medium text-gray-300 mb-2">
               Description <span class="text-red-500">*</span>
             </label>
-            <textarea
-              formControlName="description"
-              rows="6"
-              placeholder="Tell us about yourself..."
+            <textarea formControlName="description" rows="6" placeholder="Tell us about yourself..."
               class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#34D399] focus:border-transparent transition-all resize-none"></textarea>
           </div>
         </div>
@@ -74,35 +65,28 @@
 
         <!-- Image Preview -->
         <div class="mb-4">
-          <div *ngIf="previewUrl || settingAboutMeData?.imageAboutMe" 
-               class="relative w-60 h-60 mx-auto mb-4 rounded-lg overflow-hidden border-4 border-zinc-700">
-            <img 
-              [src]="previewUrl || settingAboutMeData.imageAboutMe" 
-              alt="Profile Preview"
+          <div *ngIf="previewUrl || settingAboutMeData?.imageAboutMe"
+            class="relative w-60 h-60 mx-auto mb-4 rounded-lg overflow-hidden border-4 border-zinc-700">
+            <img [src]="previewUrl || settingAboutMeData.imageAboutMe" alt="Profile Preview"
               class="w-full h-full object-cover">
           </div>
-          
+
           <!-- Upload Area -->
-          <div class="border-2 border-dashed border-zinc-700 rounded-lg p-8 text-center hover:border-[#34D399] transition-colors duration-200">
+          <div
+            class="border-2 border-dashed border-zinc-700 rounded-lg p-8 text-center hover:border-[#34D399] transition-colors duration-200">
             <i class="pi pi-cloud-upload text-4xl text-gray-500 mb-3"></i>
             <p class="text-gray-400 mb-1">
-              {{(previewUrl || settingAboutMeData.imageAboutMe) ? 'Click to change about me image' : 'Click to upload about me image'}}
+              {{(previewUrl || settingAboutMeData.imageAboutMe) ? 'Click to change about me image' : 'Click to upload
+              about me image'}}
             </p>
             <p class="text-gray-500 text-sm mb-4">PNG, JPG up to 10MB</p>
-            
-            <input
-              type="file"
-              #fileInput
-              (change)="onFileSelected($event)"
-              accept="image/*"
-              class="hidden">
-            
-            <button
-              type="button"
-              (click)="fileInput.click()"
+
+            <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" class="hidden">
+
+            <button type="button" (click)="fileInput.click()"
               class="px-6 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-200 inline-flex items-center gap-2">
               <i class="pi pi-upload"></i>
-             {{(previewUrl || settingAboutMeData.imageAboutMe) ? 'Change Image' : 'Upload Image'}} 
+              {{(previewUrl || settingAboutMeData.imageAboutMe) ? 'Change Image' : 'Upload Image'}}
             </button>
           </div>
         </div>
@@ -110,35 +94,30 @@
 
       <!-- Contact Links Section -->
       <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-6 mb-6">
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
           <h2 class="text-lg font-semibold text-white flex items-center gap-2">
             <i class="pi pi-link text-[#34D399]"></i>
             Contact & Social Links
           </h2>
-          <button
-            type="button"
-            (click)="addContact()"
-            class="px-4 py-2 bg-[#34D399] hover:bg-[#059669] text-white rounded-lg transition-all duration-200 flex items-center gap-2 text-sm font-medium">
+          <button type="button" (click)="addContact()"
+            class="w-full sm:w-auto px-4 py-2 bg-[#34D399] hover:bg-[#059669] text-white rounded-lg transition-all duration-200 flex items-center justify-center gap-2 text-sm font-medium">
             <i class="pi pi-plus"></i>
             Add Contact
           </button>
         </div>
 
+
         <!-- Contacts Array -->
         <div formArrayName="contacts" class="space-y-3">
-          <div *ngFor="let contact of contacts.controls; let i = index" 
-               [formGroupName]="i"
-               class="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4">
+          <div *ngFor="let contact of contacts.controls; let i = index" [formGroupName]="i"
+            class="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4">
             <div class="flex gap-3">
               <!-- Icon Field -->
               <div class="flex-1">
                 <label class="block text-xs font-medium text-gray-400 mb-2">
                   Icon Class <span class="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
-                  formControlName="icon"
-                  placeholder="e.g., pi pi-github"
+                <input type="text" formControlName="icon" placeholder="e.g., pi pi-github"
                   class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#34D399] focus:border-transparent transition-all">
               </div>
 
@@ -147,18 +126,13 @@
                 <label class="block text-xs font-medium text-gray-400 mb-2">
                   Link URL <span class="text-red-500">*</span>
                 </label>
-                <input
-                  type="url"
-                  formControlName="link"
-                  placeholder="https://example.com"
+                <input type="url" formControlName="link" placeholder="https://example.com"
                   class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#34D399] focus:border-transparent transition-all">
               </div>
 
               <!-- Remove Button -->
               <div class="flex items-end">
-                <button
-                  type="button"
-                  (click)="removeContact(i)"
+                <button type="button" (click)="removeContact(i)"
                   class="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg transition-all duration-200">
                   <i class="pi pi-trash text-lg"></i>
                 </button>
@@ -167,8 +141,7 @@
           </div>
 
           <!-- Empty State -->
-          <div *ngIf="contacts.controls.length === 0" 
-               class="text-center py-8 text-gray-500">
+          <div *ngIf="contacts.controls.length === 0" class="text-center py-8 text-gray-500">
             <i class="pi pi-inbox text-3xl mb-2"></i>
             <p>No contacts added yet. Click "Add Contact" to start.</p>
           </div>
@@ -189,15 +162,11 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center justify-end gap-3">
-        <button
-          type="button"
-          (click)="onCancel()"
+        <button type="button" (click)="onCancel()"
           class="px-6 py-3 cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-200 font-medium">
           Cancel
         </button>
-        <button
-          type="submit"
-          [disabled]="settingAboutMeForm.invalid"
+        <button type="submit" [disabled]="settingAboutMeForm.invalid"
           class="px-6 py-3 cursor-pointer bg-[#34D399] hover:bg-[#059669] text-white rounded-lg transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
           <i class="pi pi-check"></i>
           Save Changes

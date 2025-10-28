@@ -182,7 +182,7 @@ export class ChangePasswordComponent implements OnInit{
             Swal.close()
             Swal.fire({
               title: 'Failed to change password',
-              text: err?.error?.message || 'Please try again.',
+              text: err?.error || 'Please try again.',
               icon: 'error',
               confirmButtonColor: '#34D399',
               background: '#18181B',

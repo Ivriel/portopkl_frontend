@@ -61,9 +61,11 @@
           fragment="introduction" 
           [ngClass]="{
             'text-xs sm:text-sm': isScrolled,
-            'text-sm sm:text-base': !isScrolled
+            'text-sm sm:text-base': !isScrolled,
+            'text-emerald-400': isActive('introduction'),
+            'text-gray-300': !isActive('introduction')
           }"
-          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+          class="hover:text-emerald-400 transition-colors font-medium whitespace-nowrap"
         >
           Introduction
         </a>
@@ -75,9 +77,11 @@
           fragment="about"
           [ngClass]="{
             'text-xs sm:text-sm': isScrolled,
-            'text-sm sm:text-base': !isScrolled
+            'text-sm sm:text-base': !isScrolled,
+            'text-emerald-400': isActive('about'),
+            'text-gray-300': !isActive('about')
           }"
-          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+          class="hover:text-emerald-400 transition-colors font-medium whitespace-nowrap"
         >
           About
         </a>
@@ -89,9 +93,11 @@
           fragment="timeline"
           [ngClass]="{
             'text-xs sm:text-sm': isScrolled,
-            'text-sm sm:text-base': !isScrolled
+            'text-sm sm:text-base': !isScrolled,
+            'text-emerald-400': isActive('timeline'),
+            'text-gray-300': !isActive('timeline')
           }"
-          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+          class="hover:text-emerald-400 transition-colors font-medium whitespace-nowrap"
         >
           Timeline
         </a>
@@ -103,9 +109,11 @@
           fragment="list-project"
           [ngClass]="{
             'text-xs sm:text-sm': isScrolled,
-            'text-sm sm:text-base': !isScrolled
+            'text-sm sm:text-base': !isScrolled,
+            'text-emerald-400': isActive('list-project'),
+            'text-gray-300': !isActive('list-project')
           }"
-          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+          class="hover:text-emerald-400 transition-colors font-medium whitespace-nowrap"
         >
           List Projects
         </a>
@@ -117,9 +125,11 @@
           fragment="gallery"
           [ngClass]="{
             'text-xs sm:text-sm': isScrolled,
-            'text-sm sm:text-base': !isScrolled
+            'text-sm sm:text-base': !isScrolled,
+            'text-emerald-400': isActive('gallery'),
+            'text-gray-300': !isActive('gallery')
           }"
-          class="hover:text-emerald-400 transition-colors text-gray-300 font-medium whitespace-nowrap"
+          class="hover:text-emerald-400 transition-colors font-medium whitespace-nowrap"
         >
           Gallery
         </a>
