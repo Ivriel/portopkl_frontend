@@ -19,7 +19,7 @@ export class SettingFormComponent implements OnInit{
   settingForm!:UntypedFormGroup;
   formBuilder = inject(FormBuilder)
   settingData!:Setting;
-  bgTypeVisitor!:string;
+  selectedBackgroundType: 'color' | 'image' | 'svg' = 'color';
 
   backgroundImageVisitor!:File | null;
   backgroundImageVisitorPreview!:string | null;
@@ -31,7 +31,6 @@ export class SettingFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.loadBackgroundTypeFromLocalStorage()
     this.getSetting()    
   }
 
@@ -50,6 +49,16 @@ export class SettingFormComponent implements OnInit{
         Swal.close()
         this.settingData =res.data
         console.log(this.settingData)
+        
+        // Set selected background type based on API boolean flags
+        if (res.data.isBackgroundImageVisitor) {
+          this.selectedBackgroundType = 'image';
+        } else if (res.data.isBackgroundSvgVisitor) {
+          this.selectedBackgroundType = 'svg';
+        } else {
+          this.selectedBackgroundType = 'color';
+        }
+        
         this.patchFormValues()
       },
       error:(error:any)=> {
@@ -70,13 +79,8 @@ export class SettingFormComponent implements OnInit{
     this.router.navigateByUrl("/admin/setting-display")
   }
 
-  loadBackgroundTypeFromLocalStorage(): void {
-    this.bgTypeVisitor = localStorage.getItem('bgTypeVisitor') || 'color'
-  }
-
-  saveBackgroundTypeToLocalStorage(value: string): void {
-    this.bgTypeVisitor = value
-    localStorage.setItem('bgTypeVisitor', value)
+  onBackgroundTypeChange(type: 'color' | 'image' | 'svg'): void {
+    this.selectedBackgroundType = type;
   }
 
   patchFormValues(): void {
@@ -124,9 +128,29 @@ export class SettingFormComponent implements OnInit{
   const formData = new FormData()
   formData.append('backgroundColorVisitor',this.settingForm.value.backgroundColorVisitor)
   formData.append('backgroundSvgVisitor',this.settingForm.value.backgroundSvgVisitor)
+  
+  // Add boolean flags based on selected background type
+  formData.append('isBackgroundImageVisitor', (this.selectedBackgroundType === 'image').toString())
+  formData.append('isBackgroundSvgVisitor', (this.selectedBackgroundType === 'svg').toString())
+  formData.append('isBackgroundColorVisitor', (this.selectedBackgroundType === 'color').toString())
+  
   if(this.backgroundImageVisitor) {
     formData.append('backgroundImageVisitor',this.backgroundImageVisitor)
   }
+  
+  console.log('Submitting with background type:', this.selectedBackgroundType);
+  console.log('Boolean flags:', {
+    isBackgroundImageVisitor: this.selectedBackgroundType === 'image',
+    isBackgroundSvgVisitor: this.selectedBackgroundType === 'svg',
+    isBackgroundColorVisitor: this.selectedBackgroundType === 'color'
+  });
+  
+  // Debug: Log FormData contents
+  console.log('FormData contents:');
+  formData.forEach((value, key) => {
+    console.log(`${key}:`, value, typeof value);
+  });
+  
   this.adminService.updateSetting(formData).subscribe({
     next:()=> {
       Swal.close()

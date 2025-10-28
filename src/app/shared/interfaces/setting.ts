@@ -3,6 +3,9 @@ export interface Setting {
     backgroundImageVisitor:string;
     backgroundColorVisitor:string;
     backgroundSvgVisitor:string;
+    isBackgroundImageVisitor:boolean;
+    isBackgroundColorVisitor:boolean;
+    isBackgroundSvgVisitor:boolean;
 }
 
 export interface ApiResponseSetting<T> {

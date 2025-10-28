@@ -18,7 +18,6 @@ import { ApiResponseSetting, Setting } from '../../../shared/interfaces/setting'
 })
 export class VisitorLayoutComponent implements OnInit{
   showButton:boolean = false;
-  bgTypeVisitor!:string;
   isBackgroundImage:boolean = false;
   isBackgroundColor:boolean = false;
   isBackgroundSvg:boolean = false;
@@ -32,29 +31,27 @@ export class VisitorLayoutComponent implements OnInit{
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private getSettingService:GetSettingService) {}
 
   ngOnInit(): void {
-    this.loadBackgroundTypeFromLocalStorage()
     this.getSetting()
-    
-    // Listen for changes in localStorage
-    if (isPlatformBrowser(this.platformId)) {
-      window.addEventListener('storage', (e) => {
-        if (e.key === 'bgTypeVisitor') {
-          this.loadBackgroundTypeFromLocalStorage()
-          this.updateBackgroundType()
-        }
-      });
-    }
   }
 
   getSetting(): void {
     this.getSettingService.getSetting().subscribe({
       next: (res: ApiResponseSetting<Setting>) => {
+        this.setting = res.data;
         this.backgroundColorVisitor = res.data.backgroundColorVisitor;
         this.backgroundImageVisitor = res.data.backgroundImageVisitor;
         this.backgroundSvgVisitor = res.data.backgroundSvgVisitor;
-        this.updateBackgroundType();
-        this.setting = res.data;
-        console.log(this.setting)
+        
+        // Use boolean flags from API
+        this.isBackgroundImage = res.data.isBackgroundImageVisitor;
+        this.isBackgroundColor = res.data.isBackgroundColorVisitor;
+        this.isBackgroundSvg = res.data.isBackgroundSvgVisitor;
+        
+        console.log('Background settings from API:', {
+          isBackgroundColor: this.isBackgroundColor,
+          isBackgroundImage: this.isBackgroundImage,
+          isBackgroundSvg: this.isBackgroundSvg
+        });
       },
       error: (error: any) => {
         console.error("Error getting setting data: ", error);
@@ -62,47 +59,13 @@ export class VisitorLayoutComponent implements OnInit{
         this.backgroundColorVisitor = '#121212';
         this.backgroundImageVisitor = '';
         this.backgroundSvgVisitor = '';
-        this.updateBackgroundType();
+        this.isBackgroundColor = true;
+        this.isBackgroundImage = false;
+        this.isBackgroundSvg = false;
       }
     });
   }
 
-  loadBackgroundTypeFromLocalStorage(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.bgTypeVisitor = localStorage.getItem('bgTypeVisitor') || 'color';
-    } else {
-      this.bgTypeVisitor = 'color';
-    }
-  }
-
-  updateBackgroundType(): void {
-    // Reset all boolean flags
-    this.isBackgroundImage = false;
-    this.isBackgroundColor = false;
-    this.isBackgroundSvg = false;
-
-    console.log('Background Type:', this.bgTypeVisitor);
-
-    // Set the appropriate flag based on bgTypeVisitor
-    switch (this.bgTypeVisitor) {
-      case 'image':
-        this.isBackgroundImage = true;
-        break;
-      case 'svg':
-        this.isBackgroundSvg = true;
-        break;
-      case 'color':
-      default:
-        this.isBackgroundColor = true;
-        break;
-    }
-
-    console.log('Background Flags:', {
-      isBackgroundColor: this.isBackgroundColor,
-      isBackgroundImage: this.isBackgroundImage,
-      isBackgroundSvg: this.isBackgroundSvg
-    });
-  }
 
   // Getter untuk background SVG style dengan proper encoding
   get visitorSvgStyle() {

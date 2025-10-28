@@ -31,18 +31,17 @@
           <div class="mb-4">
             <h1>Choose background type</h1>
             <div class="flex items-center gap-5 ">
-              <label class="flex items-center gap-2">
-                <input type="radio" name="bgTypeVisitor" value="color" [(ngModel)]="bgTypeVisitor" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('color')" /> Color
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="bgTypeVisitor" value="color" [(ngModel)]="selectedBackgroundType" [ngModelOptions]="{standalone: true}" (change)="onBackgroundTypeChange('color')" /> Color
               </label>
-              <label class="flex items-center gap-2">
-                <input type="radio" name="bgTypeVisitor" value="image" [(ngModel)]="bgTypeVisitor" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('image')" /> Image
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="bgTypeVisitor" value="image" [(ngModel)]="selectedBackgroundType" [ngModelOptions]="{standalone: true}" (change)="onBackgroundTypeChange('image')" /> Image
               </label>
-              <label class="flex items-center gap-2">
-                <input type="radio" name="bgTypeVisitor" value="svg" [(ngModel)]="bgTypeVisitor" [ngModelOptions]="{standalone: true}" (change)="saveBackgroundTypeToLocalStorage('svg')" /> SVG Pattern
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="bgTypeVisitor" value="svg" [(ngModel)]="selectedBackgroundType" [ngModelOptions]="{standalone: true}" (change)="onBackgroundTypeChange('svg')" /> SVG Pattern
               </label>
             </div>
           </div>
-
 
           <div class="space-y-4">
             <!-- Background Image -->
