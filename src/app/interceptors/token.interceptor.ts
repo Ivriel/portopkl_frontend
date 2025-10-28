@@ -26,16 +26,19 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     return next(newReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
+          // Clear cookies first
           cookieService.delete('token', '/');
           cookieService.delete('userData', '/');
           
+          // Navigate immediately
+          router.navigateByUrl('/admin/login');
+          
+          // Show alert after navigation
           Swal.fire({
             icon: 'error',
             title: 'Session Expired',
             text: 'Your session has expired. Please login again.',
             confirmButtonText: 'OK'
-          }).then(() => {
-            router.navigateByUrl('/admin/login');
           });
         }
         return throwError(() => error);

@@ -20,18 +20,13 @@ export class SettingFormComponent implements OnInit{
   formBuilder = inject(FormBuilder)
   settingData!:Setting;
   bgTypeVisitor!:string;
-  bgTypeAdmin!:string;
 
   backgroundImageVisitor!:File | null;
   backgroundImageVisitorPreview!:string | null;
-  backgroundImageAdmin!:File | null;
-  backgroundImageAdminPreview!:string | null;
   constructor(private getSettingService:GetSettingService, private adminService:AdminService,private router:Router){
     this.settingForm = this.formBuilder.group({
       backgroundColorVisitor:[''],
-      backgroundColorAdmin:[''],
-      backgroundSvgVisitor:[''],
-      backgroundSvgAdmin:['']
+      backgroundSvgVisitor:['']
     })
   }
 
@@ -77,28 +72,19 @@ export class SettingFormComponent implements OnInit{
 
   loadBackgroundTypeFromLocalStorage(): void {
     this.bgTypeVisitor = localStorage.getItem('bgTypeVisitor') || 'color'
-    this.bgTypeAdmin = localStorage.getItem('bgTypeAdmin') || 'color'
   }
 
-  saveBackgroundTypeToLocalStorage(type: 'visitor' | 'admin', value: string): void {
-    if (type === 'visitor') {
-      this.bgTypeVisitor = value
-      localStorage.setItem('bgTypeVisitor', value)
-    } else {
-      this.bgTypeAdmin = value
-      localStorage.setItem('bgTypeAdmin', value)
-    }
+  saveBackgroundTypeToLocalStorage(value: string): void {
+    this.bgTypeVisitor = value
+    localStorage.setItem('bgTypeVisitor', value)
   }
 
   patchFormValues(): void {
     this.settingForm.patchValue({
       backgroundColorVisitor:this.settingData.backgroundColorVisitor,
-      backgroundColorAdmin:this.settingData.backgroundColorAdmin,
-      backgroundSvgVisitor:this.settingData.backgroundSvgVisitor,
-      backgroundSvgAdmin:this.settingData.backgroundSvgAdmin
+      backgroundSvgVisitor:this.settingData.backgroundSvgVisitor
     })
     this.backgroundImageVisitorPreview = this.settingData.backgroundImageVisitor
-    this.backgroundImageAdminPreview = this.settingData.backgroundImageAdmin
   }
 
   onBackgroundImageVisitorSelect(event:Event):void {
@@ -123,27 +109,7 @@ export class SettingFormComponent implements OnInit{
     this.backgroundImageVisitorPreview = null
   }
 
-  onBackgroundImageAdminSelect(event:Event):void {
-    const input = event.target as HTMLInputElement
-    if(input.files && input.files[0]) {
-      const file = input.files[0]
-      if(!file.type.startsWith('image/')) {
-        Swal.fire('Error','Please select an image file','error')
-        return;
-      }
-      this.backgroundImageAdmin = file
-      const reader = new FileReader();
-      reader.onload = (e:any)=> {
-        this.backgroundImageAdminPreview = e.target.result
-      }
-      reader.readAsDataURL(file)
-    }
-  }
 
-  removeBackgroundImageAdmin():void {
-    this.backgroundImageAdmin = null
-    this.backgroundImageAdminPreview = null
-  }
 
   onColorChange(controlName: string, event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -157,14 +123,9 @@ export class SettingFormComponent implements OnInit{
   }
   const formData = new FormData()
   formData.append('backgroundColorVisitor',this.settingForm.value.backgroundColorVisitor)
-  formData.append('backgroundColorAdmin',this.settingForm.value.backgroundColorAdmin)
   formData.append('backgroundSvgVisitor',this.settingForm.value.backgroundSvgVisitor)
-  formData.append('backgroundSvgAdmin',this.settingForm.value.backgroundSvgAdmin)
   if(this.backgroundImageVisitor) {
     formData.append('backgroundImageVisitor',this.backgroundImageVisitor)
-  }
-  if(this.backgroundImageAdmin) {
-    formData.append('backgroundImageAdmin',this.backgroundImageAdmin)
   }
   this.adminService.updateSetting(formData).subscribe({
     next:()=> {

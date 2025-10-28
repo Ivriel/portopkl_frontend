@@ -46,15 +46,4 @@ export class SettingDisplayComponent implements OnInit {
       'background-repeat': 'repeat'
     };
   }
-
-  get adminSvgStyle() {
-    if (!this.setting?.backgroundSvgAdmin) return {};
-    // Clean escaped quotes jika ada
-    const cleanSvg = this.setting.backgroundSvgAdmin.replace(/\\\'/g, "'");
-    return {
-      'background-image': `url("${cleanSvg}")`,
-      'background-size': 'auto',
-      'background-repeat': 'repeat'
-    };
-  }
 }

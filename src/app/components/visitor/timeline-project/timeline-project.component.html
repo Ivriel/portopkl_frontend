@@ -1,24 +1,45 @@
-<div id="timeline" class="w-full max-w-5xl mx-auto px-4 py-12">
+<div id="timeline" class="w-full max-w-6xl mx-auto px-4 py-12">
     <div class="w-full">
-        <div class="timeline-container">
-            <div class="card">
-                <p-timeline [value]="timeline" align="alternate" class="customized-timeline">
-                    <ng-template #marker let-event>
-                        <span class="flex w-8 h-8 items-center justify-center text-white rounded-full z-10 shadow-sm" [style]="{ 'background-color': event.color }">
-                            <p-badge  [value]="event.number" badgeSize="xlarge" [style]="{'background-color': '#34D399', 'color':'#fff'}" styleClass="bg-red-500"></p-badge>
-                        </span>
-                    </ng-template>
-                    <ng-template #content let-event>
-                        <p-card [header]="event.project" [subheader]="event.date">
-                            <img *ngIf="event.image" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + event.image" [alt]="event.name" class="timeline-image shadow" />
-                            <p>
-                               {{event.description}}
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-center mb-16 text-white">Timeline</h1>
+        
+        <!-- Timeline with PrimeNG - Add responsive class wrapper -->
+        <div class="timeline-wrapper">
+            <p-timeline [value]="timeline" align="alternate" styleClass="custom-timeline">
+                <!-- Custom Marker -->
+                <ng-template #marker let-event>
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg z-10">
+                        {{ event.number }}
+                    </div>
+                </ng-template>
+                
+                <!-- Custom Content -->
+                <ng-template #content let-event>
+                    <div class="bg-[#242427] border border-gray-700 rounded-lg p-4 sm:p-6 shadow-lg hover:border-emerald-500 transition-all duration-300 hover:shadow-emerald-500/20 w-full sm:max-w-md">
+                        <!-- Header -->
+                        <div class="mb-3 sm:mb-4">
+                            <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">{{ event.project }}</h2>
+                            <p class="text-gray-400 text-xs sm:text-sm flex items-center gap-2">
+                                <i class="pi pi-calendar text-emerald-500"></i>
+                                {{ event.dateStart }} - {{ event.dateEnd }}
                             </p>
-                            <p-button label="Read more" [text]="true" [routerLink]="event.urlDetail" />
-                        </p-card>
-                    </ng-template>
-                </p-timeline>
-            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
+                            {{ event.description }}
+                        </p>
+                        
+                        <!-- Footer with Icon & Type Badge -->
+                        <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-700">
+                            <i [class]="event.icon + ' text-emerald-500 text-xl sm:text-2xl'"></i>
+                            <span class="px-2 sm:px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold">
+                                {{ event.type }}
+                            </span>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-timeline>
         </div>
     </div>
 </div>

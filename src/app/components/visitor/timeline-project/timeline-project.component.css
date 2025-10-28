@@ -1,1 +1,23 @@
-
+/* Responsive adjustments - MINIMAL VERSION */
+@media (max-width: 768px) {
+    /* Hide alternate side on mobile */
+    ::ng-deep .p-timeline-event-opposite {
+        display: none !important;
+    }
+    
+    /* Adjust content padding */
+    ::ng-deep .p-timeline-event-content {
+        padding-left: 2rem !important;
+        padding-bottom: 2rem !important; /* Add spacing to content only */
+    }
+    
+    /* Force row direction for all items */
+    ::ng-deep .p-timeline.p-timeline-alternate .p-timeline-event {
+        flex-direction: row !important;
+    }
+    
+    /* Remove margin from event (so line stays connected) */
+    ::ng-deep .p-timeline-event {
+        margin-bottom: 0 !important;
+    }
+}

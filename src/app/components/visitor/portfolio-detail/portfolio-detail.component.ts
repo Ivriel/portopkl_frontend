@@ -21,6 +21,7 @@ export class PortfolioDetailComponent implements OnInit{
   isLoading:boolean = true;
   isFullscreenOpen:boolean = false;
   currentImageIndex:number = 0;
+  isViewingThumbnail:boolean = false;
 
   constructor(
     private route:ActivatedRoute, 
@@ -85,12 +86,21 @@ export class PortfolioDetailComponent implements OnInit{
   openFullscreen(index: number): void {
     this.currentImageIndex = index;
     this.isFullscreenOpen = true;
+    this.isViewingThumbnail = false;
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  openThumbnailFullscreen(): void {
+    this.isFullscreenOpen = true;
+    this.isViewingThumbnail = true;
     // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
   }
 
   closeFullscreen(): void {
     this.isFullscreenOpen = false;
+    this.isViewingThumbnail = false;
     // Restore body scroll
     document.body.style.overflow = 'auto';
   }

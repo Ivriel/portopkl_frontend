@@ -27,35 +27,19 @@
           <i class="pi pi-image"></i>
           Background Images
         </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 max-w-2xl mx-auto gap-4">
 
-          <!-- Background Image Visitor -->
+          <!-- Background Image -->
           <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
               <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-300">Visitor Background</h3>
+                <h3 class="text-sm font-medium text-gray-300">Background Image</h3>
                 <span class="text-xs text-gray-500 bg-zinc-800 px-2 py-1 rounded">Image</span>
               </div>
             </div>
             <div class="p-4">
               <div class="relative w-full h-48 bg-zinc-800 rounded-lg overflow-hidden">
-                <img [src]="setting.backgroundImageVisitor" alt="Background Image Visitor"
-                  class="w-full h-full object-cover">
-              </div>
-            </div>
-          </div>
-
-          <!-- Background Image Admin -->
-          <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
-            <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
-              <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-300">Admin Background</h3>
-                <span class="text-xs text-gray-500 bg-zinc-800 px-2 py-1 rounded">Image</span>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="relative w-full h-48 bg-zinc-800 rounded-lg overflow-hidden">
-                <img [src]="setting.backgroundImageAdmin" alt="Background Image Admin"
+                <img [src]="setting.backgroundImageVisitor" alt="Background Image"
                   class="w-full h-full object-cover">
               </div>
             </div>
@@ -70,13 +54,13 @@
           <i class="pi pi-palette"></i>
           Background Colors
         </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 max-w-2xl mx-auto gap-4">
 
-          <!-- Background Color Visitor -->
+          <!-- Background Color -->
           <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
               <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-300">Visitor Background Color</h3>
+                <h3 class="text-sm font-medium text-gray-300">Background Color</h3>
                 <span class="text-xs text-gray-400 bg-zinc-800 px-2 py-1 rounded font-mono">
                   {{ setting.backgroundColorVisitor }}
                 </span>
@@ -85,23 +69,6 @@
             <div class="p-4">
               <div class="w-full h-48 rounded-lg border-2 border-zinc-700"
                 [style.background-color]="setting.backgroundColorVisitor">
-              </div>
-            </div>
-          </div>
-
-          <!-- Background Color Admin -->
-          <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
-            <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
-              <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-300">Admin Background Color</h3>
-                <span class="text-xs text-gray-400 bg-zinc-800 px-2 py-1 rounded font-mono">
-                  {{ setting.backgroundColorAdmin }}
-                </span>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="w-full h-48 rounded-lg border-2 border-zinc-700"
-                [style.background-color]="setting.backgroundColorAdmin">
               </div>
             </div>
           </div>
@@ -115,32 +82,18 @@
           <i class="pi pi-code"></i>
           Background SVG Patterns
         </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 max-w-2xl mx-auto gap-4">
 
-          <!-- Background SVG Visitor -->
+          <!-- Background SVG -->
           <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
             <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
               <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-300">Visitor SVG Pattern</h3>
+                <h3 class="text-sm font-medium text-gray-300">SVG Pattern</h3>
                 <span class="text-xs text-gray-500 bg-zinc-800 px-2 py-1 rounded">SVG</span>
               </div>
             </div>
             <div class="p-4">
               <div class="w-full h-48 rounded-lg border-2 border-zinc-700" [ngStyle]="visitorSvgStyle">
-              </div>
-            </div>
-          </div>
-
-          <!-- Background SVG Admin -->
-          <div class="bg-zinc-900 rounded-lg border border-zinc-800 overflow-hidden">
-            <div class="px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
-              <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-300">Admin SVG Pattern</h3>
-                <span class="text-xs text-gray-500 bg-zinc-800 px-2 py-1 rounded">SVG</span>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="w-full h-48 rounded-lg border-2 border-zinc-700" [ngStyle]="adminSvgStyle">
               </div>
             </div>
           </div>

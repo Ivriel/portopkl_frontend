@@ -20,6 +20,7 @@ export class ProjectDetailComponent implements OnInit{
   isLoading:boolean = true;
   isFullScreenOpen:boolean = false;
   currentImageIndex:number = 0;
+  isViewingThumbnail:boolean = false;
   constructor(private route:ActivatedRoute, private getPortfolioService:GetPortfolioService, private title:Title, private router:Router){
     this.portfolioId = this.route.snapshot.paramMap.get('id')
     if(!this.portfolioId) return;
@@ -57,11 +58,19 @@ export class ProjectDetailComponent implements OnInit{
     openFullScreen(index:number): void {
       this.currentImageIndex =index
       this.isFullScreenOpen = true
+      this.isViewingThumbnail = false
+      document.body.style.overflow = 'hidden'
+    }
+
+    openThumbnailFullScreen(): void {
+      this.isFullScreenOpen = true
+      this.isViewingThumbnail = true
       document.body.style.overflow = 'hidden'
     }
 
     closeFullScreen(): void {
       this.isFullScreenOpen = false
+      this.isViewingThumbnail = false
      document.body.style.overflow = 'auto'
     }
 

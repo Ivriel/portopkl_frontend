@@ -140,12 +140,15 @@
             <!-- Thumbnail -->
             <div class="mb-6">
               <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Project Preview</h3>
-              <div
-                class="relative rounded-lg overflow-hidden border border-zinc-800 bg-gradient-to-br from-[#34D399] to-[#059669] group">
+              <div (click)="openThumbnailFullscreen()"
+                class="relative rounded-lg overflow-hidden border border-zinc-800 bg-gradient-to-br from-[#34D399] to-[#059669] group cursor-pointer hover:border-[#34D399]/50 transition-all duration-300">
                 <img [src]="portfolioDetail.thumbnail" [alt]="portfolioDetail.title"
                   class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105">
                 <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <i class="pi pi-search-plus text-white text-lg"></i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -215,9 +218,12 @@
     <!-- Top Bar -->
     <div class="flex items-center justify-between p-4">
       <!-- Image Counter (Left on mobile, stays on top) -->
-      <div class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full"
+      <div *ngIf="!isViewingThumbnail" class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full"
         [title]="'Image number ' + (currentImageIndex + 1) + ' of ' + portfolioDetail.images.length">
         <span class="text-white font-semibold text-sm">{{ currentImageIndex + 1 }} / {{ portfolioDetail.images.length }}</span>
+      </div>
+      <div *ngIf="isViewingThumbnail" class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
+        <span class="text-white font-semibold text-sm">Project Preview</span>
       </div>
 
       <!-- Close Button (Right) -->
@@ -230,7 +236,7 @@
     <!-- Image Container (Center, grows to fill space) -->
     <div class="flex-1 flex items-center justify-center px-4 lg:px-16 relative">
       <!-- Desktop Navigation Buttons (Hidden on mobile) -->
-      <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" 
+      <button *ngIf="!isViewingThumbnail && portfolioDetail?.images && portfolioDetail.images.length > 1" 
         (click)="previousImage($event)"
         [title]="currentImageIndex === 0 ? 'Already in first image' : 'Previous image'"
         class="hidden lg:flex absolute left-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
@@ -240,14 +246,18 @@
 
       <!-- Image -->
       <div (click)="$event.stopPropagation()" class="max-w-7xl w-full flex items-center justify-center">
-        <img *ngIf="portfolioDetail?.images && portfolioDetail.images[currentImageIndex]"
+        <img *ngIf="isViewingThumbnail"
+          [src]="portfolioDetail.thumbnail"
+          [alt]="portfolioDetail.title + ' - Preview'"
+          class="max-w-full max-h-[70vh] lg:max-h-[80vh] object-contain rounded-lg shadow-2xl">
+        <img *ngIf="!isViewingThumbnail && portfolioDetail?.images && portfolioDetail.images[currentImageIndex]"
           [src]="portfolioDetail.images[currentImageIndex]"
           [alt]="portfolioDetail.title + ' - Image ' + (currentImageIndex + 1)"
           class="max-w-full max-h-[70vh] lg:max-h-[80vh] object-contain rounded-lg shadow-2xl">
       </div>
 
       <!-- Desktop Navigation Buttons (Hidden on mobile) -->
-      <button *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" 
+      <button *ngIf="!isViewingThumbnail && portfolioDetail?.images && portfolioDetail.images.length > 1" 
         (click)="nextImage($event)"
         [title]="currentImageIndex === portfolioDetail.images.length - 1 ? 'Already in last image' : 'Next image'"
         class="hidden lg:flex absolute right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
@@ -259,7 +269,7 @@
     <!-- Bottom Section -->
     <div class="p-4 pb-6 flex flex-col items-center gap-3">
       <!-- Mobile Navigation Buttons (buat di tablet/mobile) -->
-      <div *ngIf="portfolioDetail?.images && portfolioDetail.images.length > 1" 
+      <div *ngIf="!isViewingThumbnail && portfolioDetail?.images && portfolioDetail.images.length > 1" 
         class="flex lg:hidden items-center gap-4 justify-center w-full max-w-xs">
         <button (click)="previousImage($event)"
           [title]="currentImageIndex === 0 ? 'Already in first image' : 'Previous image'"

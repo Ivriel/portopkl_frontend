@@ -5,34 +5,23 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
-import { RouterLink } from "@angular/router";
-
-interface TimelineItem {
-  project?: string;
-  description?:string;
-  number?:number;
-  date?: string;
-  icon?: string;
-  type?: string;
-  image?: string;
-  urlDetail?:string;
-}
+import { TimelineItems } from '../../../shared/interfaces/timeline-items';
 
 @Component({
   selector: 'app-timeline-project',
-  imports: [Timeline, CardModule, ButtonModule, CommonModule, BadgeModule, OverlayBadgeModule, RouterLink],
+  imports: [Timeline, CardModule, ButtonModule, CommonModule, BadgeModule, OverlayBadgeModule],
   templateUrl: './timeline-project.component.html',
   styleUrl: './timeline-project.component.css'
 })
 export class TimelineProjectComponent {
-  timeline: TimelineItem[];
+  timeline: TimelineItems[];
 
   constructor() {
       this.timeline = [
-          { project: 'Ticat', description:'osas huvuveve uglik uglik lorem ipsum dolor sit amet yntkts', number:1, date: '15/10/2020 10:30', icon: 'pi pi-shopping-cart', type: 'Website', image: 'game-controller.jpg', urlDetail:'portfolio/68e334cd0f5ca29f41551ea6' },
-          { project: 'Dugi Website', description:'osas huvuveve uglik uglik lorem ipsum dolor sit amet yntkts', number:2, date: '15/10/2020 14:00', icon: 'pi pi-cog', type: 'Website', urlDetail:'portfolio/68c9171ad67404648420212d' },
-          { project: 'Dugi Mobile', description:'osas huvuveve uglik uglik lorem ipsum dolor sit amet yntkts', number:3, date: '15/10/2020 16:15', icon: 'pi pi-shopping-cart', type: 'Mobile', urlDetail:'portfolio/68c96bd277bb1fdda33b057c' },
-          { project: 'AKA', description:'osas huvuveve uglik uglik lorem ipsum dolor sit amet yntkts', number:4, date: '16/10/2020 10:00', icon: 'pi pi-check', type: 'Website',urlDetail:'portfolio/68d65d1a5fd39a5d0d4f4218' }
+          { project: 'Ticat', description:'Project web untuk mengelola data user,equipment, dan tiket dengan metode CRUD (Create,Read,Update,Delete) yang berintegrasi dengan API (Aplication Programming Interface). ',number:1, icon:'pi pi-globe', dateStart: '23/06/2025', dateEnd: '10/07/2025', type: 'Website' },
+          { project: 'Dugi Website', description:'Project  absensi karyawan (produk dari 3PM Solution) versi website. ',number:2,icon:'pi pi-globe', dateStart: '11/07/2025', dateEnd: '06/08/2025', type: 'Website' },
+          { project: 'Dugi Mobile', description:'Project  absensi karyawan (produk dari 3PM Solution) versi mobile. ',number:3, icon:'pi pi-mobile', dateStart: '19/08/2025', dateEnd: '12/09/2025', type: 'Mobile' },
+          { project: 'AKA', description:'Project web untuk client pabrik rokok AKA (Agung Karya Atta). ',number:4, icon:'pi pi-globe', dateStart:'02/09/2025', dateEnd: '31/10/2025', type: 'Website' }
       ];
   }
 }
