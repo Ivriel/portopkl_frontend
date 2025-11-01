@@ -59,7 +59,6 @@ export class LoginComponent {
         });
         console.log(response)
         this.authService.setToken(response.token);
-        this.authService.setloginUser(response.userData);
       },
       error:(error:any)=> {
         Swal.fire({

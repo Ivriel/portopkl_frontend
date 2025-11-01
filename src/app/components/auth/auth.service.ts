@@ -40,26 +40,8 @@ export class AuthService {
     return !this.cookieService.check('token')
   }
 
-  setloginUser(user:any):void {
-    const expirationDate = new Date();
-    expirationDate.setHours(expirationDate.getHours()+1);
-
-    this.cookieService.set('userData',JSON.stringify(user),{
-      expires:expirationDate,
-      path:'/',
-      secure:false,
-      sameSite:'Lax'
-    })
-  }
-
-  getLoginUser():any {
-    const userData = this.cookieService.get('userData')
-    return userData ? JSON.parse(userData) : null;
-  }
-
   logout(){
     this.cookieService.delete('token','/')
-    this.cookieService.delete('userData','/')
     this.router.navigateByUrl("/admin/login")
   }
 

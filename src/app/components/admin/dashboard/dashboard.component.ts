@@ -11,6 +11,7 @@ import { Chart, ChartConfiguration, registerables } from 'chart.js';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiResponseProfile, Profile } from '../../../shared/interfaces/profile';
 
 Chart.register(...registerables);
 
@@ -29,10 +30,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private chart: Chart | undefined;
   currentTime:Date = new Date();
 
-  constructor(private authService: AuthService, private adminService: AdminService, private router:Router) {}
+  constructor(
+    private authService: AuthService, 
+    private adminService: AdminService, 
+    private router:Router
+  ) {}
 
   ngOnInit(): void {
-    this.loadAdminEmail();
+    this.loadAdminData();
     this.getDashboardSummary();
     this.updateTime();
   }
@@ -41,13 +46,37 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // Chart akan dibuat setelah data summary tersedia
   }
 
-  loadAdminEmail():void {
-    const user = this.authService.getLoginUser();
-    if(user) {
-      this.adminEmail = user.email || ''
-      this.adminName = user.nama || ''
-      this.adminAvatar = user.avatar || ''
-    }
+  loadAdminData():void {
+
+    Swal.fire({
+      title: 'Memuat data admin...',
+      background: '#18181B',
+      color: '#ffffff',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    this.adminService.getProfile().subscribe({
+      next:(res:ApiResponseProfile<Profile>) => {
+        this.adminEmail = res.userData.email
+        this.adminName = res.userData.nama
+        this.adminAvatar = res.userData.avatar
+        Swal.close()
+      },
+      error:(error:any) => {
+        Swal.close()
+        Swal.fire({
+          title: 'Error',
+          text: error?.error?.message || 'Error getting profile data',
+          icon: 'error',
+          background: '#18181B',
+          color: '#ffffff'
+        })
+        console.error("Error getting profile data: ",error)
+      }
+    })
   }
 
   updateTime():void {

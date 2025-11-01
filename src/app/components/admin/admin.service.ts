@@ -54,8 +54,6 @@ export class AdminService {
     return this.http.put<any>(environment.apiUrl + environment.apiBranchUrl.updateSetting, data)
   }
 
-
-
   updateSettingAboutMe(data:FormData):Observable<any> {
     return this.http.put<any>(environment.apiUrl + environment.apiBranchUrl.updateSettingAboutMe,data)
   }
