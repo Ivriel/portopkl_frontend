@@ -53,6 +53,12 @@ export class GalleryComponent {
       description: 'Tempat pkl selama di 3PM Solution',
       size: 'large'
     },
+    {
+      image: 'assets/gallery/penyerahan-sertifikat-pkl.jpg',
+      title: 'Penyerahan Sertifikat',
+      description: 'Penyerahan sertifikat PKL oleh pembimbing IDUKA',
+      size: 'large'
+    },
   ];
 
 }

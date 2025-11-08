@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Login } from '../../shared/interfaces/login';
+import { LoginResponse } from '../../shared/interfaces/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class AuthService {
 
   constructor(private http:HttpClient,private router:Router, private cookieService:CookieService) { }
 
-  login(obj:any):Observable<any>{
-    return this.http.post<any>(environment.apiUrl + environment.apiBranchUrl.login ,obj)
+  login(obj:Login):Observable<LoginResponse>{
+    return this.http.post<LoginResponse>(environment.apiUrl + environment.apiBranchUrl.login ,obj)
   }
 
   setToken(token:string):void {
