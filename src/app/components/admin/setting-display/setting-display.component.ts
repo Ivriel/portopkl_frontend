@@ -4,6 +4,7 @@ import { ApiResponseSetting, Setting } from '../../../shared/interfaces/setting'
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GetSettingService } from '../../../shared/services/get-setting.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-setting-display',
@@ -22,12 +23,23 @@ export class SettingDisplayComponent implements OnInit {
   }
 
   getSetting(): void {
+    Swal.fire({
+      title: 'Loading setting...',
+      background: '#18181B',
+      color: '#ffffff',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
     this.getSettingService.getSetting().subscribe({
       next: (res: ApiResponseSetting<Setting>) => {
+        Swal.close()
         this.setting = res.data;
         console.log(this.setting);
       },
       error: (error: any) => {
+        Swal.close()
         console.error("Error fetching setting: ", error);
       }
     })

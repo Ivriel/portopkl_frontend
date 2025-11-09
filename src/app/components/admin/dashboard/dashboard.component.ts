@@ -111,6 +111,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         
         // Create chart setelah data tersedia
         setTimeout(() => this.createChart(), 100);
+        this.loadAdminData()
       },
       error: (error: any) => {
         Swal.fire({

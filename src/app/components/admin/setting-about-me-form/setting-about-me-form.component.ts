@@ -38,12 +38,23 @@ export class SettingAboutMeFormComponent implements OnInit{
   }
 
   getSettingAboutMe(): void {
+    Swal.fire({
+      title: 'Loading setting about me...',
+      background: '#18181B',
+      color: '#ffffff',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
     this.getSettingService.getSettingAboutMe().subscribe({
       next:(res:ApiResponseSettingAboutMe<SettingAboutMe>) => {
+        Swal.close()
         this.settingAboutMeData = res.data
         this.populateForm()
       },
       error:(error:any)=> {
+        Swal.close()
         console.error("Error getting setting about me: ",error)
       }
     })
