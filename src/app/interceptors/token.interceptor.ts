@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { catchError, throwError, EMPTY } from 'rxjs';
 import Swal from 'sweetalert2';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
@@ -41,6 +41,9 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
             // Navigate to login AFTER user clicks OK
             router.navigateByUrl('/admin/login');
           });
+          
+          // STOP error propagation - return EMPTY agar component tidak menangkap error 401
+          return EMPTY;
         }
         return throwError(() => error);
       })
