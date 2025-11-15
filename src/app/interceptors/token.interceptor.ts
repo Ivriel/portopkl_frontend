@@ -30,15 +30,16 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
           cookieService.delete('token', '/');
           cookieService.delete('userData', '/');
           
-          // Navigate immediately
-          router.navigateByUrl('/admin/login');
-          
-          // Show alert after navigation
+          // Show alert first, then navigate after user clicks OK
           Swal.fire({
             icon: 'error',
             title: 'Session Expired',
             text: 'Your session has expired. Please login again.',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            allowOutsideClick: false
+          }).then(() => {
+            // Navigate to login AFTER user clicks OK
+            router.navigateByUrl('/admin/login');
           });
         }
         return throwError(() => error);
