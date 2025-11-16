@@ -1,8 +1,8 @@
-<div class="min-h-screen p-4 sm:p-6" style="background-color: #121212;">
-  <div class="max-w-7xl mx-auto">
+<div class="min-h-screen p-4 sm:p-6 lg:p-8" style="background-color: #121212;">
+  <div class="max-w-5xl mx-auto">
 
     <!-- Header -->
-    <div class="mb-4 border-b pb-4 border-zinc-800">
+    <div class="mb-8">
       <button (click)="onBackToSetting()"
         class="px-4 py-2.5 bg-zinc-900 cursor-pointer hover:bg-zinc-800 text-white rounded-lg border border-zinc-800 transition-all duration-300 flex items-center gap-2 font-medium mb-4">
         <i class="pi pi-angle-left"></i>
@@ -19,7 +19,7 @@
     <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
 
       <!-- Single Column Layout -->
-      <div class="max-w-4xl mx-auto mb-6">
+      <div class="mb-6">
 
         <!-- Visitor Background Settings -->
         <div class="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
@@ -114,7 +114,7 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex gap-4 justify-end">
+      <div class="flex items-center justify-end gap-3">
         <button type="button" (click)="onBackToSetting()"
           class="px-6 py-3 bg-zinc-800 cursor-pointer hover:bg-zinc-700 text-white rounded-lg border border-zinc-700 transition-all duration-300 font-semibold">
           Cancel
